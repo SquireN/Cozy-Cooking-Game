@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ครัวอุ่นอุ่น Master — เปิดร้านเต็มรูปแบบ 💵</title>
+<title>ครัวอุ่นอุ่น Grand — ร้านนี้มีรีวิว ⭐</title>
 <style>
   :root{
     --night:#2b2136;--plum:#3a2a3f;--wood:#7a5643;--wood-dark:#5e4033;--shelf:#8b6650;
@@ -22,15 +22,16 @@
     touch-action:manipulation;
   }
   header{width:100%;max-width:780px;display:flex;align-items:center;justify-content:space-between;padding:12px 14px 4px;flex-wrap:wrap;gap:6px}
-  h1{font-size:1.15rem;font-weight:700;color:var(--honey);text-shadow:0 0 18px rgba(255,196,107,.35)}
+  h1{font-size:1.1rem;font-weight:700;color:var(--honey);text-shadow:0 0 18px rgba(255,196,107,.35)}
   h1 .flame{display:inline-block;animation:flicker 2.4s ease-in-out infinite}
   @keyframes flicker{0%,100%{transform:rotate(-4deg) scale(1)}50%{transform:rotate(5deg) scale(1.08)}}
-  .stats{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-  .pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;padding:4px 10px;font-size:.82rem;font-weight:600}
+  .stats{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+  .pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;padding:4px 9px;font-size:.8rem;font-weight:600}
   .pill.money{background:rgba(255,196,107,.15);border-color:rgba(255,196,107,.4)}
-  .hbtn{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;color:var(--cream);padding:4px 10px;font-size:.82rem;cursor:pointer;font-family:inherit;font-weight:600}
+  .hbtn{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;color:var(--cream);padding:4px 9px;font-size:.8rem;cursor:pointer;font-family:inherit;font-weight:600}
   #shopBtn{background:rgba(159,191,143,.18);border-color:rgba(159,191,143,.45)}
   #bookBtn{background:rgba(255,196,107,.15);border-color:rgba(255,196,107,.4)}
+  #revBtn{background:rgba(142,123,184,.22);border-color:rgba(142,123,184,.55)}
   .hbtn:active{transform:scale(.94)}
 
   main{width:100%;max-width:780px;padding:6px 12px 24px;display:grid;grid-template-columns:1fr;gap:12px}
@@ -46,7 +47,7 @@
   #custName{font-size:.75rem;font-weight:700;color:#8a6248}
   #custSay{font-size:.94rem;font-weight:600;margin:2px 0 7px}
   .chips{display:flex;flex-wrap:wrap;gap:5px}
-  .chip{border-radius:999px;padding:3px 10px;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:4px}
+  .chip{border-radius:999px;padding:3px 10px;font-size:.79rem;font-weight:700;display:flex;align-items:center;gap:4px}
   .chip.menu{background:#f6dfae;border:1px solid #d9b56e;color:#6b4a17}
   .chip.add{background:#dcead4;border:1px solid #a9c69a;color:#38512e}
   .chip.no{background:#f2d3c9;border:1px solid #d9a08c;color:#7a3822}
@@ -64,7 +65,8 @@
   .ing.drk.sel{outline:2px solid var(--honey);outline-offset:2px}
   .ing.nope{animation:shake .4s}
   @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-  #drinkTray{font-size:.82rem;font-weight:700;color:var(--honey);margin-top:8px;min-height:18px}
+  #drinkTray{font-size:.8rem;font-weight:700;color:var(--honey);margin-top:8px;min-height:18px;cursor:pointer}
+  #drinkTray span.discard{color:#e58b6a;font-size:.72rem}
 
   /* board */
   #board{background:linear-gradient(180deg,#a9805f,#8a6248);border-radius:var(--radius);border:1px solid rgba(0,0,0,.25);min-height:165px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:crosshair;position:relative;overflow:hidden;touch-action:none}
@@ -127,31 +129,37 @@
   @keyframes glow{0%,100%{box-shadow:0 0 0 rgba(159,191,143,0)}50%{box-shadow:0 0 22px rgba(159,191,143,.8)}}
   button.act.red{background:linear-gradient(180deg,#e58b6a,#c9603c);border-bottom-color:#8f3f22;color:#3a1508}
   button.act.blue{background:linear-gradient(180deg,#9db8d9,#6f8fb8);border-bottom-color:#4a6a94;color:#16283f}
-  #seasonRow{display:flex;align-items:center;gap:10px;margin-top:9px;flex-wrap:wrap;justify-content:center}
-  #saltBtn{font-size:1.5rem;background:none;border:none;cursor:pointer;transition:transform .1s}
-  #saltBtn:active{transform:rotate(-30deg) scale(1.1)}
-  #saltDots{display:flex;gap:5px}
-  #saltDots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15)}
-  #saltDots span.on{background:#fff}
-  #saltHint{font-size:.72rem;color:var(--cream-dim)}
+  button.act.grey{background:linear-gradient(180deg,#9a93a5,#6f6879);border-bottom-color:#4d4757;color:#211d29}
+
+  /* seasoning shakers */
+  #seasonRow{display:flex;align-items:flex-start;gap:8px;margin-top:10px;flex-wrap:wrap;justify-content:center}
+  .shaker{position:relative;width:56px;background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.18);border-radius:12px;padding:6px 2px 5px;text-align:center;cursor:pointer;transition:transform .1s}
+  .shaker:active{transform:rotate(-18deg) scale(1.06)}
+  .shaker .se{font-size:1.35rem}
+  .shaker small{display:block;font-size:.55rem;font-weight:700;color:var(--cream-dim)}
+  .shaker .used{display:flex;gap:3px;justify-content:center;margin-top:3px;min-height:7px}
+  .shaker .used i{width:6px;height:6px;border-radius:50%;background:#fff;display:block}
+  .shaker .stockTag{position:absolute;top:-7px;right:-7px;background:var(--honey);color:#3a2412;font-size:.56rem;font-weight:700;border-radius:999px;padding:1px 5px;border:1px solid #b9782c}
+  .shaker.out{filter:grayscale(1) brightness(.55)}
+  .shaker.out .stockTag{background:#8a4a3a;color:#ffd9cc;border-color:#5e2d20}
   .sprinkle{position:absolute;font-size:.8rem;pointer-events:none;animation:sprk .7s ease-in forwards}
   @keyframes sprk{0%{transform:translateY(0);opacity:1}100%{transform:translateY(46px);opacity:0}}
 
-  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(90px);background:rgba(43,33,54,.96);border:1px solid rgba(255,241,220,.25);color:var(--cream);padding:9px 16px;border-radius:999px;font-weight:600;font-size:.86rem;z-index:60;max-width:90vw;text-align:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(90px);background:rgba(43,33,54,.96);border:1px solid rgba(255,241,220,.25);color:var(--cream);padding:9px 16px;border-radius:999px;font-weight:600;font-size:.85rem;z-index:60;max-width:90vw;text-align:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
   #toast.show{transform:translateX(-50%) translateY(0)}
 
   .overlay{position:fixed;inset:0;background:rgba(24,17,30,.86);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;z-index:20;padding:12px}
   .overlay.show{opacity:1;pointer-events:auto}
   .oCard{background:linear-gradient(180deg,#4a3650,#382a40);border:1px solid rgba(255,241,220,.2);border-radius:22px;padding:20px 20px;text-align:center;max-width:400px;width:100%;transform:scale(.88);transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-height:88vh;overflow-y:auto}
   .overlay.show .oCard{transform:scale(1)}
-  .oCard .dish{font-size:3.1rem;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+  .oCard .dish{font-size:3rem;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
   .oCard .rFace{font-size:1.9rem;margin-top:2px}
   .oCard h2{color:var(--honey);margin:5px 0 2px;font-size:1.05rem}
   .stars{font-size:1.45rem;letter-spacing:4px;margin:4px 0}
   .stars .dim{opacity:.22}
   .oCard p{color:var(--cream-dim);font-size:.85rem;margin-bottom:7px}
-  .reveal{background:rgba(255,196,107,.12);border:1px dashed rgba(255,196,107,.5);border-radius:12px;padding:6px 10px;font-size:.8rem;margin-bottom:7px;color:var(--honey);text-align:left}
-  .breakdown{text-align:left;font-size:.77rem;color:var(--cream-dim);background:rgba(0,0,0,.2);border-radius:12px;padding:7px 11px;margin-bottom:10px}
+  .reveal{background:rgba(255,196,107,.12);border:1px dashed rgba(255,196,107,.5);border-radius:12px;padding:6px 10px;font-size:.79rem;margin-bottom:7px;color:var(--honey);text-align:left}
+  .breakdown{text-align:left;font-size:.76rem;color:var(--cream-dim);background:rgba(0,0,0,.2);border-radius:12px;padding:7px 11px;margin-bottom:10px}
   .breakdown div{display:flex;justify-content:space-between;padding:1px 0;gap:10px}
   .breakdown .pay{color:var(--sage);font-weight:700;border-top:1px solid rgba(255,241,220,.15);margin-top:4px;padding-top:4px}
   .heartPop{position:fixed;font-size:1.3rem;pointer-events:none;animation:heartFly 1.2s ease-out forwards;z-index:65}
@@ -177,11 +185,12 @@
   .rcp .rhead{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
   .rcp .rprice{margin-left:auto;font-size:.72rem;color:#8a6f52;font-weight:600}
   .rcp .rsteps{font-size:.78rem;margin-top:3px;color:#6b503a;line-height:1.6}
+  .rcp .rseason{font-size:.75rem;margin-top:2px;color:#8a5f36;font-weight:600}
   .rcp .stepTag{display:inline-block;background:#efe0c2;border:1px solid #d5bd93;border-radius:8px;padding:1px 7px;margin:1px 2px 1px 0;font-weight:600}
   .rcp .stepTag.pot{background:#dde8f0;border-color:#a9c2d5;color:#33566e}
   .rcp .stepTag.pan{background:#f0e2d5;border-color:#d5ac8a;color:#7a4a22}
   .rcp.locked{opacity:.75}
-  .rcp.locked .rsteps{filter:blur(2.5px)}
+  .rcp.locked .rsteps,.rcp.locked .rseason{filter:blur(2.5px)}
   .unlockBtn{font-family:inherit;font-weight:700;font-size:.74rem;color:#fff;background:linear-gradient(180deg,#8e7bb8,#6a5992);border:none;border-bottom:2px solid #4b3f6b;border-radius:999px;padding:4px 11px;cursor:pointer}
   .unlockBtn:disabled{filter:grayscale(.7) brightness(.75);cursor:not-allowed}
   .bookNote{font-size:.72rem;color:#8a6f52;margin-top:8px;font-style:italic}
@@ -196,9 +205,21 @@
   .coinBtn.note{border-radius:10px;width:64px;height:44px;background:linear-gradient(135deg,#bcd6b0,#8fb681);border-color:#5c7f50;color:#2c421f}
   #ckSum{font-size:1.3rem;font-weight:800;color:var(--honey)}
   .ckSmall{font-size:.78rem;color:var(--cream-dim)}
-  #ckResult{font-size:.9rem;font-weight:700;margin:8px 0;min-height:22px}
+  #ckResult{font-size:.88rem;font-weight:700;margin:8px 0;min-height:22px}
   #ckResult.good{color:var(--sage)}
   #ckResult.bad{color:#e58b6a}
+
+  /* reviews */
+  #ratingBox{background:rgba(0,0,0,.25);border-radius:14px;padding:10px;margin-bottom:8px}
+  #ratingBig{font-size:1.6rem;font-weight:800;color:var(--honey)}
+  #ratingSub{font-size:.78rem;color:var(--cream-dim)}
+  #fameBadge{display:none;margin-top:5px;font-size:.78rem;font-weight:700;color:#3a2412;background:linear-gradient(180deg,var(--honey),#eda94e);border-radius:999px;padding:3px 12px}
+  #revList{display:flex;flex-direction:column;gap:6px;margin:8px 0 10px;max-height:48vh;overflow-y:auto}
+  .revItem{background:rgba(0,0,0,.2);border-radius:12px;padding:8px 11px;text-align:left}
+  .revItem .rTop{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700}
+  .revItem .rStars{margin-left:auto;font-size:.75rem;color:var(--honey);letter-spacing:1px}
+  .revItem .rTxt{font-size:.79rem;color:var(--cream-dim);margin-top:3px}
+  .revEmpty{font-size:.82rem;color:var(--cream-dim);padding:14px 0}
 
   footer{color:rgba(230,211,189,.45);font-size:.72rem;padding:0 14px 16px;text-align:center}
   @media (max-width:430px){
@@ -207,6 +228,7 @@
     .vesselWrap{width:210px}
     button.act{font-size:.82rem;padding:8px 11px}
     .coinBtn{width:47px;height:47px;font-size:.88rem}
+    .shaker{width:52px}
   }
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
 </style>
@@ -217,9 +239,9 @@
   <h1><span class="flame">🔥</span> ครัวอุ่นอุ่น</h1>
   <div class="stats">
     <div class="pill money">🪙 <span id="money">0</span></div>
-    <div class="pill">⭐ <span id="starTotal">0</span></div>
     <div class="pill">🍽️ <span id="servedN">0</span></div>
-    <button class="hbtn" id="bookBtn">📖 เมนู</button>
+    <button class="hbtn" id="revBtn">⭐ <span id="ratingMini">–</span></button>
+    <button class="hbtn" id="bookBtn">📖</button>
     <button class="hbtn" id="shopBtn">🛒</button>
     <button class="hbtn" id="muteBtn">🔊</button>
   </div>
@@ -244,7 +266,7 @@
 
   <!-- drinks -->
   <section class="card">
-    <div class="label">ตู้เครื่องดื่ม — แตะเพื่อเตรียมเสิร์ฟ (ตัดสต็อกทันที เปลี่ยนใจ = เสียของ!)</div>
+    <div class="label">ตู้เครื่องดื่ม — แตะเพื่อเตรียม (ตัดสต็อกทันที)</div>
     <div id="drinkBar"></div>
     <div id="drinkTray"></div>
   </section>
@@ -256,7 +278,7 @@
     <div id="knifeCursor">🔪</div>
     <div id="boardItem"></div>
     <div class="chopDots" id="chopDots"></div>
-    <div id="boardHint">เปิด 📖 ดูสูตร แล้วอย่าลืมคำขอพิเศษของลูกค้านะ</div>
+    <div id="boardHint">เปิด 📖 ดูสูตร+เครื่องปรุง แล้วอย่าลืมคำขอพิเศษ</div>
   </section>
 
   <!-- stove -->
@@ -281,20 +303,18 @@
       <button class="act" id="offBtn" disabled>ยกลง ✋</button>
       <button class="act blue" id="nextStageBtn" disabled>➡️ ขั้นต่อไป</button>
     </div>
-    <div id="seasonRow">
-      <button id="saltBtn" title="โรยเครื่องปรุง">🧂</button>
-      <div id="saltDots"><span></span><span></span><span></span><span></span><span></span></div>
-      <div id="saltHint"></div>
-    </div>
+    <div class="label" style="margin:10px 0 0">เครื่องปรุงรส — เขย่าตามสูตรในตำรา 📖</div>
+    <div id="seasonRow"></div>
   </section>
 
-  <!-- serve -->
+  <!-- serve + trash -->
   <section class="card" style="text-align:center">
-    <button class="act green" id="serveBtn" disabled style="font-size:1rem;padding:12px 32px">เสิร์ฟ ✨</button>
+    <button class="act green" id="serveBtn" disabled style="font-size:1rem;padding:12px 30px">เสิร์ฟ ✨</button>
+    <button class="act grey" id="trashBtn" style="margin-left:8px">🗑️ ทิ้งอาหาร</button>
   </section>
 </main>
 
-<footer>🔪 ปาดเพื่อหั่น · 🥄 วนนิ้วเพื่อคน · 🍳 ปัดขึ้นเพื่อโยน · 💵 ทอนเงินให้ถูกด้วยนะ!</footer>
+<footer>🔪 ปาดหั่น · 🥄 วนคน · 🍳 ปัดโยน · 🧂 เขย่าปรุง · ทำพลาดก็ 🗑️ ทิ้งแล้วเริ่มใหม่ (ของเสียนะ!)</footer>
 
 <div id="toast"></div>
 
@@ -358,6 +378,20 @@
   </div>
 </div>
 
+<!-- reviews -->
+<div class="overlay" id="revOverlay">
+  <div class="oCard">
+    <h2>⭐ รีวิวร้านครัวอุ่นอุ่น</h2>
+    <div id="ratingBox">
+      <div id="ratingBig">–</div>
+      <div id="ratingSub">ยังไม่มีรีวิว</div>
+      <div id="fameBadge">🎉 ร้านดัง! ทิป +20%</div>
+    </div>
+    <div id="revList"></div>
+    <button class="act" id="revClose">ปิด</button>
+  </div>
+</div>
+
 <script>
 "use strict";
 
@@ -404,7 +438,14 @@ const DRINKS = {
 };
 const DRINK_ORDER=Object.keys(DRINKS);
 
-/* unlock: 0 = มีตั้งแต่แรก, ตัวเลข = ราคาปลดล็อก · price = ราคาขายจาน */
+const SEASONS = {
+  salt:{e:"🧂",n:"เกลือ",refill:6,price:5},
+  sugar:{e:"🍬",n:"น้ำตาล",refill:6,price:5},
+  fish:{e:"🫙",n:"น้ำปลา",refill:6,price:6},
+  oyster:{e:"🦪",n:"ซอสหอย",refill:6,price:7}
+};
+const SEASON_ORDER=Object.keys(SEASONS);
+
 const RECIPES = [
   {name:"ไข่เจียวฟู",dish:"🍳",broth:"#f0d070",price:35,unlock:0,
    stages:[{type:"pan",label:"เจียว",ings:["egg","onion","garlic"]}],
@@ -464,6 +505,26 @@ const RECIPES = [
    addable:["mushroom","broccoli","corn","egg"]}
 ];
 
+/* สูตรปรุงรสของแต่ละเมนู (จำนวนเขย่าต่อชนิด) */
+const SEASON_REQ = {
+  "ไข่เจียวฟู":{fish:1},
+  "ข้าวผัดไข่":{fish:1,salt:1},
+  "ผัดผักรวมมิตร":{oyster:2},
+  "สตูว์ข้างเตาผิง":{salt:2,sugar:1},
+  "ผัดกะเพราไก่":{fish:1,oyster:1,sugar:1},
+  "ข้าวต้มปลา":{salt:1,fish:1},
+  "ชีสคอร์นกระทะร้อน":{salt:1,sugar:1},
+  "ซุปฟักทอง":{salt:1,sugar:2},
+  "ราเมงยามดึก":{salt:1,fish:2},
+  "ซุปเห็ดครีม":{salt:2},
+  "ต้มยำกุ้ง":{fish:2,sugar:1},
+  "สปาเก็ตตี้ขี้เมาไก่":{oyster:1,fish:1},
+  "แกงเผ็ดไก่":{fish:2,sugar:1},
+  "ข้าวผัดกุ้ง":{fish:1,sugar:1,salt:1},
+  "มัสมั่นไก่":{sugar:2,fish:1,salt:1},
+  "พาสต้าครีมกุ้ง":{salt:2,sugar:1}
+};
+
 const CUSTOMERS = [
   {face:"👵",name:"คุณยายนวล"},{face:"👧",name:"น้องข้าวปั้น"},
   {face:"🧑‍🌾",name:"ลุงผล จากไร่"},{face:"👩‍🎨",name:"พี่ฝ้าย ศิลปิน"},
@@ -478,25 +539,33 @@ const COMMENTS = {
   2:["อร่อยนะ แต่มีพลาดนิดหน่อย~","เกือบเป๊ะแล้วล่ะ!"],
   1:["เอ๊ะ…ที่ขอไว้ไม่ใช่แบบนี้นี่นา 😅","อืม…รอบหน้าอ่านออเดอร์ดีๆ นะเชฟ"]
 };
+const REVIEW_MAIN = {
+  3:["สั่ง{dish}ไป อร่อยจนอยากกลับมาทุกวัน!","{dish}ร้านนี้คือของจริง แนะนำเลย 💯","เชฟใส่ใจทุกรายละเอียด {dish}เป๊ะมาก"],
+  2:["{dish}อร่อยใช้ได้ มีพลาดเล็กน้อยแต่โอเค","โดยรวมดี {dish}กินเพลิน ให้ผ่าน~","รสชาติกลางๆ แต่บรรยากาศร้านน่ารักดี"],
+  1:["สั่ง{dish}แต่ได้อะไรมาก็ไม่รู้… 😔","ผิดหวังนิดนึง รอบหน้าขอเป๊ะกว่านี้นะ","{dish}วันนี้ไม่ค่อยไหว ให้กำลังใจเชฟละกัน"]
+};
 
 /* ================= state ================= */
-let cust=null, order=null;    // order:{recipe, removed, added, req, drink}
+let cust=null, order=null;
 let board=null;
 let vessel="pot";
 let allItems=[], curAdded=[];
 let stageRecs=[];
 let cooking=false, doneness=0, finalDoneness=null;
-let stirs=0, STIRS_NEED=3, salt=0;
+let stirs=0, STIRS_NEED=3;
 let servedDrink=null;
-let money=70, starTotal=0, servedN=0;
+let seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
+let money=70, servedN=0;
 let muted=false, cookTimer=null;
+let trashArm=0;
 const GAS_COST=2;
 const STOCK={};
 ING_ORDER.forEach(id=>{STOCK[id]=INGS[id].price>=8?1:2;});
 const DRINK_STOCK={water:3,lemon:1,tea:1,cocoa:1};
-let seasonStock=8;
+const SEASON_STOCK={salt:5,sugar:5,fish:5,oyster:5};
 const unlocked=new Set(RECIPES.filter(r=>r.unlock===0).map(r=>r.name));
-let pending=null;             // {bill, foodPay, drinkPay, tip, stars}
+const reviews=[];              // {stars, face, name, dish, text}
+let pending=null;
 let changeStack=[];
 
 /* ================= dom ================= */
@@ -508,10 +577,10 @@ const custFace=$("custFace"),custName=$("custName"),custSay=$("custSay"),orderCh
       vesselWrap=$("vesselWrap"),knifeCursor=$("knifeCursor"),gestureHint=$("gestureHint"),
       heatBtn=$("heatBtn"),offBtn=$("offBtn"),nextStageBtn=$("nextStageBtn"),
       doneMarker=$("doneMarker"),flameIcon=$("flameIcon"),
-      saltBtn=$("saltBtn"),saltDots=$("saltDots"),saltHint=$("saltHint"),
-      serveBtn=$("serveBtn"),toastEl=$("toast"),
+      seasonRow=$("seasonRow"),
+      serveBtn=$("serveBtn"),trashBtn=$("trashBtn"),toastEl=$("toast"),
       resultOverlay=$("resultOverlay"),shopOverlay=$("shopOverlay"),bookOverlay=$("bookOverlay"),
-      checkoutOverlay=$("checkoutOverlay");
+      checkoutOverlay=$("checkoutOverlay"),revOverlay=$("revOverlay");
 
 /* ================= audio ================= */
 let actx=null;
@@ -537,6 +606,7 @@ const sfx={
   sizzle:()=>snd(90,.3,"sawtooth",.03,60),
   salt:()=>snd(900,.06,"triangle",.06,1200),
   pour:()=>snd(200,.4,"sine",.1,90),
+  trash:()=>snd(260,.35,"sawtooth",.07,70),
   nope:()=>snd(180,.25,"sawtooth",.05,120),
   coin:()=>{snd(880,.09,"square",.06,880);setTimeout(()=>snd(1175,.12,"square",.06),90)},
   unlock:()=>{snd(392,.15,"triangle",.1);setTimeout(()=>snd(523,.15,"triangle",.1),120);setTimeout(()=>snd(659,.25,"triangle",.12),240)},
@@ -550,7 +620,20 @@ function toast(m){
   clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove("show"),2200);
 }
 function rand(a){return a[Math.floor(Math.random()*a.length)]}
-function updateHeader(){$("money").textContent=money;$("starTotal").textContent=starTotal;$("servedN").textContent=servedN}
+function ratingAvg(){
+  if(!reviews.length)return null;
+  return reviews.reduce((s,r)=>s+r.stars,0)/reviews.length;
+}
+function isFamous(){
+  const a=ratingAvg();
+  return reviews.length>=5&&a!==null&&a>=2.5;
+}
+function updateHeader(){
+  $("money").textContent=money;
+  $("servedN").textContent=servedN;
+  const a=ratingAvg();
+  $("ratingMini").textContent=a===null?"–":a.toFixed(1);
+}
 
 /* ================= order generation ================= */
 function makeOrder(){
@@ -626,13 +709,28 @@ function renderDrinks(){
     b.addEventListener("click",()=>pickDrink(id,b));
     drinkBar.appendChild(b);
   });
-  drinkTray.textContent=servedDrink
-    ? "🧾 เตรียมเสิร์ฟ: "+DRINKS[servedDrink].e+" "+DRINKS[servedDrink].n
+  drinkTray.innerHTML=servedDrink
+    ? "🧾 เตรียมเสิร์ฟ: "+DRINKS[servedDrink].e+" "+DRINKS[servedDrink].n+' <span class="discard">(แตะเพื่อเททิ้ง)</span>'
     : "";
+}
+function renderSeasons(){
+  seasonRow.innerHTML="";
+  SEASON_ORDER.forEach(id=>{
+    const g=SEASONS[id];
+    const d=document.createElement("div");
+    d.className="shaker"+(SEASON_STOCK[id]<=0?" out":"");
+    let dots="";
+    for(let i=0;i<Math.min(seasonUsed[id],4);i++)dots+="<i></i>";
+    d.innerHTML='<div class="se">'+g.e+'</div><small>'+g.n+'</small>'+
+      '<div class="used">'+dots+'</div>'+
+      '<span class="stockTag">'+(SEASON_STOCK[id]<=0?"หมด":"×"+SEASON_STOCK[id])+"</span>";
+    d.addEventListener("click",()=>doSeason(id));
+    seasonRow.appendChild(d);
+  });
 }
 function renderBoard(){
   chopDots.innerHTML="";
-  if(!board){boardItem.textContent="";boardHint.textContent="เปิด 📖 ดูสูตร แล้วอย่าลืมคำขอพิเศษของลูกค้านะ";return}
+  if(!board){boardItem.textContent="";boardHint.textContent="เปิด 📖 ดูสูตร+เครื่องปรุง แล้วอย่าลืมคำขอพิเศษ";return}
   const g=INGS[board.id];
   boardItem.textContent=g.e;
   if(board.chopsLeft>0){
@@ -698,10 +796,9 @@ function renderButtons(){
   heatBtn.disabled=allItems.length===0||cooking||finalDoneness!==null;
   offBtn.disabled=!cooking;
   nextStageBtn.disabled=finalDoneness===null;
+  trashBtn.disabled=cooking||(allItems.length===0&&stageRecs.length===0);
   doneMarker.style.left=(finalDoneness!==null?finalDoneness:doneness)+"%";
   flameIcon.classList.toggle("on",cooking);
-  saltDots.querySelectorAll("span").forEach((d,i)=>d.classList.toggle("on",i<salt));
-  saltHint.textContent="เหลือ "+seasonStock+" ครั้ง · โรย 2–3 ครั้งกำลังอร่อย";
   if(cooking){
     gestureHint.textContent=vessel==="pot"
       ?"🖐️ ลากนิ้ววนเป็นวงกลมในหม้อเพื่อคน — "+stirs+"/"+STIRS_NEED
@@ -715,9 +812,14 @@ function renderButtons(){
   serveBtn.disabled=!ready;
   serveBtn.classList.toggle("ready",ready);
 }
-function renderAll(){renderBoard();renderStageFlow();renderVessel();renderButtons();renderDrinks();updateHeader()}
+function renderAll(){renderBoard();renderStageFlow();renderVessel();renderButtons();renderDrinks();renderSeasons();updateHeader()}
 
-/* ================= recipe book (with unlocks) ================= */
+/* ================= recipe book ================= */
+function seasonTxt(name){
+  const req=SEASON_REQ[name]||{};
+  const parts=Object.keys(req).map(id=>SEASONS[id].e+"×"+req[id]);
+  return parts.length?parts.join("  "):"ไม่ต้องปรุง";
+}
 function renderBook(){
   $("bookMoney").textContent=money;
   const page=$("bookPage");
@@ -738,6 +840,10 @@ function renderBook(){
       s.ings.map(id=>INGS[id].e).join(" ")
     ).join("<br>");
     d.appendChild(steps);
+    const sea=document.createElement("div");
+    sea.className="rseason";
+    sea.textContent="ปรุงรส: "+seasonTxt(r.name);
+    d.appendChild(sea);
     if(!isOpen){
       const btn=document.createElement("button");
       btn.className="unlockBtn";
@@ -758,7 +864,7 @@ function renderBook(){
   });
   const note=document.createElement("div");
   note.className="bookNote";
-  note.textContent="✎ เมนูแพงจ่ายดีกว่า แต่ใช้ของแพงและขั้นตอนเยอะ · คำขอ ➕/🚫 ปรับจากสูตรเอง";
+  note.textContent="✎ เขย่าเครื่องปรุงตามสูตรเป๊ะๆ · เมนูแพงจ่ายดีแต่ขั้นตอนเยอะ";
   page.appendChild(note);
 }
 
@@ -775,7 +881,7 @@ function shopRow(list,emoji,name,sub,stockTxt,price,onBuy){
   btn.addEventListener("click",()=>{
     if(money<price){sfx.nope();return}
     money-=price;onBuy();
-    sfx.coin();renderShop();renderPantry();renderDrinks();renderButtons();updateHeader();
+    sfx.coin();renderShop();renderPantry();renderDrinks();renderSeasons();updateHeader();
   });
   row.appendChild(btn);
   list.appendChild(row);
@@ -789,17 +895,51 @@ function renderShop(){
     const g=INGS[id];
     shopRow(list,g.e,g.n,"ชิ้นละ "+g.price+" 🪙","มี ×"+STOCK[id],g.price,()=>{STOCK[id]++});
   });
-  const s2=document.createElement("div");s2.className="shopSec";s2.textContent="🥤 เครื่องดื่ม (ทุนต่อแก้ว → ขายได้กำไร)";list.appendChild(s2);
+  const s2=document.createElement("div");s2.className="shopSec";s2.textContent="🥤 เครื่องดื่ม (ทุนถูก ขายมีกำไร)";list.appendChild(s2);
   DRINK_ORDER.forEach(id=>{
     const g=DRINKS[id];
     shopRow(list,g.e,g.n,"ทุน "+g.cost+" 🪙 · ขาย "+g.sell+" 🪙","มี ×"+DRINK_STOCK[id],g.cost,()=>{DRINK_STOCK[id]++});
   });
-  const s3=document.createElement("div");s3.className="shopSec";s3.textContent="🧂 เครื่องปรุง";list.appendChild(s3);
-  shopRow(list,"🧂","เครื่องปรุงรวม","เติม 10 ครั้ง = 8 🪙","เหลือ "+seasonStock,8,()=>{seasonStock+=10});
+  const s3=document.createElement("div");s3.className="shopSec";s3.textContent="🧂 เครื่องปรุงรส (เติมทีละขวด)";list.appendChild(s3);
+  SEASON_ORDER.forEach(id=>{
+    const g=SEASONS[id];
+    shopRow(list,g.e,g.n,"เติม "+g.refill+" ครั้ง = "+g.price+" 🪙","เหลือ "+SEASON_STOCK[id],g.price,()=>{SEASON_STOCK[id]+=g.refill});
+  });
 }
 function openShop(){
   if(cooking){toast("ไฟยังติดอยู่! ยกลงก่อนค่อยไปซื้อของนะ 🔥");sfx.nope();return}
   renderShop();shopOverlay.classList.add("show");
+}
+
+/* ================= reviews ================= */
+function renderReviews(){
+  const a=ratingAvg();
+  $("ratingBig").textContent=a===null?"–":"⭐ "+a.toFixed(1)+" / 3";
+  $("ratingSub").textContent=a===null?"ยังไม่มีรีวิว — เสิร์ฟลูกค้าคนแรกกันเถอะ!":reviews.length+" รีวิวจากลูกค้า";
+  $("fameBadge").style.display=isFamous()?"inline-block":"none";
+  const list=$("revList");
+  list.innerHTML="";
+  if(!reviews.length){
+    const d=document.createElement("div");
+    d.className="revEmpty";d.textContent="🌙 เงียบเหงา…ยังไม่มีใครมารีวิวเลย";
+    list.appendChild(d);
+    return;
+  }
+  reviews.slice().reverse().forEach(rv=>{
+    const d=document.createElement("div");
+    d.className="revItem";
+    d.innerHTML='<div class="rTop">'+rv.face+" "+rv.name+
+      '<span class="rStars">'+"⭐".repeat(rv.stars)+"☆".repeat(3-rv.stars)+"</span></div>"+
+      '<div class="rTxt">'+rv.text+"</div>";
+    list.appendChild(d);
+  });
+}
+function addReview(stars,extraNotes){
+  const base=rand(REVIEW_MAIN[stars]).replace("{dish}",order.recipe.name);
+  const text=base+(extraNotes.length?" ("+extraNotes.join(" · ")+")":"");
+  reviews.push({stars:stars,face:cust.face,name:cust.name,dish:order.recipe.dish,text:text});
+  if(reviews.length>25)reviews.shift();
+  updateHeader();
 }
 
 /* ================= flow ================= */
@@ -807,8 +947,9 @@ function newCustomer(){
   cust=rand(CUSTOMERS);
   order=makeOrder();
   board=null;allItems=[];curAdded=[];stageRecs=[];
-  stirs=0;salt=0;servedDrink=null;
-  cooking=false;doneness=0;finalDoneness=null;pending=null;
+  stirs=0;servedDrink=null;
+  seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
+  cooking=false;doneness=0;finalDoneness=null;pending=null;trashArm=0;
   clearInterval(cookTimer);
   renderCustomer();renderPantry();renderAll();
   toast("🔔 ออเดอร์ใหม่! เช็กคำขอพิเศษ"+(order.drink?" + เครื่องดื่ม":"")+"ก่อนลงมือ");
@@ -845,6 +986,13 @@ function pickDrink(id,el){
   servedDrink=id;
   sfx.pour();
   toast(DRINKS[id].e+" เตรียม"+DRINKS[id].n+"แล้ว!"+(order.drink?"":" (ลูกค้าไม่ได้สั่งนะ…)"));
+  renderDrinks();
+}
+function discardDrink(){
+  if(!servedDrink)return;
+  toast("เท"+DRINKS[servedDrink].n+"ทิ้งแล้ว… เสียของฟรีเลยนะ 💧");
+  sfx.trash();
+  servedDrink=null;
   renderDrinks();
 }
 function doChop(){
@@ -907,7 +1055,7 @@ function stopHeat(burnt){
   if(!cooking)return;
   cooking=false;clearInterval(cookTimer);
   finalDoneness=doneness;
-  if(burnt)toast("โอ๊ะ! ขั้นนี้เกรียมไปหน่อย… 💨");
+  if(burnt)toast("โอ๊ะ! ขั้นนี้เกรียมไปหน่อย… 💨 (ทิ้งแล้วทำใหม่ก็ได้นะ)");
   else if(finalDoneness>=55&&finalDoneness<82){toast("จังหวะเป๊ะ! ✨");sfx.ding()}
   else if(finalDoneness<35)toast("อืม…ขั้นนี้ยังดิบอยู่นะ 😅");
   renderAll();
@@ -920,17 +1068,42 @@ function nextStage(){
   toast("➡️ ขั้นที่ "+(stageRecs.length+1)+"! เลือกหม้อ/กระทะ ใส่ของเพิ่ม แล้วเปิดไฟ");
   renderAll();
 }
-function doSalt(){
-  if(allItems.length===0){toast("ยังไม่มีอะไรให้ปรุงเลยน้า");sfx.nope();return}
-  if(seasonStock<=0){toast("เครื่องปรุงหมดขวด! ซื้อเติมที่ 🛒 นะ");sfx.nope();return}
-  if(salt>=5){toast("พอแล้วๆ เดี๋ยวเค็ม! 😆");sfx.nope();return}
-  salt++;seasonStock--;
+function trashFood(){
+  if(trashBtn.disabled)return;
+  if(cooking){toast("ยกลงจากเตาก่อนค่อยทิ้งนะ 🔥");sfx.nope();return}
+  const now=Date.now();
+  if(now-trashArm>3000){
+    trashArm=now;
+    toast("แน่ใจนะ? วัตถุดิบ+เครื่องปรุงที่ใช้ไปจะเสียหมด — แตะ 🗑️ อีกครั้งเพื่อทิ้ง");
+    return;
+  }
+  trashArm=0;
+  sfx.trash();
+  const rect=vesselWrap.getBoundingClientRect();
+  allItems.slice(0,6).forEach((id,i)=>{
+    const p=document.createElement("div");
+    p.className="heartPop";p.textContent=INGS[id].e;
+    p.style.left=(rect.left+20+i*24)+"px";
+    p.style.top=(rect.top+40)+"px";
+    document.body.appendChild(p);setTimeout(()=>p.remove(),1250);
+  });
+  allItems=[];curAdded=[];stageRecs=[];
+  stirs=0;doneness=0;finalDoneness=null;
+  seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
+  toast("🗑️ เททิ้งเรียบร้อย… เริ่มทำใหม่ได้เลยเชฟ (ออเดอร์เดิมยังรออยู่)");
+  renderAll();
+}
+function doSeason(id){
+  if(allItems.length===0){toast("ยังไม่มีอาหารให้ปรุงเลยน้า");sfx.nope();return}
+  if(SEASON_STOCK[id]<=0){toast(SEASONS[id].n+"หมดขวด! ซื้อเติมที่ 🛒 นะ");sfx.nope();return}
+  if(seasonUsed[id]>=4){toast("พอแล้วๆ เดี๋ยว"+SEASONS[id].n+"เกิน! 😆");sfx.nope();return}
+  seasonUsed[id]++;SEASON_STOCK[id]--;
   sfx.salt();
   const s=document.createElement("div");
-  s.className="sprinkle";s.textContent="✨";
-  s.style.left=(45+Math.random()*10)+"%";s.style.top="34%";
+  s.className="sprinkle";s.textContent=SEASONS[id].e;
+  s.style.left=(42+Math.random()*16)+"%";s.style.top="34%";
   stoveEl.appendChild(s);setTimeout(()=>s.remove(),720);
-  renderButtons();
+  renderSeasons();
 }
 
 /* ================= gestures ================= */
@@ -955,7 +1128,6 @@ function addStir(){
   if(stirs===STIRS_NEED)toast("คนครบแล้ว! จับตาดูเกจความสุกนะ 👀");
   renderButtons();
 }
-/* slice */
 let slicing=false,sliceX=0,sliceY=0;
 function knifeAt(e){
   const r=boardEl.getBoundingClientRect();
@@ -983,14 +1155,12 @@ boardEl.addEventListener("pointermove",e=>{
     boardEl.appendChild(l);setTimeout(()=>l.remove(),380);
     sliceX=e.clientX;sliceY=e.clientY;
     doChop();
-    if(!board||board.chopsLeft<=0)return;
   }
 });
 function endSlice(){slicing=false;knifeCursor.style.display="none"}
 boardEl.addEventListener("pointerup",endSlice);
 boardEl.addEventListener("pointercancel",endSlice);
 boardEl.addEventListener("pointerleave",()=>{if(slicing)endSlice()});
-/* stir / flick */
 let stirActive=false,prevAng=null,accum=0,flickY=0,flicked=false,stirHintCd=0;
 function angleOf(e){
   const r=vesselWrap.getBoundingClientRect();
@@ -1040,15 +1210,16 @@ function donePts(d){
 }
 function judge(){
   const recs=stageRecs.concat([{vessel:vessel,doneness:finalDoneness,stirs:stirs}]);
-  const lines=[];
+  const lines=[],notes=[];
   const req=order.req;
   const have=req.filter(id=>allItems.includes(id)).length;
   const wrong=allItems.filter(id=>!req.includes(id));
   const forbidden=wrong.filter(id=>order.removed.includes(id));
   const ingScore=Math.max(0, have/req.length*40 - wrong.length*5 - forbidden.length*5);
   let ingLine="🧺 วัตถุดิบตรงออเดอร์ "+have+"/"+req.length;
-  if(forbidden.length)ingLine="😱 ใส่ของที่ลูกค้าขอไม่ใส่! ("+forbidden.map(id=>INGS[id].n).join(", ")+")";
+  if(forbidden.length){ingLine="😱 ใส่ของที่ลูกค้าขอไม่ใส่!";notes.push("ใส่ของที่บอกว่าไม่เอา")}
   else if(wrong.length)ingLine+=" (เกินมา "+wrong.length+")";
+  if(have<req.length)notes.push("ของขาดไป "+(req.length-have)+" อย่าง");
   lines.push([ingLine,Math.round(ingScore)+"/40"]);
   const expected=order.recipe.stages.map(s=>s.type);
   const did=recs.map(r=>r.vessel);
@@ -1056,22 +1227,30 @@ function judge(){
   if(expected.length===did.length&&expected.every((t,i)=>t===did[i])){
     stepScore=15;stepTxt="✅ ขั้นตอนถูกเป๊ะ ("+did.length+" ขั้น)";
   }else if(expected.length===did.length&&expected.slice().sort().join()===did.slice().sort().join()){
-    stepScore=8;stepTxt="🔁 ครบทุกขั้นแต่สลับลำดับ";
+    stepScore=8;stepTxt="🔁 ครบทุกขั้นแต่สลับลำดับ";notes.push("ขั้นตอนสลับไปหน่อย");
   }else{
-    stepScore=5;stepTxt="⚠️ ขั้นตอนไม่ตรงตำรา (ทำ "+did.length+"/"+expected.length+" ขั้น)";
+    stepScore=5;stepTxt="⚠️ ขั้นตอนไม่ตรงตำรา ("+did.length+"/"+expected.length+" ขั้น)";notes.push("ทำไม่ตรงตำรา");
   }
   lines.push([stepTxt,stepScore+"/15"]);
   const doneScore=Math.round(recs.reduce((s,r)=>s+donePts(r.doneness),0)/recs.length);
   const anyBurnt=recs.some(r=>r.doneness>=82),anyRaw=recs.some(r=>r.doneness<35);
+  if(anyBurnt)notes.push("มีกลิ่นไหม้นิดๆ");
+  if(anyRaw)notes.push("บางส่วนยังดิบ");
   lines.push([anyBurnt?"💨 มีขั้นที่เกรียมไปหน่อย":anyRaw?"🥶 มีขั้นที่ยังดิบ":"✨ ทุกขั้นสุกกำลังดี",doneScore+"/25"]);
   const stirScore=Math.round(recs.reduce((s,r)=>s+Math.min(r.stirs,STIRS_NEED),0)/(recs.length*STIRS_NEED)*10);
   lines.push(["🥄 คน/โยนกระทะครบทุกขั้น",stirScore+"/10"]);
-  let saltScore,saltTxt;
-  if(salt>=2&&salt<=3){saltScore=10;saltTxt="🧂 ปรุงรสกลมกล่อม"}
-  else if(salt===1){saltScore=6;saltTxt="🧂 จืดไปนิดนึง"}
-  else if(salt===0){saltScore=3;saltTxt="🧂 ลืมปรุงรสเลย!"}
-  else{saltScore=4;saltTxt="🧂 เค็มไปหน่อยน้า"}
-  lines.push([saltTxt,saltScore+"/10"]);
+  /* seasoning vs สูตร */
+  const sreq=SEASON_REQ[order.recipe.name]||{};
+  let sPts=0,sHit=0;
+  SEASON_ORDER.forEach(id=>{
+    const target=sreq[id]||0;
+    const diff=Math.abs(seasonUsed[id]-target);
+    if(diff===0){sPts+=1;sHit++}
+    else if(diff===1)sPts+=0.5;
+  });
+  const seasonScore=Math.round(sPts/SEASON_ORDER.length*10);
+  if(sHit<SEASON_ORDER.length)notes.push("ปรุงรสยังไม่ตรงสูตร");
+  lines.push(["🧂 ปรุงรสตรงสูตร "+sHit+"/"+SEASON_ORDER.length+" ชนิด",seasonScore+"/10"]);
   /* drink */
   let drinkAdj=0,drinkPay=0;
   if(order.drink){
@@ -1079,25 +1258,32 @@ function judge(){
       drinkPay=DRINKS[order.drink].sell;
       lines.push(["🥤 เครื่องดื่มถูกต้อง!","+"+drinkPay+" 🪙"]);
     }else if(servedDrink){
-      drinkAdj=-8;
+      drinkAdj=-8;notes.push("เครื่องดื่มผิดแก้ว");
       lines.push(["😵 เครื่องดื่มผิดแก้ว! (สั่ง"+DRINKS[order.drink].n+")","−8 คะแนน"]);
     }else{
-      drinkAdj=-8;
+      drinkAdj=-8;notes.push("ลืมเครื่องดื่ม");
       lines.push(["🥤 ลืมเครื่องดื่มที่สั่งไว้!","−8 คะแนน"]);
     }
   }else if(servedDrink){
     lines.push(["🥤 ลูกค้าไม่ได้สั่งเครื่องดื่มนะ…","เสียของฟรี"]);
   }
-  let total=Math.round(ingScore+stepScore+doneScore+stirScore+saltScore)+drinkAdj;
+  let total=Math.round(ingScore+stepScore+doneScore+stirScore+seasonScore)+drinkAdj;
   total=Math.max(0,Math.min(100,total));
   const stars=total>=82?3:total>=60?2:1;
   let foodPay=Math.round(order.recipe.price*(0.35+0.65*total/100));
   if(foodPay<20)foodPay=20;
   const modBonus=stars===3?(order.removed.length+order.added.length)*4:0;
-  const tip=stars*5+modBonus+(order.drink&&servedDrink===order.drink?3:0);
+  let tip=stars*5+modBonus+(order.drink&&servedDrink===order.drink?3:0);
+  let fameLine=null;
+  if(isFamous()){
+    const extra=Math.round(tip*0.2);
+    tip+=extra;
+    fameLine=["🎉 โบนัสร้านดัง (รีวิวดี)","+"+extra+" 🪙"];
+  }
   lines.push(["ค่าอาหาร ("+order.recipe.name+")","+"+foodPay+" 🪙"]);
+  if(fameLine)lines.push(fameLine);
   lines.push(["ทิป (จ่ายตอนทอนเงินถูก)","+"+tip+" 🪙"]);
-  return {total,stars,lines,foodPay,drinkPay,tip,bill:foodPay+drinkPay};
+  return {total,stars,lines,notes,foodPay,drinkPay,tip,bill:foodPay+drinkPay};
 }
 
 /* ================= serve → result → checkout ================= */
@@ -1106,7 +1292,7 @@ function serve(){
   const r=judge();
   pending=r;
   sfx.ding();
-  starTotal+=r.stars;servedN++;
+  servedN++;
   updateHeader();
   $("rDish").textContent=order.recipe.dish;
   $("rFace").textContent=r.stars===3?"😍":r.stars===2?"😊":"😅";
@@ -1122,6 +1308,7 @@ function serve(){
   ).join(" → ")+(order.added.length?" (+"+order.added.map(id=>INGS[id].e).join("")+")":"");
   $("rReveal").textContent="เฉลย: "+order.recipe.name+
     (mods.length?" ["+mods.join(" ")+"]":"")+" — "+stepsTxt+
+    " · ปรุงรส: "+seasonTxt(order.recipe.name)+
     (order.drink?" · 🥤"+DRINKS[order.drink].n:"");
   const bd=$("rBreakdown");bd.innerHTML="";
   r.lines.forEach((l,i)=>{
@@ -1148,7 +1335,7 @@ const DENOMS=[1,2,5,10,20,50];
 function pickPaid(bill){
   const opts=[];
   const up10=Math.ceil(bill/10)*10;
-  opts.push(bill);                        // จ่ายพอดี
+  opts.push(bill);
   if(up10>bill)opts.push(up10);
   if(bill<50)opts.push(50);
   if(bill<100)opts.push(100);
@@ -1193,7 +1380,8 @@ function confirmChange(){
   const given=changeStack.reduce((a,c)=>a+c,0);
   const need=pending.paid-pending.bill;
   const res=$("ckResult");
-  let gain;
+  let gain,revStars=pending.stars;
+  const revNotes=pending.notes.slice(0,2);
   if(given===need){
     gain=pending.bill+pending.tip;
     res.textContent="✅ ทอนถูกเป๊ะ "+need+" 🪙! รับเงิน +"+pending.bill+" และทิป +"+pending.tip+" 🪙";
@@ -1204,14 +1392,18 @@ function confirmChange(){
     gain=pending.bill+pending.tip-lost;
     res.textContent="😭 ต้องทอน "+need+" แต่ทอนไป "+given+" — เงินหายฟรี −"+lost+" 🪙";
     res.className="bad";
+    revNotes.push("แถมเงินทอนมาด้วย ฮ่าๆ");
     sfx.nope();
   }else{
     gain=pending.bill;
     res.textContent="😠 ต้องทอน "+need+" แต่ทอนแค่ "+given+" — ลูกค้าหน้าเสีย ทิปหายวับ!";
     res.className="bad";
+    revStars=Math.max(1,revStars-1);
+    revNotes.push("ทอนเงินขาดนะร้านนี้!");
     sfx.nope();
   }
   money+=gain;
+  addReview(revStars,revNotes);
   updateHeader();
   $("ckConfirm").style.display="none";
   $("ckUndo").disabled=true;$("ckClear").disabled=true;
@@ -1225,7 +1417,8 @@ $("tabPan").addEventListener("click",()=>setVessel("pan"));
 heatBtn.addEventListener("click",startHeat);
 offBtn.addEventListener("click",()=>stopHeat(false));
 nextStageBtn.addEventListener("click",nextStage);
-saltBtn.addEventListener("click",doSalt);
+trashBtn.addEventListener("click",trashFood);
+drinkTray.addEventListener("click",discardDrink);
 serveBtn.addEventListener("click",serve);
 $("toCheckoutBtn").addEventListener("click",openCheckout);
 $("ckConfirm").addEventListener("click",confirmChange);
@@ -1249,6 +1442,8 @@ $("shopBtn").addEventListener("click",openShop);
 $("shopClose").addEventListener("click",()=>shopOverlay.classList.remove("show"));
 $("bookBtn").addEventListener("click",()=>{renderBook();bookOverlay.classList.add("show")});
 $("bookClose").addEventListener("click",()=>bookOverlay.classList.remove("show"));
+$("revBtn").addEventListener("click",()=>{renderReviews();revOverlay.classList.add("show")});
+$("revClose").addEventListener("click",()=>revOverlay.classList.remove("show"));
 $("muteBtn").addEventListener("click",e=>{
   muted=!muted;
   e.currentTarget.textContent=muted?"🔇":"🔊";
