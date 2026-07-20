@@ -3,243 +3,282 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ครัวอุ่นอุ่น Grand — ร้านนี้มีรีวิว ⭐</title>
+<title>ครัวอุ่นอุ่น Station — ครัวเต็มระบบ 🏪</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js" crossorigin="anonymous"></script>
 <style>
   :root{
     --night:#2b2136;--plum:#3a2a3f;--wood:#7a5643;--wood-dark:#5e4033;--shelf:#8b6650;
     --cream:#fff1dc;--cream-dim:#e6d3bd;--honey:#ffc46b;--sage:#9fbf8f;--pot-dark:#4a3038;
-    --radius:18px;
+    --radius:16px;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html{touch-action:manipulation}
   html,body{height:100%}
   body{
-    font-family:"Mali","Sarabun",ui-rounded,"Hiragino Maru Gothic ProN",system-ui,sans-serif;
-    background:radial-gradient(120% 90% at 50% 0%, var(--plum) 0%, var(--night) 70%);
-    color:var(--cream);min-height:100%;
-    display:flex;flex-direction:column;align-items:center;
-    overflow-x:hidden;user-select:none;-webkit-user-select:none;
+    font-family:"Mali",ui-rounded,"Hiragino Maru Gothic ProN",system-ui,sans-serif;
+    background:
+      radial-gradient(120% 90% at 50% 0%, var(--plum) 0%, var(--night) 70%);
+    color:var(--cream);
+    height:100dvh;display:flex;flex-direction:column;
+    overflow:hidden;user-select:none;-webkit-user-select:none;
     touch-action:manipulation;
   }
-  header{width:100%;max-width:780px;display:flex;align-items:center;justify-content:space-between;padding:12px 14px 4px;flex-wrap:wrap;gap:6px}
-  h1{font-size:1.1rem;font-weight:700;color:var(--honey);text-shadow:0 0 18px rgba(255,196,107,.35)}
-  h1 .flame{display:inline-block;animation:flicker 2.4s ease-in-out infinite}
-  @keyframes flicker{0%,100%{transform:rotate(-4deg) scale(1)}50%{transform:rotate(5deg) scale(1.08)}}
-  .stats{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
-  .pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;padding:4px 9px;font-size:.8rem;font-weight:600}
+  img.emoji{height:1em;width:1em;vertical-align:-.12em;pointer-events:none}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 4px;gap:6px;flex:none}
+  h1{font-size:1rem;font-weight:700;color:var(--honey)}
+  .stats{display:flex;gap:5px;align-items:center}
+  .pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;padding:3px 9px;font-size:.78rem;font-weight:600;white-space:nowrap}
   .pill.money{background:rgba(255,196,107,.15);border-color:rgba(255,196,107,.4)}
-  .hbtn{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;color:var(--cream);padding:4px 9px;font-size:.8rem;cursor:pointer;font-family:inherit;font-weight:600}
-  #shopBtn{background:rgba(159,191,143,.18);border-color:rgba(159,191,143,.45)}
-  #bookBtn{background:rgba(255,196,107,.15);border-color:rgba(255,196,107,.4)}
-  #revBtn{background:rgba(142,123,184,.22);border-color:rgba(142,123,184,.55)}
+  .hbtn{background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.15);border-radius:999px;color:var(--cream);padding:3px 9px;font-size:.78rem;cursor:pointer;font-family:inherit;font-weight:600}
   .hbtn:active{transform:scale(.94)}
 
-  main{width:100%;max-width:780px;padding:6px 12px 24px;display:grid;grid-template-columns:1fr;gap:12px}
-  .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,241,220,.12);border-radius:var(--radius);padding:12px 14px}
-  .label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:8px}
-
-  /* customer */
-  #customerCard{display:flex;gap:12px;align-items:flex-start}
-  #custFace{font-size:2.7rem;line-height:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,241,220,.15);border-radius:16px;padding:9px;animation:bobble 3s ease-in-out infinite}
-  @keyframes bobble{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-  .bubble{position:relative;flex:1;background:var(--cream);color:#3a2a2a;border-radius:16px;padding:9px 12px}
-  .bubble::before{content:"";position:absolute;left:-8px;top:20px;border:8px solid transparent;border-right-color:var(--cream);border-left:none}
-  #custName{font-size:.75rem;font-weight:700;color:#8a6248}
-  #custSay{font-size:.94rem;font-weight:600;margin:2px 0 7px}
-  .chips{display:flex;flex-wrap:wrap;gap:5px}
-  .chip{border-radius:999px;padding:3px 10px;font-size:.79rem;font-weight:700;display:flex;align-items:center;gap:4px}
+  /* ---------- fixed order strip ---------- */
+  #orderStrip{
+    flex:none;display:flex;align-items:center;gap:6px;
+    padding:5px 10px;margin:0 8px 4px;
+    background:rgba(255,241,220,.94);color:#3a2a2a;
+    border-radius:12px;overflow-x:auto;white-space:nowrap;
+    min-height:34px;scrollbar-width:none;
+  }
+  #orderStrip::-webkit-scrollbar{display:none}
+  #orderStrip .chip{display:inline-flex;align-items:center;gap:3px;border-radius:999px;padding:2px 9px;font-size:.75rem;font-weight:700;flex:none}
   .chip.menu{background:#f6dfae;border:1px solid #d9b56e;color:#6b4a17}
   .chip.add{background:#dcead4;border:1px solid #a9c69a;color:#38512e}
   .chip.no{background:#f2d3c9;border:1px solid #d9a08c;color:#7a3822}
   .chip.drink{background:#d7e4ef;border:1px solid #9fc0d8;color:#2f5470}
+  .chip.type{background:#e6d9f2;border:1px solid #b9a3d5;color:#54397a}
+  #orderStrip .none{font-size:.78rem;color:#8a6248;font-weight:700}
 
-  /* pantry + drinks */
-  #pantry,#drinkBar{display:flex;flex-wrap:wrap;gap:8px}
-  .ing{position:relative;background:linear-gradient(180deg,var(--shelf),var(--wood-dark));border:1px solid rgba(0,0,0,.25);border-bottom:3px solid rgba(0,0,0,.35);border-radius:13px;width:60px;height:62px;font-size:1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s,filter .12s}
-  .ing small{font-size:.55rem;font-weight:700;color:var(--cream);margin-top:1px}
+  /* ---------- stations ---------- */
+  #stations{flex:1;min-height:0;position:relative}
+  .station{display:none;height:100%;overflow-y:auto;padding:6px 12px 10px;-webkit-overflow-scrolling:touch}
+  .station.active{display:block}
+  .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,241,220,.12);border-radius:var(--radius);padding:10px 12px;margin-bottom:10px}
+  .label{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:6px}
+
+  /* front / computer */
+  .pcFrame{background:#23202e;border:3px solid #4b445e;border-radius:14px;padding:10px;margin-bottom:10px}
+  .pcBar{display:flex;gap:5px;margin-bottom:8px;align-items:center}
+  .pcBar i{width:9px;height:9px;border-radius:50%;display:block}
+  .pcBar i:nth-child(1){background:#e06c60}.pcBar i:nth-child(2){background:#f0c96a}.pcBar i:nth-child(3){background:#8fc57e}
+  .pcBar span{font-size:.7rem;color:#9a92b0;font-weight:700;margin-left:4px}
+  .ticket{background:#2f2b3d;border:1px solid #4b445e;border-radius:12px;padding:8px 10px;margin-bottom:8px}
+  .ticket .tTop{display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:700}
+  .ticket .tTop .fee{margin-left:auto;font-size:.7rem;color:var(--sage)}
+  .ticket .tChips{display:flex;flex-wrap:wrap;gap:4px;margin:5px 0}
+  .ticket .tChips .chip{font-size:.72rem;padding:2px 8px}
+  .acceptBtn{font-family:inherit;font-weight:700;font-size:.8rem;color:#22301c;background:linear-gradient(180deg,var(--sage),#7fa571);border:none;border-bottom:3px solid #5c7f50;border-radius:10px;padding:7px 14px;cursor:pointer;width:100%}
+  .acceptBtn:active{transform:scale(.97)}
+  .acceptBtn:disabled{filter:grayscale(.7) brightness(.7)}
+  .walkCard{display:flex;gap:10px;align-items:flex-start}
+  .walkFace{font-size:2.3rem;line-height:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,241,220,.15);border-radius:14px;padding:8px;animation:bobble 3s ease-in-out infinite}
+  @keyframes bobble{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .walkBody{flex:1}
+  .walkName{font-size:.72rem;font-weight:700;color:var(--honey)}
+  .walkSay{font-size:.85rem;font-weight:600;margin:2px 0 5px}
+
+  /* pantry */
+  .catHead{font-size:.74rem;font-weight:700;color:var(--honey);margin:8px 0 5px}
+  .grid{display:flex;flex-wrap:wrap;gap:7px}
+  .ing{position:relative;background:linear-gradient(180deg,var(--shelf),var(--wood-dark));border:1px solid rgba(0,0,0,.25);border-bottom:3px solid rgba(0,0,0,.35);border-radius:12px;width:58px;height:60px;font-size:1.4rem;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s}
+  .ing small{font-size:.53rem;font-weight:700;color:var(--cream);margin-top:1px}
   .ing:active{transform:scale(.92)}
-  .ing.out{filter:grayscale(1) brightness(.55);cursor:not-allowed}
-  .ing .stockTag{position:absolute;top:-6px;right:-6px;background:var(--honey);color:#3a2412;font-size:.58rem;font-weight:700;border-radius:999px;padding:1px 6px;border:1px solid #b9782c}
+  .ing.out{filter:grayscale(1) brightness(.55)}
+  .ing .stockTag{position:absolute;top:-6px;right:-6px;background:var(--honey);color:#3a2412;font-size:.55rem;font-weight:700;border-radius:999px;padding:1px 5px;border:1px solid #b9782c}
   .ing.out .stockTag{background:#8a4a3a;color:#ffd9cc;border-color:#5e2d20}
   .ing.drk{background:linear-gradient(180deg,#5b7186,#3c4f61)}
   .ing.drk.sel{outline:2px solid var(--honey);outline-offset:2px}
   .ing.nope{animation:shake .4s}
   @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-  #drinkTray{font-size:.8rem;font-weight:700;color:var(--honey);margin-top:8px;min-height:18px;cursor:pointer}
-  #drinkTray span.discard{color:#e58b6a;font-size:.72rem}
 
-  /* board */
-  #board{background:linear-gradient(180deg,#a9805f,#8a6248);border-radius:var(--radius);border:1px solid rgba(0,0,0,.25);min-height:165px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:crosshair;position:relative;overflow:hidden;touch-action:none}
-  #board .label{color:#5e4433;position:absolute;top:10px;left:14px;margin:0}
-  .knife{position:absolute;top:8px;right:14px;font-size:1.4rem;transform:rotate(90deg);transition:transform .12s}
+  /* prep board */
+  #boardWrap{position:relative}
+  #board{background:linear-gradient(180deg,#a9805f,#8a6248);border-radius:var(--radius);border:1px solid rgba(0,0,0,.25);height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:crosshair;position:relative;overflow:hidden;touch-action:none}
+  #board .label{color:#5e4433;position:absolute;top:8px;left:12px;margin:0}
+  .knife{position:absolute;top:6px;right:12px;font-size:1.3rem;transform:rotate(90deg);transition:transform .12s}
   #board.chopped .knife{transform:rotate(130deg)}
-  #knifeCursor{position:absolute;font-size:2.1rem;pointer-events:none;transform:translate(-50%,-85%) rotate(-40deg);display:none;z-index:3;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
-  .sliceLine{position:absolute;height:3px;width:80px;background:linear-gradient(90deg,transparent,#fff,transparent);pointer-events:none;animation:sliceFade .35s ease-out forwards;border-radius:2px;transform-origin:center}
+  #knifeCursor{position:absolute;font-size:2rem;pointer-events:none;transform:translate(-50%,-85%) rotate(-40deg);display:none;z-index:3}
+  .sliceLine{position:absolute;height:3px;width:80px;background:linear-gradient(90deg,transparent,#fff,transparent);pointer-events:none;animation:sliceFade .35s ease-out forwards;border-radius:2px}
   @keyframes sliceFade{from{opacity:.95}to{opacity:0}}
-  #boardItem{font-size:2.9rem;transition:transform .1s;filter:drop-shadow(0 4px 4px rgba(0,0,0,.25))}
+  #boardItem{font-size:2.8rem;transition:transform .1s}
   #boardItem.chopping{animation:chopBounce .18s}
   @keyframes chopBounce{0%{transform:scale(1)}40%{transform:scale(.78,1.15)}100%{transform:scale(1)}}
-  #boardHint{font-size:.8rem;font-weight:700;color:#5e4433;text-align:center;padding:0 12px}
+  #boardHint{font-size:.78rem;font-weight:700;color:#5e4433;text-align:center;padding:0 12px}
   .chopDots{display:flex;gap:6px}
-  .chopDots span{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.2)}
+  .chopDots span{width:9px;height:9px;border-radius:50%;background:rgba(0,0,0,.2)}
   .chopDots span.on{background:var(--honey)}
-  .piece{position:absolute;font-size:1.1rem;pointer-events:none;animation:fly .6s ease-out forwards;z-index:2}
+  .piece{position:absolute;font-size:1rem;pointer-events:none;animation:fly .6s ease-out forwards;z-index:2}
   @keyframes fly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.6);opacity:0}}
+  #returnBtn{margin-top:8px;width:100%}
 
   /* stove */
-  #stove{background:linear-gradient(180deg,#4d3a45,#3a2b36);border-radius:var(--radius);border:1px solid rgba(0,0,0,.3);display:flex;flex-direction:column;align-items:center;position:relative;padding:12px 10px 14px;overflow:hidden}
-  #stageFlow{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:8px;min-height:24px}
-  .stageChip{background:rgba(255,255,255,.08);border:1px solid rgba(255,241,220,.2);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:700;color:var(--cream-dim)}
+  #stove{background:linear-gradient(180deg,#4d3a45,#3a2b36);border-radius:var(--radius);border:1px solid rgba(0,0,0,.3);display:flex;flex-direction:column;align-items:center;position:relative;padding:8px 8px 10px;overflow:hidden}
+  #stageFlow{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-bottom:5px;min-height:20px}
+  .stageChip{background:rgba(255,255,255,.08);border:1px solid rgba(255,241,220,.2);border-radius:999px;padding:2px 9px;font-size:.68rem;font-weight:700;color:var(--cream-dim)}
   .stageChip.done{background:rgba(159,191,143,.2);border-color:rgba(159,191,143,.5);color:#cfe4c3}
   .stageChip.now{background:rgba(255,196,107,.2);border-color:rgba(255,196,107,.55);color:var(--honey)}
-  .vesselTabs{display:flex;gap:8px;margin-bottom:8px}
-  .vtab{background:rgba(255,255,255,.08);border:1px solid rgba(255,241,220,.18);color:var(--cream);border-radius:999px;padding:6px 14px;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer}
-  .vtab.on{background:var(--honey);color:#3a2412;border-color:#b9782c}
-  .vesselWrap{position:relative;height:145px;display:flex;align-items:flex-end;justify-content:center;width:230px;touch-action:none;cursor:grab}
-  .vesselWrap:active{cursor:grabbing}
+  #vesselName{font-size:.8rem;font-weight:700;color:var(--honey);margin-bottom:2px}
+  .slideHint{font-size:.64rem;color:var(--cream-dim)}
+  .vesselWrap{position:relative;height:132px;display:flex;align-items:flex-end;justify-content:center;width:230px;touch-action:none;cursor:grab}
   #vessel{position:relative;transition:transform .3s}
   #vessel.flip{animation:panFlip .45s ease}
+  #vessel.slideL{animation:slideL .3s ease}
+  #vessel.slideR{animation:slideR .3s ease}
+  @keyframes slideL{0%{transform:translateX(70px);opacity:0}100%{transform:translateX(0);opacity:1}}
+  @keyframes slideR{0%{transform:translateX(-70px);opacity:0}100%{transform:translateX(0);opacity:1}}
   @keyframes panFlip{0%{transform:rotate(0)}30%{transform:rotate(-14deg) translateY(-8px)}60%{transform:rotate(8deg)}100%{transform:rotate(0)}}
-  .shape-pot{width:170px;height:105px;background:linear-gradient(180deg,#5a4a52,var(--pot-dark));border:3px solid #241a20;border-radius:12px 12px 60px 60px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.35), inset 0 4px 8px rgba(255,255,255,.08)}
-  .shape-pan{width:200px;height:64px;background:linear-gradient(180deg,#4c4c55,#2c2c33);border:3px solid #17171c;border-radius:10px 10px 34px 34px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.35), inset 0 4px 8px rgba(255,255,255,.08)}
-  .shape-pan::after{content:"";position:absolute;right:-52px;top:14px;width:54px;height:12px;background:#17171c;border-radius:6px}
+  .shape-pot{width:165px;height:100px;background:linear-gradient(180deg,#5a4a52,var(--pot-dark));border:3px solid #241a20;border-radius:12px 12px 58px 58px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.35), inset 0 4px 8px rgba(255,255,255,.08)}
+  .shape-pan{width:195px;height:60px;background:linear-gradient(180deg,#4c4c55,#2c2c33);border:3px solid #17171c;border-radius:10px 10px 32px 32px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.35), inset 0 4px 8px rgba(255,255,255,.08)}
+  .shape-pan::after{content:"";position:absolute;right:-50px;top:12px;width:52px;height:12px;background:#17171c;border-radius:6px}
+  .potFace{position:absolute;left:50%;transform:translateX(-50%);bottom:8px;display:flex;gap:14px;z-index:1;pointer-events:none}
+  .potFace i{width:6px;height:9px;border-radius:50%;background:#1d1418;display:block;position:relative}
+  .potFace::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-7px;width:12px;height:6px;border:2px solid #1d1418;border-top:none;border-radius:0 0 10px 10px}
   #broth{position:absolute;left:0;right:0;bottom:0;height:0%;background:#c9a25e;transition:height .5s,background 1s}
-  #broth::after{content:"";position:absolute;top:0;left:-10%;width:120%;height:9px;background:rgba(255,255,255,.28);border-radius:50%}
-  .floaty{position:absolute;font-size:1.05rem;animation:bob 2.8s ease-in-out infinite}
+  #broth::after{content:"";position:absolute;top:0;left:-10%;width:120%;height:8px;background:rgba(255,255,255,.28);border-radius:50%}
+  .floaty{position:absolute;font-size:1rem;animation:bob 2.8s ease-in-out infinite}
   @keyframes bob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-5px) rotate(6deg)}}
-  .bubbleUp{position:absolute;bottom:4px;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);animation:bub 1.5s linear infinite}
-  @keyframes bub{0%{transform:translateY(0);opacity:.6}100%{transform:translateY(-60px);opacity:0}}
-  #spoon{position:absolute;top:-28px;left:50%;font-size:2rem;transform-origin:50% 90%;transform:translateX(-50%) rotate(0deg);pointer-events:none;z-index:2}
-  .steam{position:absolute;bottom:115px;font-size:1.1rem;opacity:0;animation:rise 2.6s linear infinite;pointer-events:none}
-  @keyframes rise{0%{transform:translateY(0) scale(.8);opacity:0}20%{opacity:.55}100%{transform:translateY(-70px) scale(1.4);opacity:0}}
-  .smoke{position:absolute;bottom:125px;font-size:1.3rem;opacity:0;animation:rise 2s linear infinite;filter:grayscale(1)}
-  #flameIcon{font-size:1.3rem;margin-top:2px;opacity:.25;transition:opacity .3s}
+  .bubbleUp{position:absolute;bottom:4px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);animation:bub 1.5s linear infinite}
+  @keyframes bub{0%{transform:translateY(0);opacity:.6}100%{transform:translateY(-55px);opacity:0}}
+  #spoon{position:absolute;top:-26px;left:50%;font-size:1.8rem;transform-origin:50% 90%;transform:translateX(-50%);pointer-events:none;z-index:2}
+  .steam{position:absolute;bottom:105px;font-size:1rem;opacity:0;animation:rise 2.6s linear infinite;pointer-events:none}
+  @keyframes rise{0%{transform:translateY(0) scale(.8);opacity:0}20%{opacity:.55}100%{transform:translateY(-60px) scale(1.4);opacity:0}}
+  .smoke{position:absolute;bottom:112px;font-size:1.2rem;opacity:0;animation:rise 2s linear infinite;filter:grayscale(1)}
+  #flameIcon{font-size:1.2rem;opacity:.25;transition:opacity .3s}
   #flameIcon.on{opacity:1;animation:flicker 1.1s ease-in-out infinite}
-  .doneWrap{width:100%;max-width:300px;margin-top:8px}
-  .doneBar{position:relative;height:16px;border-radius:999px;overflow:hidden;border:1px solid rgba(0,0,0,.35);background:linear-gradient(90deg,#8a8a95 0%,#8a8a95 35%,#f0c96a 35%,#f0c96a 55%,#8fc57e 55%,#8fc57e 82%,#a35b3a 82%,#a35b3a 100%)}
-  .doneBar .marker{position:absolute;top:-3px;bottom:-3px;width:4px;background:#fff;border-radius:2px;left:0%;box-shadow:0 0 6px rgba(255,255,255,.8);transition:left .1s linear}
-  .doneLegend{display:flex;justify-content:space-between;font-size:.66rem;color:var(--cream-dim);margin-top:3px}
-  #gestureHint{font-size:.78rem;font-weight:700;color:var(--honey);margin-top:8px;min-height:20px;text-align:center;padding:0 10px}
-  .stoveBtns{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap;justify-content:center}
-  button.act{font-family:inherit;font-weight:700;font-size:.88rem;color:#3a2412;background:linear-gradient(180deg,var(--honey),#eda94e);border:none;border-bottom:3px solid #b9782c;border-radius:12px;padding:9px 14px;cursor:pointer;transition:transform .1s,filter .15s}
+  @keyframes flicker{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg) scale(1.08)}}
+  .doneWrap{width:100%;max-width:290px;margin-top:5px}
+  .doneBar{position:relative;height:14px;border-radius:999px;overflow:hidden;border:1px solid rgba(0,0,0,.35);background:linear-gradient(90deg,#8a8a95 0%,#8a8a95 35%,#f0c96a 35%,#f0c96a 55%,#8fc57e 55%,#8fc57e 82%,#a35b3a 82%,#a35b3a 100%)}
+  .doneBar .marker{position:absolute;top:-3px;bottom:-3px;width:4px;background:#fff;border-radius:2px;left:0%;transition:left .1s linear}
+  .doneLegend{display:flex;justify-content:space-between;font-size:.6rem;color:var(--cream-dim);margin-top:2px}
+  #gestureHint{font-size:.72rem;font-weight:700;color:var(--honey);margin-top:5px;min-height:17px;text-align:center}
+  .stoveBtns{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;justify-content:center}
+  button.act{font-family:inherit;font-weight:700;font-size:.82rem;color:#3a2412;background:linear-gradient(180deg,var(--honey),#eda94e);border:none;border-bottom:3px solid #b9782c;border-radius:11px;padding:8px 12px;cursor:pointer}
   button.act:active{transform:scale(.94)}
   button.act:disabled{filter:grayscale(.7) brightness(.75);cursor:not-allowed;transform:none}
   button.act.green{background:linear-gradient(180deg,var(--sage),#7fa571);border-bottom-color:#5c7f50;color:#22301c}
   button.act.green.ready{animation:glow 1.2s ease-in-out infinite}
-  @keyframes glow{0%,100%{box-shadow:0 0 0 rgba(159,191,143,0)}50%{box-shadow:0 0 22px rgba(159,191,143,.8)}}
+  @keyframes glow{0%,100%{box-shadow:0 0 0 rgba(159,191,143,0)}50%{box-shadow:0 0 20px rgba(159,191,143,.8)}}
   button.act.red{background:linear-gradient(180deg,#e58b6a,#c9603c);border-bottom-color:#8f3f22;color:#3a1508}
   button.act.blue{background:linear-gradient(180deg,#9db8d9,#6f8fb8);border-bottom-color:#4a6a94;color:#16283f}
   button.act.grey{background:linear-gradient(180deg,#9a93a5,#6f6879);border-bottom-color:#4d4757;color:#211d29}
-
-  /* seasoning shakers */
-  #seasonRow{display:flex;align-items:flex-start;gap:8px;margin-top:10px;flex-wrap:wrap;justify-content:center}
-  .shaker{position:relative;width:56px;background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.18);border-radius:12px;padding:6px 2px 5px;text-align:center;cursor:pointer;transition:transform .1s}
+  #seasonRow{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;justify-content:center}
+  .shaker{position:relative;width:52px;background:rgba(255,255,255,.07);border:1px solid rgba(255,241,220,.18);border-radius:11px;padding:5px 2px 4px;text-align:center;cursor:pointer}
   .shaker:active{transform:rotate(-18deg) scale(1.06)}
-  .shaker .se{font-size:1.35rem}
-  .shaker small{display:block;font-size:.55rem;font-weight:700;color:var(--cream-dim)}
-  .shaker .used{display:flex;gap:3px;justify-content:center;margin-top:3px;min-height:7px}
-  .shaker .used i{width:6px;height:6px;border-radius:50%;background:#fff;display:block}
-  .shaker .stockTag{position:absolute;top:-7px;right:-7px;background:var(--honey);color:#3a2412;font-size:.56rem;font-weight:700;border-radius:999px;padding:1px 5px;border:1px solid #b9782c}
+  .shaker .se{font-size:1.2rem}
+  .shaker small{display:block;font-size:.52rem;font-weight:700;color:var(--cream-dim)}
+  .shaker .used{display:flex;gap:2px;justify-content:center;margin-top:2px;min-height:6px}
+  .shaker .used i{width:5px;height:5px;border-radius:50%;background:#fff;display:block}
+  .shaker .stockTag{position:absolute;top:-6px;right:-6px;background:var(--honey);color:#3a2412;font-size:.52rem;font-weight:700;border-radius:999px;padding:1px 4px;border:1px solid #b9782c}
   .shaker.out{filter:grayscale(1) brightness(.55)}
-  .shaker.out .stockTag{background:#8a4a3a;color:#ffd9cc;border-color:#5e2d20}
-  .sprinkle{position:absolute;font-size:.8rem;pointer-events:none;animation:sprk .7s ease-in forwards}
-  @keyframes sprk{0%{transform:translateY(0);opacity:1}100%{transform:translateY(46px);opacity:0}}
+  .sprinkle{position:absolute;font-size:.75rem;pointer-events:none;animation:sprk .7s ease-in forwards}
+  @keyframes sprk{0%{transform:translateY(0);opacity:1}100%{transform:translateY(42px);opacity:0}}
 
-  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(90px);background:rgba(43,33,54,.96);border:1px solid rgba(255,241,220,.25);color:var(--cream);padding:9px 16px;border-radius:999px;font-weight:600;font-size:.85rem;z-index:60;max-width:90vw;text-align:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+  /* serve station */
+  #drinkTray{font-size:.78rem;font-weight:700;color:var(--honey);margin-top:6px;min-height:16px;cursor:pointer}
+  #drinkTray span.discard{color:#e58b6a;font-size:.68rem}
+  #recap{font-size:.78rem;color:var(--cream-dim);line-height:1.7}
+
+  /* ---------- tray bar (fixed) ---------- */
+  #trayBar{
+    flex:none;display:flex;align-items:center;gap:5px;
+    padding:4px 10px;margin:0 8px 4px;
+    background:rgba(94,64,51,.85);border:1px solid rgba(255,241,220,.2);
+    border-radius:12px;min-height:44px;overflow-x:auto;scrollbar-width:none;
+  }
+  #trayBar::-webkit-scrollbar{display:none}
+  #trayBar .tLabel{font-size:.6rem;font-weight:700;color:var(--cream-dim);flex:none;line-height:1.15}
+  .traySlot{position:relative;flex:none;width:38px;height:38px;border-radius:9px;background:rgba(0,0,0,.25);border:1px dashed rgba(255,241,220,.25);display:flex;align-items:center;justify-content:center;font-size:1.15rem;cursor:pointer}
+  .traySlot.filled{border-style:solid;background:rgba(255,241,220,.12)}
+  .traySlot.prepped{outline:2px solid var(--sage)}
+  .traySlot .x{position:absolute;top:-6px;right:-6px;width:15px;height:15px;border-radius:50%;background:#c9603c;color:#fff;font-size:.6rem;line-height:15px;text-align:center;font-weight:700}
+  .traySlot small{position:absolute;bottom:-3px;left:0;right:0;font-size:.42rem;font-weight:700;color:var(--cream);text-align:center}
+
+  /* ---------- bottom nav ---------- */
+  nav{flex:none;display:flex;gap:4px;padding:5px 8px calc(6px + env(safe-area-inset-bottom));background:rgba(30,23,38,.96);border-top:1px solid rgba(255,241,220,.12)}
+  .navBtn{flex:1;background:none;border:none;color:var(--cream-dim);font-family:inherit;font-weight:700;font-size:.62rem;padding:5px 2px;border-radius:10px;cursor:pointer;line-height:1.25}
+  .navBtn .ne{display:block;font-size:1.15rem}
+  .navBtn.on{background:rgba(255,196,107,.16);color:var(--honey)}
+  .navBtn .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#e06c60;margin-left:2px;vertical-align:middle}
+
+  /* ---------- toast & overlays ---------- */
+  #toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%) translateY(90px);background:rgba(43,33,54,.97);border:1px solid rgba(255,241,220,.25);color:var(--cream);padding:8px 15px;border-radius:999px;font-weight:600;font-size:.8rem;z-index:70;max-width:90vw;text-align:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
   #toast.show{transform:translateX(-50%) translateY(0)}
-
-  .overlay{position:fixed;inset:0;background:rgba(24,17,30,.86);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;z-index:20;padding:12px}
+  .overlay{position:fixed;inset:0;background:rgba(24,17,30,.87);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;z-index:40;padding:12px}
   .overlay.show{opacity:1;pointer-events:auto}
-  .oCard{background:linear-gradient(180deg,#4a3650,#382a40);border:1px solid rgba(255,241,220,.2);border-radius:22px;padding:20px 20px;text-align:center;max-width:400px;width:100%;transform:scale(.88);transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-height:88vh;overflow-y:auto}
-  .overlay.show .oCard{transform:scale(1)}
-  .oCard .dish{font-size:3rem;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
-  .oCard .rFace{font-size:1.9rem;margin-top:2px}
-  .oCard h2{color:var(--honey);margin:5px 0 2px;font-size:1.05rem}
-  .stars{font-size:1.45rem;letter-spacing:4px;margin:4px 0}
+  .oCard{background:linear-gradient(180deg,#4a3650,#382a40);border:1px solid rgba(255,241,220,.2);border-radius:20px;padding:16px 16px;text-align:center;max-width:400px;width:100%;max-height:86vh;overflow-y:auto}
+  .oCard .dish{font-size:2.7rem}
+  .oCard .rFace{font-size:1.7rem;margin-top:2px}
+  .oCard h2{color:var(--honey);margin:4px 0 2px;font-size:1rem}
+  .stars{font-size:1.3rem;letter-spacing:4px;margin:3px 0}
   .stars .dim{opacity:.22}
-  .oCard p{color:var(--cream-dim);font-size:.85rem;margin-bottom:7px}
-  .reveal{background:rgba(255,196,107,.12);border:1px dashed rgba(255,196,107,.5);border-radius:12px;padding:6px 10px;font-size:.79rem;margin-bottom:7px;color:var(--honey);text-align:left}
-  .breakdown{text-align:left;font-size:.76rem;color:var(--cream-dim);background:rgba(0,0,0,.2);border-radius:12px;padding:7px 11px;margin-bottom:10px}
-  .breakdown div{display:flex;justify-content:space-between;padding:1px 0;gap:10px}
-  .breakdown .pay{color:var(--sage);font-weight:700;border-top:1px solid rgba(255,241,220,.15);margin-top:4px;padding-top:4px}
-  .heartPop{position:fixed;font-size:1.3rem;pointer-events:none;animation:heartFly 1.2s ease-out forwards;z-index:65}
-  @keyframes heartFly{0%{transform:translateY(0) scale(.6);opacity:1}100%{transform:translateY(-110px) scale(1.3);opacity:0}}
-
-  /* shop */
-  #shopList{display:flex;flex-direction:column;gap:5px;margin:8px 0 10px;text-align:left}
-  .shopSec{font-size:.72rem;font-weight:700;color:var(--honey);margin-top:6px;letter-spacing:.06em}
-  .shopRow{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.2);border-radius:12px;padding:5px 9px}
-  .shopRow .se{font-size:1.2rem;width:28px;text-align:center}
-  .shopRow .sn{flex:1;font-size:.82rem;font-weight:600}
-  .shopRow .sn small{display:block;font-size:.66rem;color:var(--cream-dim);font-weight:400}
-  .shopRow .sstock{font-size:.72rem;color:var(--cream-dim);min-width:42px;text-align:right}
-  .buyBtn{font-family:inherit;font-weight:700;font-size:.76rem;color:#3a2412;background:linear-gradient(180deg,var(--honey),#eda94e);border:none;border-bottom:2px solid #b9782c;border-radius:999px;padding:5px 11px;cursor:pointer}
-  .buyBtn:active{transform:scale(.94)}
-  .buyBtn:disabled{filter:grayscale(.8) brightness(.7);cursor:not-allowed}
+  .oCard p{color:var(--cream-dim);font-size:.8rem;margin-bottom:6px}
+  .reveal{background:rgba(255,196,107,.12);border:1px dashed rgba(255,196,107,.5);border-radius:11px;padding:6px 9px;font-size:.74rem;margin-bottom:6px;color:var(--honey);text-align:left}
+  .breakdown{text-align:left;font-size:.72rem;color:var(--cream-dim);background:rgba(0,0,0,.2);border-radius:11px;padding:6px 10px;margin-bottom:9px}
+  .breakdown div{display:flex;justify-content:space-between;padding:1px 0;gap:8px}
+  .breakdown .pay{color:var(--sage);font-weight:700;border-top:1px solid rgba(255,241,220,.15);margin-top:3px;padding-top:3px}
+  .heartPop{position:fixed;font-size:1.2rem;pointer-events:none;animation:heartFly 1.2s ease-out forwards;z-index:75}
+  @keyframes heartFly{0%{transform:translateY(0) scale(.6);opacity:1}100%{transform:translateY(-100px) scale(1.3);opacity:0}}
+  #shopList{display:flex;flex-direction:column;gap:4px;margin:6px 0 9px;text-align:left}
+  .shopSec{font-size:.68rem;font-weight:700;color:var(--honey);margin-top:5px}
+  #rushTag{display:none;font-size:.72rem;font-weight:700;color:#ffb08a;background:rgba(201,96,60,.25);border:1px solid rgba(201,96,60,.6);border-radius:999px;padding:3px 10px;margin-bottom:4px}
+  .shopRow{display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.2);border-radius:11px;padding:4px 8px}
+  .shopRow .se{font-size:1.1rem;width:26px;text-align:center}
+  .shopRow .sn{flex:1;font-size:.76rem;font-weight:600}
+  .shopRow .sn small{display:block;font-size:.6rem;color:var(--cream-dim);font-weight:400}
+  .shopRow .sstock{font-size:.66rem;color:var(--cream-dim)}
+  .buyBtn{font-family:inherit;font-weight:700;font-size:.7rem;color:#3a2412;background:linear-gradient(180deg,var(--honey),#eda94e);border:none;border-bottom:2px solid #b9782c;border-radius:999px;padding:4px 10px;cursor:pointer}
+  .buyBtn:disabled{filter:grayscale(.8) brightness(.7)}
   #shopMoney,#bookMoney{font-weight:700;color:var(--honey)}
-
-  /* recipe book */
-  .bookPage{background:#fdf3df;color:#4a3626;border-radius:16px;padding:10px 12px;text-align:left;margin:8px 0 10px;max-height:56vh;overflow-y:auto;border:1px solid #d9c3a0}
-  .rcp{padding:8px 2px;border-bottom:1px dashed #cdb18a}
+  .bookPage{background:#fdf3df;color:#4a3626;border-radius:14px;padding:9px 11px;text-align:left;margin:6px 0 9px;max-height:54vh;overflow-y:auto;border:1px solid #d9c3a0}
+  .rcp{padding:7px 2px;border-bottom:1px dashed #cdb18a}
   .rcp:last-child{border-bottom:none}
-  .rcp .rhead{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-  .rcp .rprice{margin-left:auto;font-size:.72rem;color:#8a6f52;font-weight:600}
-  .rcp .rsteps{font-size:.78rem;margin-top:3px;color:#6b503a;line-height:1.6}
-  .rcp .rseason{font-size:.75rem;margin-top:2px;color:#8a5f36;font-weight:600}
-  .rcp .stepTag{display:inline-block;background:#efe0c2;border:1px solid #d5bd93;border-radius:8px;padding:1px 7px;margin:1px 2px 1px 0;font-weight:600}
+  .rcp .rhead{font-weight:700;font-size:.86rem;display:flex;gap:5px;flex-wrap:wrap}
+  .rcp .rprice{margin-left:auto;font-size:.66rem;color:#8a6f52}
+  .rcp .rsteps{font-size:.72rem;margin-top:2px;color:#6b503a;line-height:1.6}
+  .rcp .rseason{font-size:.7rem;margin-top:1px;color:#8a5f36;font-weight:600}
+  .rcp .stepTag{display:inline-block;background:#efe0c2;border:1px solid #d5bd93;border-radius:7px;padding:1px 6px;margin:1px 2px 1px 0;font-weight:600}
   .rcp .stepTag.pot{background:#dde8f0;border-color:#a9c2d5;color:#33566e}
   .rcp .stepTag.pan{background:#f0e2d5;border-color:#d5ac8a;color:#7a4a22}
   .rcp.locked{opacity:.75}
   .rcp.locked .rsteps,.rcp.locked .rseason{filter:blur(2.5px)}
-  .unlockBtn{font-family:inherit;font-weight:700;font-size:.74rem;color:#fff;background:linear-gradient(180deg,#8e7bb8,#6a5992);border:none;border-bottom:2px solid #4b3f6b;border-radius:999px;padding:4px 11px;cursor:pointer}
-  .unlockBtn:disabled{filter:grayscale(.7) brightness(.75);cursor:not-allowed}
-  .bookNote{font-size:.72rem;color:#8a6f52;margin-top:8px;font-style:italic}
-
-  /* checkout */
-  .billBox{background:rgba(0,0,0,.25);border-radius:14px;padding:10px 12px;margin-bottom:10px;font-size:.9rem;text-align:left}
-  .billBox div{display:flex;justify-content:space-between;padding:2px 0}
-  .billBox .big{font-size:1.05rem;font-weight:700;color:var(--honey);border-top:1px solid rgba(255,241,220,.2);margin-top:4px;padding-top:5px}
-  #coinRow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}
-  .coinBtn{width:52px;height:52px;border-radius:50%;font-family:inherit;font-weight:800;font-size:.95rem;color:#5a3d10;background:radial-gradient(circle at 35% 30%,#ffe1a0,#eda94e 70%);border:2px solid #b9782c;border-bottom-width:4px;cursor:pointer;transition:transform .1s}
+  .unlockBtn{font-family:inherit;font-weight:700;font-size:.68rem;color:#fff;background:linear-gradient(180deg,#8e7bb8,#6a5992);border:none;border-bottom:2px solid #4b3f6b;border-radius:999px;padding:4px 10px;cursor:pointer;margin-top:4px}
+  .unlockBtn:disabled{filter:grayscale(.7) brightness(.75)}
+  .bookNote{font-size:.66rem;color:#8a6f52;margin-top:6px;font-style:italic}
+  .billBox{background:rgba(0,0,0,.25);border-radius:12px;padding:8px 10px;margin-bottom:8px;font-size:.82rem;text-align:left}
+  .billBox div{display:flex;justify-content:space-between;padding:1px 0}
+  .billBox .big{font-size:.95rem;font-weight:700;color:var(--honey);border-top:1px solid rgba(255,241,220,.2);margin-top:3px;padding-top:4px}
+  #coinRow{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:8px 0}
+  .coinBtn{width:47px;height:47px;border-radius:50%;font-family:inherit;font-weight:800;font-size:.88rem;color:#5a3d10;background:radial-gradient(circle at 35% 30%,#ffe1a0,#eda94e 70%);border:2px solid #b9782c;border-bottom-width:4px;cursor:pointer}
   .coinBtn:active{transform:scale(.9)}
-  .coinBtn.note{border-radius:10px;width:64px;height:44px;background:linear-gradient(135deg,#bcd6b0,#8fb681);border-color:#5c7f50;color:#2c421f}
-  #ckSum{font-size:1.3rem;font-weight:800;color:var(--honey)}
-  .ckSmall{font-size:.78rem;color:var(--cream-dim)}
-  #ckResult{font-size:.88rem;font-weight:700;margin:8px 0;min-height:22px}
+  .coinBtn.note{border-radius:9px;width:58px;height:40px;background:linear-gradient(135deg,#bcd6b0,#8fb681);border-color:#5c7f50;color:#2c421f}
+  #ckSum{font-size:1.2rem;font-weight:800;color:var(--honey)}
+  .ckSmall{font-size:.72rem;color:var(--cream-dim)}
+  #ckResult{font-size:.8rem;font-weight:700;margin:6px 0;min-height:20px}
   #ckResult.good{color:var(--sage)}
   #ckResult.bad{color:#e58b6a}
-
-  /* reviews */
-  #ratingBox{background:rgba(0,0,0,.25);border-radius:14px;padding:10px;margin-bottom:8px}
-  #ratingBig{font-size:1.6rem;font-weight:800;color:var(--honey)}
-  #ratingSub{font-size:.78rem;color:var(--cream-dim)}
-  #fameBadge{display:none;margin-top:5px;font-size:.78rem;font-weight:700;color:#3a2412;background:linear-gradient(180deg,var(--honey),#eda94e);border-radius:999px;padding:3px 12px}
-  #revList{display:flex;flex-direction:column;gap:6px;margin:8px 0 10px;max-height:48vh;overflow-y:auto}
-  .revItem{background:rgba(0,0,0,.2);border-radius:12px;padding:8px 11px;text-align:left}
-  .revItem .rTop{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700}
-  .revItem .rStars{margin-left:auto;font-size:.75rem;color:var(--honey);letter-spacing:1px}
-  .revItem .rTxt{font-size:.79rem;color:var(--cream-dim);margin-top:3px}
-  .revEmpty{font-size:.82rem;color:var(--cream-dim);padding:14px 0}
-
-  footer{color:rgba(230,211,189,.45);font-size:.72rem;padding:0 14px 16px;text-align:center}
-  @media (max-width:430px){
-    .ing{width:54px;height:57px;font-size:1.35rem}
-    .ing small{font-size:.5rem}
-    .vesselWrap{width:210px}
-    button.act{font-size:.82rem;padding:8px 11px}
-    .coinBtn{width:47px;height:47px;font-size:.88rem}
-    .shaker{width:52px}
-  }
+  #ratingBox{background:rgba(0,0,0,.25);border-radius:12px;padding:8px;margin-bottom:6px}
+  #ratingBig{font-size:1.4rem;font-weight:800;color:var(--honey)}
+  #ratingSub{font-size:.72rem;color:var(--cream-dim)}
+  #fameBadge{display:none;margin-top:4px;font-size:.72rem;font-weight:700;color:#3a2412;background:linear-gradient(180deg,var(--honey),#eda94e);border-radius:999px;padding:2px 10px}
+  #revList{display:flex;flex-direction:column;gap:5px;margin:6px 0 8px;max-height:46vh;overflow-y:auto}
+  .revItem{background:rgba(0,0,0,.2);border-radius:11px;padding:7px 10px;text-align:left}
+  .revItem .rTop{display:flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700}
+  .revItem .rStars{margin-left:auto;font-size:.68rem;color:var(--honey)}
+  .revItem .rTxt{font-size:.72rem;color:var(--cream-dim);margin-top:2px}
+  .revEmpty{font-size:.76rem;color:var(--cream-dim);padding:12px 0}
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
 </style>
 </head>
 <body>
 
 <header>
-  <h1><span class="flame">🔥</span> ครัวอุ่นอุ่น</h1>
+  <h1>🔥 ครัวอุ่นอุ่น</h1>
   <div class="stats">
     <div class="pill money">🪙 <span id="money">0</span></div>
-    <div class="pill">🍽️ <span id="servedN">0</span></div>
     <button class="hbtn" id="revBtn">⭐ <span id="ratingMini">–</span></button>
     <button class="hbtn" id="bookBtn">📖</button>
     <button class="hbtn" id="shopBtn">🛒</button>
@@ -247,74 +286,101 @@
   </div>
 </header>
 
-<main>
-  <!-- customer -->
-  <section class="card" id="customerCard">
-    <div id="custFace">👵</div>
-    <div class="bubble">
-      <div id="custName"></div>
-      <div id="custSay"></div>
-      <div class="chips" id="orderChips"></div>
+<!-- fixed active-order strip -->
+<div id="orderStrip"></div>
+
+<div id="stations">
+
+  <!-- ===== FRONT / COMPUTER ===== -->
+  <div class="station active" id="st-front">
+    <div class="card">
+      <div class="label">หน้าร้าน — ลูกค้า Walk-in</div>
+      <div id="walkArea"></div>
     </div>
-  </section>
-
-  <!-- pantry -->
-  <section class="card">
-    <div class="label">สต็อกวัตถุดิบ — ใช้แล้วหมด เติมที่ 🛒</div>
-    <div id="pantry"></div>
-  </section>
-
-  <!-- drinks -->
-  <section class="card">
-    <div class="label">ตู้เครื่องดื่ม — แตะเพื่อเตรียม (ตัดสต็อกทันที)</div>
-    <div id="drinkBar"></div>
-    <div id="drinkTray"></div>
-  </section>
-
-  <!-- board -->
-  <section id="board">
-    <div class="label">เขียง</div>
-    <div class="knife">🔪</div>
-    <div id="knifeCursor">🔪</div>
-    <div id="boardItem"></div>
-    <div class="chopDots" id="chopDots"></div>
-    <div id="boardHint">เปิด 📖 ดูสูตร+เครื่องปรุง แล้วอย่าลืมคำขอพิเศษ</div>
-  </section>
-
-  <!-- stove -->
-  <section id="stove">
-    <div id="stageFlow"></div>
-    <div class="vesselTabs">
-      <button class="vtab on" id="tabPot">🍲 หม้อ (ต้ม)</button>
-      <button class="vtab" id="tabPan">🍳 กระทะ (ผัด)</button>
+    <div class="pcFrame">
+      <div class="pcBar"><i></i><i></i><i></i><span>🖥️ GinNee — ออเดอร์เดลิเวอรี่</span></div>
+      <div id="ticketArea"></div>
     </div>
-    <div class="vesselWrap" id="vesselWrap">
-      <div id="vessel" class="shape-pot"><div id="broth"></div></div>
-      <div id="spoon">🥄</div>
-    </div>
-    <div id="flameIcon">🔥</div>
-    <div class="doneWrap">
-      <div class="doneBar"><div class="marker" id="doneMarker"></div></div>
-      <div class="doneLegend"><span>ดิบ</span><span>เกือบได้</span><span>กำลังดี ✨</span><span>ไหม้!</span></div>
-    </div>
-    <div id="gestureHint"></div>
-    <div class="stoveBtns">
-      <button class="act red" id="heatBtn" disabled>เปิดไฟ 🔥 <small>(−2🪙)</small></button>
-      <button class="act" id="offBtn" disabled>ยกลง ✋</button>
-      <button class="act blue" id="nextStageBtn" disabled>➡️ ขั้นต่อไป</button>
-    </div>
-    <div class="label" style="margin:10px 0 0">เครื่องปรุงรส — เขย่าตามสูตรในตำรา 📖</div>
-    <div id="seasonRow"></div>
-  </section>
+  </div>
 
-  <!-- serve + trash -->
-  <section class="card" style="text-align:center">
-    <button class="act green" id="serveBtn" disabled style="font-size:1rem;padding:12px 30px">เสิร์ฟ ✨</button>
-    <button class="act grey" id="trashBtn" style="margin-left:8px">🗑️ ทิ้งอาหาร</button>
-  </section>
-</main>
+  <!-- ===== PANTRY ===== -->
+  <div class="station" id="st-pantry">
+    <div class="card">
+      <div class="label">ตู้กับข้าว — แตะเพื่อหยิบใส่ถาด (ตัดสต็อกทันที)</div>
+      <div id="pantryCats"></div>
+    </div>
+  </div>
 
-<footer>🔪 ปาดหั่น · 🥄 วนคน · 🍳 ปัดโยน · 🧂 เขย่าปรุง · ทำพลาดก็ 🗑️ ทิ้งแล้วเริ่มใหม่ (ของเสียนะ!)</footer>
+  <!-- ===== PREP ===== -->
+  <div class="station" id="st-prep">
+    <div id="boardWrap">
+      <div id="board">
+        <div class="label">เขียง</div>
+        <div class="knife">🔪</div>
+        <div id="knifeCursor">🔪</div>
+        <div id="boardItem"></div>
+        <div class="chopDots" id="chopDots"></div>
+        <div id="boardHint">แตะของดิบในถาดด้านล่าง เพื่อวางบนเขียง</div>
+      </div>
+      <button class="act grey" id="returnBtn" style="display:none">↩️ คืนเข้าสต็อก (ยังไม่ได้หั่น)</button>
+    </div>
+  </div>
+
+  <!-- ===== STOVE ===== -->
+  <div class="station" id="st-stove">
+    <div id="stove">
+      <div id="stageFlow"></div>
+      <div id="vesselName">🍲 หม้อ (ต้ม)</div>
+      <div class="slideHint">← ปัดซ้าย/ขวาบนเตาเพื่อสลับ หม้อ ⇄ กระทะ →</div>
+      <div class="vesselWrap" id="vesselWrap">
+        <div id="vessel" class="shape-pot"><div id="broth"></div><div class="potFace"><i></i><i></i></div></div>
+        <div id="spoon">🥄</div>
+      </div>
+      <div id="flameIcon">🔥</div>
+      <div class="doneWrap">
+        <div class="doneBar"><div class="marker" id="doneMarker"></div></div>
+        <div class="doneLegend"><span>ดิบ</span><span>เกือบ</span><span>กำลังดี ✨</span><span>ไหม้!</span></div>
+      </div>
+      <div id="gestureHint"></div>
+      <div class="stoveBtns">
+        <button class="act red" id="heatBtn" disabled>เปิดไฟ 🔥 −2🪙</button>
+        <button class="act" id="offBtn" disabled>ยกลง ✋</button>
+        <button class="act blue" id="nextStageBtn" disabled>➡️ ขั้นต่อไป</button>
+      </div>
+      <div id="seasonRow"></div>
+    </div>
+  </div>
+
+  <!-- ===== SERVE ===== -->
+  <div class="station" id="st-serve">
+    <div class="card">
+      <div class="label">ตู้เครื่องดื่ม — แตะเพื่อเตรียม</div>
+      <div class="grid" id="drinkBar"></div>
+      <div id="drinkTray"></div>
+    </div>
+    <div class="card">
+      <div class="label">สรุปก่อนเสิร์ฟ</div>
+      <div id="recap"></div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
+        <button class="act green" id="serveBtn" disabled style="font-size:.95rem;padding:11px 26px">เสิร์ฟ ✨</button>
+        <button class="act grey" id="trashBtn">🗑️ ทิ้งอาหาร</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- fixed tray bar -->
+<div id="trayBar"></div>
+
+<!-- bottom nav -->
+<nav>
+  <button class="navBtn on" data-st="front"><span class="ne">🖥️</span>ออเดอร์<span class="dot" id="frontDot" style="display:none"></span></button>
+  <button class="navBtn" data-st="pantry"><span class="ne">🧺</span>ของสด</button>
+  <button class="navBtn" data-st="prep"><span class="ne">🔪</span>เตรียม</button>
+  <button class="navBtn" data-st="stove"><span class="ne">🍳</span>เตา</button>
+  <button class="navBtn" data-st="serve"><span class="ne">🛎️</span>เสิร์ฟ</button>
+</nav>
 
 <div id="toast"></div>
 
@@ -328,11 +394,11 @@
     <p id="rComment"></p>
     <div class="reveal" id="rReveal"></div>
     <div class="breakdown" id="rBreakdown"></div>
-    <button class="act green" id="toCheckoutBtn">คิดเงิน 💵</button>
+    <button class="act green" id="payBtn">คิดเงิน 💵</button>
   </div>
 </div>
 
-<!-- checkout -->
+<!-- checkout (walk-in cash) -->
 <div class="overlay" id="checkoutOverlay">
   <div class="oCard">
     <h2>💵 คิดเงิน–ทอนเงิน</h2>
@@ -342,7 +408,7 @@
       <div class="big"><span>ยอดรวม</span><span id="ckBill"></span></div>
       <div class="big"><span>ลูกค้าจ่าย</span><span id="ckPaid"></span></div>
     </div>
-    <p class="ckSmall">แตะเหรียญ/แบงก์เพื่อหยิบเงินทอน (คิดเลขเองนะเชฟ 😉)</p>
+    <p class="ckSmall">แตะเหรียญ/แบงก์เพื่อหยิบเงินทอน — คิดเลขเองนะเชฟ 😉</p>
     <div id="coinRow"></div>
     <p>ทอนไปแล้ว: <span id="ckSum">0</span> 🪙</p>
     <div style="display:flex;gap:8px;justify-content:center;margin-bottom:8px">
@@ -352,9 +418,19 @@
     <button class="act green" id="ckConfirm">ส่งเงินทอน ✅</button>
     <div id="ckResult"></div>
     <div id="ckDone" style="display:none">
-      <button class="act" id="nextBtn">ลูกค้าคนต่อไป 🔔</button>
-      <button class="act" id="toShopBtn" style="margin-left:6px">🛒 ซื้อของ</button>
+      <button class="act" id="ckNext">รับออเดอร์ถัดไป 🔔</button>
     </div>
+  </div>
+</div>
+
+<!-- delivery paid -->
+<div class="overlay" id="deliOverlay">
+  <div class="oCard">
+    <h2>🛵 ส่งไรเดอร์เรียบร้อย!</h2>
+    <div class="dish">📦</div>
+    <p id="deliMsg"></p>
+    <div class="billBox" id="deliBill"></div>
+    <button class="act" id="deliNext">รับออเดอร์ถัดไป 🔔</button>
   </div>
 </div>
 
@@ -362,6 +438,7 @@
 <div class="overlay" id="shopOverlay">
   <div class="oCard">
     <h2>🛒 ตลาดเช้า</h2>
+    <div id="rushTag">🛵 ส่งด่วนกลางออเดอร์ — ราคา ×2!</div>
     <p>เงินในกระเป๋า: <span id="shopMoney"></span> 🪙</p>
     <div id="shopList"></div>
     <button class="act" id="shopClose">กลับไปทำครัว 🍳</button>
@@ -372,7 +449,7 @@
 <div class="overlay" id="bookOverlay">
   <div class="oCard">
     <h2>📖 เมนูประจำร้าน</h2>
-    <p>เงิน: <span id="bookMoney"></span> 🪙 — ใช้ปลดล็อกเมนูใหม่ได้</p>
+    <p>เงิน: <span id="bookMoney"></span> 🪙 — ใช้ปลดล็อกเมนูใหม่</p>
     <div class="bookPage" id="bookPage"></div>
     <button class="act" id="bookClose">ปิดเมนู</button>
   </div>
@@ -405,30 +482,46 @@ document.addEventListener("touchend",e=>{
   lastTouchEnd=now;
 },{passive:false});
 
+/* ============ cute art: twemoji (free, CC-BY 4.0) ============ */
+function emo(el){
+  try{
+    if(window.twemoji)twemoji.parse(el||document.body,{
+      base:"https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/",
+      folder:"svg",ext:".svg"
+    });
+  }catch(e){}
+}
+
 /* ================= data ================= */
 const INGS = {
-  rice:{e:"🍚",n:"ข้าว",chops:0,price:4},
-  noodles:{e:"🍜",n:"เส้น",chops:0,price:6},
-  egg:{e:"🥚",n:"ไข่",chops:2,prep:"ตอก",price:5},
   chicken:{e:"🍗",n:"ไก่",chops:3,prep:"หั่น",price:9},
   shrimp:{e:"🦐",n:"กุ้ง",chops:2,prep:"แกะ",price:12},
   fish:{e:"🐟",n:"ปลา",chops:2,prep:"หั่น",price:10},
-  pumpkin:{e:"🎃",n:"ฟักทอง",chops:3,prep:"หั่น",price:6},
+  egg:{e:"🥚",n:"ไข่",chops:2,prep:"ตอก",price:5},
+  broccoli:{e:"🥦",n:"บรอกโคลี",chops:2,prep:"หั่น",price:6},
   carrot:{e:"🥕",n:"แครอท",chops:2,prep:"หั่น",price:4},
-  potato:{e:"🥔",n:"มัน",chops:3,prep:"หั่น",price:4},
   onion:{e:"🧅",n:"หอมใหญ่",chops:3,prep:"หั่น",price:4},
   garlic:{e:"🧄",n:"กระเทียม",chops:2,prep:"สับ",price:3},
   tomato:{e:"🍅",n:"มะเขือเทศ",chops:2,prep:"หั่น",price:4},
   mushroom:{e:"🍄",n:"เห็ด",chops:2,prep:"หั่น",price:6},
-  broccoli:{e:"🥦",n:"บรอกโคลี",chops:2,prep:"หั่น",price:6},
   chili:{e:"🌶️",n:"พริก",chops:2,prep:"สับ",price:3},
   basil:{e:"🌿",n:"กะเพรา",chops:1,prep:"เด็ด",price:3},
+  pumpkin:{e:"🎃",n:"ฟักทอง",chops:3,prep:"หั่น",price:6},
+  potato:{e:"🥔",n:"มัน",chops:3,prep:"หั่น",price:4},
+  corn:{e:"🌽",n:"ข้าวโพด",chops:2,prep:"หั่น",price:5},
+  rice:{e:"🍚",n:"ข้าว",chops:0,price:4},
+  noodles:{e:"🍜",n:"เส้น",chops:0,price:6},
   milk:{e:"🥛",n:"นม",chops:0,price:5},
   butter:{e:"🧈",n:"เนย",chops:0,price:6},
-  corn:{e:"🌽",n:"ข้าวโพด",chops:2,prep:"หั่น",price:5},
   cheese:{e:"🧀",n:"ชีส",chops:2,prep:"หั่น",price:8}
 };
-const ING_ORDER = Object.keys(INGS);
+const CATS=[
+  {n:"🍗 เนื้อสัตว์ & โปรตีน",ids:["chicken","shrimp","fish","egg"]},
+  {n:"🥬 ผักสด",ids:["broccoli","carrot","onion","garlic","tomato","mushroom","chili","basil","pumpkin","potato","corn"]},
+  {n:"🍚 ข้าว & เส้น",ids:["rice","noodles"]},
+  {n:"🥛 นม เนย ชีส",ids:["milk","butter","cheese"]}
+];
+const ING_ORDER=CATS.flatMap(c=>c.ids);
 
 const DRINKS = {
   water:{e:"💧",n:"น้ำเปล่า",sell:8,cost:2},
@@ -446,90 +539,65 @@ const SEASONS = {
 };
 const SEASON_ORDER=Object.keys(SEASONS);
 
+/* freestyle recipes: core = ต้องมี, optional = ใส่เพิ่มได้, min/max = จำนวนวัตถุดิบรวม */
 const RECIPES = [
-  {name:"ไข่เจียวฟู",dish:"🍳",broth:"#f0d070",price:35,unlock:0,
-   stages:[{type:"pan",label:"เจียว",ings:["egg","onion","garlic"]}],
-   addable:["chili","cheese","corn","basil"]},
-  {name:"ข้าวผัดไข่",dish:"🍚",broth:"#e5c25a",price:45,unlock:0,
-   stages:[{type:"pan",label:"ผัด",ings:["rice","egg","garlic","onion"]}],
-   addable:["chicken","shrimp","chili","corn"]},
-  {name:"ผัดผักรวมมิตร",dish:"🥦",broth:"#7fa571",price:45,unlock:0,
-   stages:[{type:"pan",label:"ผัด",ings:["broccoli","carrot","mushroom","garlic"]}],
-   addable:["egg","corn","chicken","chili"]},
+  {name:"ไข่เจียวฟู",dish:"🍳",broth:"#f0d070",price:35,unlock:0,stages:[{type:"pan",label:"เจียว"}],
+   core:["egg"],optional:["onion","garlic","chili","cheese","corn","basil"],min:2,max:4},
+  {name:"ข้าวผัดไข่",dish:"🍚",broth:"#e5c25a",price:45,unlock:0,stages:[{type:"pan",label:"ผัด"}],
+   core:["rice","egg"],optional:["garlic","onion","chicken","shrimp","chili","corn"],min:3,max:6},
+  {name:"ผัดผักรวมมิตร",dish:"🥦",broth:"#7fa571",price:45,unlock:0,stages:[{type:"pan",label:"ผัด"}],
+   core:["broccoli"],optional:["carrot","mushroom","garlic","corn","egg","chili","onion"],min:3,max:6},
   {name:"สตูว์ข้างเตาผิง",dish:"🍲",broth:"#a4552f",price:55,unlock:0,
-   stages:[{type:"pan",label:"ผัดเครื่องให้หอม",ings:["onion","garlic"]},
-           {type:"pot",label:"เคี่ยวไฟอ่อน",ings:["potato","carrot","tomato"]}],
-   addable:["chicken","mushroom","corn","butter"]},
-  {name:"ผัดกะเพราไก่",dish:"🌶️",broth:"#b0703a",price:55,unlock:30,
-   stages:[{type:"pan",label:"ผัด",ings:["chicken","basil","chili","garlic"]}],
-   addable:["egg","mushroom","broccoli","corn"]},
-  {name:"ข้าวต้มปลา",dish:"🐟",broth:"#c9b98a",price:60,unlock:35,
-   stages:[{type:"pot",label:"ต้ม",ings:["rice","fish","garlic","onion"]}],
-   addable:["egg","mushroom","carrot","milk"]},
-  {name:"ชีสคอร์นกระทะร้อน",dish:"🌽",broth:"#eec95e",price:60,unlock:40,
-   stages:[{type:"pan",label:"ผัด",ings:["corn","cheese","butter","egg"]}],
-   addable:["broccoli","chicken","potato","milk"]},
+   stages:[{type:"pan",label:"ผัดเครื่องให้หอม"},{type:"pot",label:"เคี่ยวไฟอ่อน"}],
+   core:["potato","carrot"],optional:["onion","garlic","tomato","chicken","mushroom","corn","butter"],min:4,max:7},
+  {name:"ผัดกะเพราไก่",dish:"🌶️",broth:"#b0703a",price:55,unlock:30,stages:[{type:"pan",label:"ผัด"}],
+   core:["chicken","basil","chili"],optional:["garlic","egg","mushroom","broccoli","corn"],min:4,max:6},
+  {name:"ข้าวต้มปลา",dish:"🐟",broth:"#c9b98a",price:60,unlock:35,stages:[{type:"pot",label:"ต้ม"}],
+   core:["rice","fish"],optional:["garlic","onion","egg","mushroom","carrot"],min:3,max:6},
+  {name:"ชีสคอร์นกระทะร้อน",dish:"🌽",broth:"#eec95e",price:60,unlock:40,stages:[{type:"pan",label:"ผัด"}],
+   core:["corn","cheese"],optional:["butter","egg","broccoli","potato","milk"],min:3,max:5},
   {name:"ซุปฟักทอง",dish:"🎃",broth:"#e8963f",price:65,unlock:45,
-   stages:[{type:"pan",label:"ผัดหอมใหญ่กับเนย",ings:["onion","butter"]},
-           {type:"pot",label:"เคี่ยวจนเนียน",ings:["pumpkin","milk"]}],
-   addable:["cheese","corn","carrot","potato"]},
+   stages:[{type:"pan",label:"ผัดหอมใหญ่กับเนย"},{type:"pot",label:"เคี่ยวจนเนียน"}],
+   core:["pumpkin","milk"],optional:["onion","butter","cheese","corn","carrot"],min:3,max:6},
   {name:"ราเมงยามดึก",dish:"🍜",broth:"#b98a5a",price:70,unlock:55,
-   stages:[{type:"pan",label:"เจียวกระเทียม",ings:["garlic","butter"]},
-           {type:"pot",label:"ต้มน้ำซุป",ings:["noodles","egg","mushroom"]}],
-   addable:["chicken","corn","broccoli","cheese"]},
+   stages:[{type:"pan",label:"เจียวกระเทียม"},{type:"pot",label:"ต้มน้ำซุป"}],
+   core:["noodles","egg"],optional:["garlic","butter","mushroom","chicken","corn","broccoli"],min:4,max:7},
   {name:"ซุปเห็ดครีม",dish:"🍄",broth:"#cbb491",price:75,unlock:65,
-   stages:[{type:"pan",label:"ผัดเนยกระเทียม",ings:["butter","garlic"]},
-           {type:"pot",label:"เคี่ยวครีม",ings:["mushroom","milk","onion"]}],
-   addable:["cheese","broccoli","potato","corn"]},
-  {name:"ต้มยำกุ้ง",dish:"🦐",broth:"#d97b4a",price:75,unlock:75,
-   stages:[{type:"pot",label:"ต้ม",ings:["shrimp","mushroom","chili","tomato"]}],
-   addable:["milk","fish","broccoli","onion"]},
+   stages:[{type:"pan",label:"ผัดเนยกระเทียม"},{type:"pot",label:"เคี่ยวครีม"}],
+   core:["mushroom","milk"],optional:["butter","garlic","onion","cheese","potato"],min:4,max:6},
+  {name:"ต้มยำกุ้ง",dish:"🦐",broth:"#d97b4a",price:75,unlock:75,stages:[{type:"pot",label:"ต้ม"}],
+   core:["shrimp","chili"],optional:["mushroom","tomato","onion","fish","milk"],min:4,max:6},
   {name:"สปาเก็ตตี้ขี้เมาไก่",dish:"🍝",broth:"#c0763f",price:80,unlock:85,
-   stages:[{type:"pot",label:"ต้มเส้น",ings:["noodles"]},
-           {type:"pan",label:"ผัดกับเครื่อง",ings:["chicken","basil","chili","garlic"]}],
-   addable:["cheese","egg","mushroom","corn"]},
+   stages:[{type:"pot",label:"ต้มเส้น"},{type:"pan",label:"ผัดกับเครื่อง"}],
+   core:["noodles","basil","chili"],optional:["chicken","garlic","egg","mushroom","cheese","corn"],min:4,max:7},
   {name:"แกงเผ็ดไก่",dish:"🍛",broth:"#c9553a",price:80,unlock:95,
-   stages:[{type:"pan",label:"ผัดพริกแกง",ings:["chili","garlic","onion"]},
-           {type:"pot",label:"เคี่ยวกับกะทิ",ings:["chicken","milk","basil"]}],
-   addable:["pumpkin","potato","carrot","corn"]},
-  {name:"ข้าวผัดกุ้ง",dish:"🦐",broth:"#e8b464",price:85,unlock:105,
-   stages:[{type:"pan",label:"ผัด",ings:["rice","shrimp","egg","garlic"]}],
-   addable:["corn","chili","onion","butter"]},
+   stages:[{type:"pan",label:"ผัดพริกแกง"},{type:"pot",label:"เคี่ยวกับกะทิ"}],
+   core:["chicken","chili","milk"],optional:["garlic","onion","basil","pumpkin","potato","carrot","corn"],min:4,max:7},
+  {name:"ข้าวผัดกุ้ง",dish:"🦐",broth:"#e8b464",price:85,unlock:105,stages:[{type:"pan",label:"ผัด"}],
+   core:["rice","shrimp"],optional:["egg","garlic","corn","chili","onion","butter"],min:4,max:6},
   {name:"มัสมั่นไก่",dish:"🥘",broth:"#a8542a",price:95,unlock:120,
-   stages:[{type:"pan",label:"ผัดเครื่องแกง",ings:["garlic","onion","chili"]},
-           {type:"pot",label:"เคี่ยวจนนุ่ม",ings:["chicken","potato","milk"]}],
-   addable:["carrot","pumpkin","corn","butter"]},
+   stages:[{type:"pan",label:"ผัดเครื่องแกง"},{type:"pot",label:"เคี่ยวจนนุ่ม"}],
+   core:["chicken","potato","milk"],optional:["garlic","onion","chili","carrot","pumpkin","corn","butter"],min:5,max:8},
   {name:"พาสต้าครีมกุ้ง",dish:"🍤",broth:"#e8d3a8",price:110,unlock:140,
-   stages:[{type:"pot",label:"ต้มเส้น",ings:["noodles"]},
-           {type:"pan",label:"ผัดครีม",ings:["shrimp","butter","milk","cheese"]}],
-   addable:["mushroom","broccoli","corn","egg"]}
+   stages:[{type:"pot",label:"ต้มเส้น"},{type:"pan",label:"ผัดครีม"}],
+   core:["noodles","shrimp","milk"],optional:["butter","cheese","mushroom","broccoli","corn","egg"],min:5,max:7}
 ];
-
-/* สูตรปรุงรสของแต่ละเมนู (จำนวนเขย่าต่อชนิด) */
 const SEASON_REQ = {
-  "ไข่เจียวฟู":{fish:1},
-  "ข้าวผัดไข่":{fish:1,salt:1},
-  "ผัดผักรวมมิตร":{oyster:2},
-  "สตูว์ข้างเตาผิง":{salt:2,sugar:1},
-  "ผัดกะเพราไก่":{fish:1,oyster:1,sugar:1},
-  "ข้าวต้มปลา":{salt:1,fish:1},
-  "ชีสคอร์นกระทะร้อน":{salt:1,sugar:1},
-  "ซุปฟักทอง":{salt:1,sugar:2},
-  "ราเมงยามดึก":{salt:1,fish:2},
-  "ซุปเห็ดครีม":{salt:2},
-  "ต้มยำกุ้ง":{fish:2,sugar:1},
-  "สปาเก็ตตี้ขี้เมาไก่":{oyster:1,fish:1},
-  "แกงเผ็ดไก่":{fish:2,sugar:1},
-  "ข้าวผัดกุ้ง":{fish:1,sugar:1,salt:1},
-  "มัสมั่นไก่":{sugar:2,fish:1,salt:1},
-  "พาสต้าครีมกุ้ง":{salt:2,sugar:1}
+  "ไข่เจียวฟู":{fish:1},"ข้าวผัดไข่":{fish:1,salt:1},"ผัดผักรวมมิตร":{oyster:2},
+  "สตูว์ข้างเตาผิง":{salt:2,sugar:1},"ผัดกะเพราไก่":{fish:1,oyster:1,sugar:1},
+  "ข้าวต้มปลา":{salt:1,fish:1},"ชีสคอร์นกระทะร้อน":{salt:1,sugar:1},
+  "ซุปฟักทอง":{salt:1,sugar:2},"ราเมงยามดึก":{salt:1,fish:2},"ซุปเห็ดครีม":{salt:2},
+  "ต้มยำกุ้ง":{fish:2,sugar:1},"สปาเก็ตตี้ขี้เมาไก่":{oyster:1,fish:1},
+  "แกงเผ็ดไก่":{fish:2,sugar:1},"ข้าวผัดกุ้ง":{fish:1,sugar:1,salt:1},
+  "มัสมั่นไก่":{sugar:2,fish:1,salt:1},"พาสต้าครีมกุ้ง":{salt:2,sugar:1}
 };
 
 const CUSTOMERS = [
   {face:"👵",name:"คุณยายนวล"},{face:"👧",name:"น้องข้าวปั้น"},
   {face:"🧑‍🌾",name:"ลุงผล จากไร่"},{face:"👩‍🎨",name:"พี่ฝ้าย ศิลปิน"},
   {face:"🧙‍♂️",name:"พ่อมดหลงทาง"},{face:"🐱",name:"เจ้าส้ม แมวประจำร้าน"},
-  {face:"👨‍💻",name:"พี่โค้ด ทำงานดึก"},{face:"💑",name:"คู่รักโต๊ะริมหน้าต่าง"}
+  {face:"👨‍💻",name:"พี่โค้ด ทำงานดึก"},{face:"💑",name:"คู่รักโต๊ะริมหน้าต่าง"},
+  {face:"🧛",name:"เคานต์กลัวกระเทียม"},{face:"👮",name:"หมวดอิ่ม สายตรวจ"}
 ];
 const ORDER_PHRASES = [
   "ขอ{m}ที่นึงจ้า","เอา{m}จานนึงนะ!","หิวมากก ขอ{m}เลย","วันนี้อยากกิน{m}~","{m} ร้อนๆ หนึ่งที่!"
@@ -540,47 +608,57 @@ const COMMENTS = {
   1:["เอ๊ะ…ที่ขอไว้ไม่ใช่แบบนี้นี่นา 😅","อืม…รอบหน้าอ่านออเดอร์ดีๆ นะเชฟ"]
 };
 const REVIEW_MAIN = {
-  3:["สั่ง{dish}ไป อร่อยจนอยากกลับมาทุกวัน!","{dish}ร้านนี้คือของจริง แนะนำเลย 💯","เชฟใส่ใจทุกรายละเอียด {dish}เป๊ะมาก"],
-  2:["{dish}อร่อยใช้ได้ มีพลาดเล็กน้อยแต่โอเค","โดยรวมดี {dish}กินเพลิน ให้ผ่าน~","รสชาติกลางๆ แต่บรรยากาศร้านน่ารักดี"],
-  1:["สั่ง{dish}แต่ได้อะไรมาก็ไม่รู้… 😔","ผิดหวังนิดนึง รอบหน้าขอเป๊ะกว่านี้นะ","{dish}วันนี้ไม่ค่อยไหว ให้กำลังใจเชฟละกัน"]
+  3:["สั่ง{dish}ไป อร่อยจนอยากกลับมาทุกวัน!","{dish}ร้านนี้คือของจริง แนะนำเลย 💯",
+     "เชฟใส่ใจทุกรายละเอียด {dish}เป๊ะมาก","กินแล้วคิดถึงฝีมือแม่เลย น้ำตาจะไหล 🥹",
+     "{dish}จานนี้ควรได้มิชลิน! ⭐","หอมตั้งแต่ยังไม่เข้าร้าน สมคำร่ำลือ",
+     "พาแฟนมากิน{dish} แฟนยิ้มทั้งมื้อ ขอบคุณนะเชฟ","ร้านเล็กๆ แต่รสชาติระดับโรงแรมห้าดาว!"],
+  2:["{dish}อร่อยใช้ได้ มีพลาดเล็กน้อยแต่โอเค","โดยรวมดี {dish}กินเพลิน ให้ผ่าน~",
+     "รสชาติกลางๆ แต่บรรยากาศร้านน่ารักดี","{dish}เกือบเพอร์เฟกต์ ขาดอีกนิดเดียว!",
+     "มาบ่อยจนเชฟจำหน้าได้ วันนี้พลาดนิดหน่อยไม่เป็นไร","อิ่มอร่อยตามมาตรฐาน ราคาน่ารัก"],
+  1:["สั่ง{dish}แต่ได้อะไรมาก็ไม่รู้… 😔","ผิดหวังนิดนึง รอบหน้าขอเป๊ะกว่านี้นะ",
+     "{dish}วันนี้ไม่ค่อยไหว ให้กำลังใจเชฟละกัน","แมวหน้าร้านน่ารักกว่าอาหารอีก… 🐱",
+     "เชฟครับ ตำราอยู่บนหิ้งไม่ได้มีไว้บูชานะครับ 😭","รสชาติเหมือนเชฟทำไปเล่นเกมไป…เอ๊ะหรือใช่นะ"]
 };
+const REVIEW_DELI = ["สั่งผ่านแอป GinNee มาส่งไว อาหารยังอุ่นอยู่เลย 🛵","สั่งกลับบ้านสะดวกมาก แพ็กมาดีด้วย"];
 
 /* ================= state ================= */
-let cust=null, order=null;
+let order=null;                 // {recipe,removed,added,coreReq,allowed,drink,cust,type}
+let walkIn=null, tickets=[];
+let tray=[];                    // [{id,prepped}] max 6
 let board=null;
 let vessel="pot";
-let allItems=[], curAdded=[];
+let allItems=[];
 let stageRecs=[];
-let cooking=false, doneness=0, finalDoneness=null;
-let stirs=0, STIRS_NEED=3;
+let cooking=false,doneness=0,finalDoneness=null;
+let stirs=0,STIRS_NEED=3;
 let servedDrink=null;
 let seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
-let money=70, servedN=0;
-let muted=false, cookTimer=null;
-let trashArm=0;
-const GAS_COST=2;
-const STOCK={};
-ING_ORDER.forEach(id=>{STOCK[id]=INGS[id].price>=8?1:2;});
+let money=70,servedN=0;
+let muted=false,cookTimer=null,trashArm=0,discardArm=-1;
+const GAS_COST=2,TRAY_MAX=6;
+const STOCK={};ING_ORDER.forEach(id=>{STOCK[id]=INGS[id].price>=8?1:2;});
 const DRINK_STOCK={water:3,lemon:1,tea:1,cocoa:1};
 const SEASON_STOCK={salt:5,sugar:5,fish:5,oyster:5};
 const unlocked=new Set(RECIPES.filter(r=>r.unlock===0).map(r=>r.name));
-const reviews=[];              // {stars, face, name, dish, text}
-let pending=null;
-let changeStack=[];
+const reviews=[];
+let pending=null,changeStack=[];
+let station="front";
 
 /* ================= dom ================= */
 const $=id=>document.getElementById(id);
-const custFace=$("custFace"),custName=$("custName"),custSay=$("custSay"),orderChips=$("orderChips"),
-      pantryEl=$("pantry"),drinkBar=$("drinkBar"),drinkTray=$("drinkTray"),
+const orderStrip=$("orderStrip"),walkArea=$("walkArea"),ticketArea=$("ticketArea"),
+      pantryCats=$("pantryCats"),trayBar=$("trayBar"),
       boardEl=$("board"),boardItem=$("boardItem"),boardHint=$("boardHint"),chopDots=$("chopDots"),
-      vesselEl=$("vessel"),brothEl=$("broth"),spoonEl=$("spoon"),stoveEl=$("stove"),stageFlow=$("stageFlow"),
-      vesselWrap=$("vesselWrap"),knifeCursor=$("knifeCursor"),gestureHint=$("gestureHint"),
-      heatBtn=$("heatBtn"),offBtn=$("offBtn"),nextStageBtn=$("nextStageBtn"),
-      doneMarker=$("doneMarker"),flameIcon=$("flameIcon"),
-      seasonRow=$("seasonRow"),
+      knifeCursor=$("knifeCursor"),returnBtn=$("returnBtn"),
+      vesselEl=$("vessel"),brothEl=$("broth"),spoonEl=$("spoon"),stoveEl=$("stove"),
+      stageFlow=$("stageFlow"),vesselWrap=$("vesselWrap"),vesselName=$("vesselName"),
+      gestureHint=$("gestureHint"),heatBtn=$("heatBtn"),offBtn=$("offBtn"),nextStageBtn=$("nextStageBtn"),
+      doneMarker=$("doneMarker"),flameIcon=$("flameIcon"),seasonRow=$("seasonRow"),
+      drinkBar=$("drinkBar"),drinkTray=$("drinkTray"),recap=$("recap"),
       serveBtn=$("serveBtn"),trashBtn=$("trashBtn"),toastEl=$("toast"),
-      resultOverlay=$("resultOverlay"),shopOverlay=$("shopOverlay"),bookOverlay=$("bookOverlay"),
-      checkoutOverlay=$("checkoutOverlay"),revOverlay=$("revOverlay");
+      resultOverlay=$("resultOverlay"),checkoutOverlay=$("checkoutOverlay"),
+      deliOverlay=$("deliOverlay"),shopOverlay=$("shopOverlay"),
+      bookOverlay=$("bookOverlay"),revOverlay=$("revOverlay");
 
 /* ================= audio ================= */
 let actx=null;
@@ -607,6 +685,8 @@ const sfx={
   salt:()=>snd(900,.06,"triangle",.06,1200),
   pour:()=>snd(200,.4,"sine",.1,90),
   trash:()=>snd(260,.35,"sawtooth",.07,70),
+  slide:()=>snd(340,.18,"sine",.08,520),
+  bell:()=>{snd(988,.12,"triangle",.09);setTimeout(()=>snd(1319,.2,"triangle",.09),110)},
   nope:()=>snd(180,.25,"sawtooth",.05,120),
   coin:()=>{snd(880,.09,"square",.06,880);setTimeout(()=>snd(1175,.12,"square",.06),90)},
   unlock:()=>{snd(392,.15,"triangle",.1);setTimeout(()=>snd(523,.15,"triangle",.1),120);setTimeout(()=>snd(659,.25,"triangle",.12),240)},
@@ -617,120 +697,165 @@ const sfx={
 let toastTimer=null;
 function toast(m){
   toastEl.textContent=m;toastEl.classList.add("show");
-  clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove("show"),2200);
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove("show"),2100);
 }
 function rand(a){return a[Math.floor(Math.random()*a.length)]}
-function ratingAvg(){
-  if(!reviews.length)return null;
-  return reviews.reduce((s,r)=>s+r.stars,0)/reviews.length;
-}
-function isFamous(){
-  const a=ratingAvg();
-  return reviews.length>=5&&a!==null&&a>=2.5;
-}
+function ratingAvg(){return reviews.length?reviews.reduce((s,r)=>s+r.stars,0)/reviews.length:null}
+function isFamous(){const a=ratingAvg();return reviews.length>=5&&a!==null&&a>=2.5}
+function orderInProgress(){return !!order&&(allItems.length>0||stageRecs.length>0||tray.length>0||!!board)}
+function shopMult(){return orderInProgress()?2:1}
 function updateHeader(){
   $("money").textContent=money;
-  $("servedN").textContent=servedN;
   const a=ratingAvg();
   $("ratingMini").textContent=a===null?"–":a.toFixed(1);
 }
 
+/* ================= stations ================= */
+function showStation(name){
+  station=name;
+  document.querySelectorAll(".station").forEach(s=>s.classList.toggle("active",s.id==="st-"+name));
+  document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("on",b.dataset.st===name));
+  trayBar.style.display=(name==="front")?"none":"flex";
+}
+document.querySelectorAll(".navBtn").forEach(b=>{
+  b.addEventListener("click",()=>{showStation(b.dataset.st)});
+});
+
 /* ================= order generation ================= */
-function makeOrder(){
+function makeOrder(type){
   const pool=RECIPES.filter(r=>unlocked.has(r.name));
   const recipe=rand(pool);
-  const base=recipe.stages.flatMap(s=>s.ings);
   const removed=[],added=[];
   const roll=Math.random();
   const modCount=roll<.3?0:roll<.7?1:2;
-  const removables=base.slice(1);
-  const addables=recipe.addable.slice();
+  const removables=recipe.core.slice(1);
+  const addables=recipe.optional.slice();
   for(let i=0;i<modCount;i++){
-    const canRemove=removables.length>0&&(base.length-removed.length)>2;
-    const doRemove=canRemove&&(addables.length===0||Math.random()<.5);
+    const canRemove=removables.length>0;
+    const doRemove=canRemove&&(addables.length===0||Math.random()<.4);
     if(doRemove){
       removed.push(removables.splice(Math.floor(Math.random()*removables.length),1)[0]);
     }else if(addables.length>0){
       added.push(addables.splice(Math.floor(Math.random()*addables.length),1)[0]);
     }
   }
-  const req=base.filter(id=>!removed.includes(id)).concat(added);
-  const drink=Math.random()<.55?rand(DRINK_ORDER):null;
-  return {recipe,removed,added,req,drink};
+  const coreReq=recipe.core.filter(id=>!removed.includes(id)).concat(added);
+  const allowed=new Set(recipe.core.concat(recipe.optional).filter(id=>!removed.includes(id)));
+  const drink=(type==="walkin"?Math.random()<.55:Math.random()<.4)?rand(DRINK_ORDER):null;
+  return {recipe,removed,added,coreReq,allowed,drink,cust:rand(CUSTOMERS),type};
+}
+function spawnFront(initial){
+  if(!walkIn)walkIn=makeOrder("walkin");
+  if(initial||Math.random()<.65){
+    if(tickets.length<3)tickets.push(makeOrder("delivery"));
+  }
+  renderFront();
 }
 
-/* ================= render ================= */
-function renderCustomer(){
-  custFace.textContent=cust.face;
-  custName.textContent=cust.name;
-  const r=order.recipe;
-  custSay.textContent="“"+rand(ORDER_PHRASES).replace("{m}",r.name)+
-    (order.drink?" แล้วก็"+DRINKS[order.drink].n+"แก้วนึง!":"")+"”";
-  orderChips.innerHTML="";
-  const m=document.createElement("span");
-  m.className="chip menu";m.textContent=r.dish+" "+r.name;
-  orderChips.appendChild(m);
-  order.added.forEach(id=>{
-    const c=document.createElement("span");
-    c.className="chip add";c.textContent="➕ เพิ่ม"+INGS[id].n+" "+INGS[id].e;
-    orderChips.appendChild(c);
-  });
-  order.removed.forEach(id=>{
-    const c=document.createElement("span");
-    c.className="chip no";c.textContent="🚫 ไม่ใส่"+INGS[id].n+" "+INGS[id].e;
-    orderChips.appendChild(c);
-  });
-  if(order.drink){
-    const c=document.createElement("span");
-    c.className="chip drink";c.textContent="🥤 "+DRINKS[order.drink].e+" "+DRINKS[order.drink].n;
-    orderChips.appendChild(c);
+/* ================= renders ================= */
+function chipsHTML(o,small){
+  let h='<span class="chip menu">'+o.recipe.dish+" "+o.recipe.name+"</span>";
+  o.added.forEach(id=>{h+='<span class="chip add">➕'+INGS[id].n+'</span>'});
+  o.removed.forEach(id=>{h+='<span class="chip no">🚫'+INGS[id].n+'</span>'});
+  if(o.drink)h+='<span class="chip drink">🥤'+DRINKS[o.drink].n+'</span>';
+  return h;
+}
+function renderOrderStrip(){
+  if(!order){
+    orderStrip.innerHTML='<span class="none">📋 ยังไม่รับออเดอร์ — ไปที่ 🖥️ ออเดอร์ก่อนนะ</span>';
+  }else{
+    orderStrip.innerHTML='<span class="chip type">'+(order.type==="delivery"?"🛵 เดลิเวอรี่":"🏪 หน้าร้าน")+"</span>"+chipsHTML(order);
   }
+  emo(orderStrip);
+}
+function renderFront(){
+  /* walk-in */
+  if(walkIn){
+    walkArea.innerHTML='<div class="walkCard"><div class="walkFace">'+walkIn.cust.face+'</div>'+
+      '<div class="walkBody"><div class="walkName">'+walkIn.cust.name+'</div>'+
+      '<div class="walkSay">“'+rand(ORDER_PHRASES).replace("{m}",walkIn.recipe.name)+
+      (walkIn.drink?" กับ"+DRINKS[walkIn.drink].n+"!":"")+'”</div>'+
+      '<div class="tChips">'+chipsHTML(walkIn)+'</div>'+
+      '<button class="acceptBtn" id="acceptWalk"'+(order?" disabled":"")+'>'+(order?"ทำออเดอร์ปัจจุบันให้เสร็จก่อน":"รับออเดอร์นี้ 🏪")+"</button></div></div>";
+    $("acceptWalk").addEventListener("click",()=>{acceptOrder("walk")});
+  }else walkArea.innerHTML='<div class="walkSay">เงียบๆ…ยังไม่มีลูกค้าเดินเข้ามา</div>';
+  /* tickets */
+  ticketArea.innerHTML="";
+  if(!tickets.length){
+    ticketArea.innerHTML='<div class="walkSay" style="color:#9a92b0">📭 ยังไม่มีออเดอร์ใหม่ในแอป…</div>';
+  }
+  tickets.forEach((t,i)=>{
+    const d=document.createElement("div");
+    d.className="ticket";
+    d.innerHTML='<div class="tTop">📦 ออเดอร์ #'+(1000+servedN+i)+' — '+t.cust.name+
+      '<span class="fee">ค่าส่ง +15%</span></div>'+
+      '<div class="tChips">'+chipsHTML(t)+'</div>';
+    const btn=document.createElement("button");
+    btn.className="acceptBtn";
+    btn.textContent=order?"ทำออเดอร์ปัจจุบันให้เสร็จก่อน":"รับออเดอร์นี้ 🛵";
+    btn.disabled=!!order;
+    btn.addEventListener("click",()=>{acceptOrder(i)});
+    d.appendChild(btn);
+    ticketArea.appendChild(d);
+  });
+  $("frontDot").style.display=(!order&&(walkIn||tickets.length))?"inline-block":"none";
+  emo($("st-front"));
+}
+function acceptOrder(src){
+  if(order){sfx.nope();return}
+  if(src==="walk"){order=walkIn;walkIn=null}
+  else{order=tickets.splice(src,1)[0]}
+  sfx.bell();
+  toast("รับออเดอร์แล้ว! ไปหยิบของที่ 🧺 ได้เลย"+(order.type==="delivery"?" (ลูกค้าจ่ายผ่านแอป)":""));
+  renderFront();renderOrderStrip();renderAll();
+  showStation("pantry");
 }
 function renderPantry(){
-  pantryEl.innerHTML="";
-  ING_ORDER.forEach(id=>{
-    const g=INGS[id];
-    const b=document.createElement("div");
-    b.className="ing"+(STOCK[id]<=0?" out":"");
-    b.innerHTML=g.e+"<small>"+g.n+"</small>"+
-      '<span class="stockTag">'+(STOCK[id]<=0?"หมด":"×"+STOCK[id])+"</span>";
-    b.addEventListener("click",()=>pick(id,b));
-    pantryEl.appendChild(b);
+  pantryCats.innerHTML="";
+  CATS.forEach(cat=>{
+    const h=document.createElement("div");
+    h.className="catHead";h.textContent=cat.n;
+    pantryCats.appendChild(h);
+    const g=document.createElement("div");
+    g.className="grid";
+    cat.ids.forEach(id=>{
+      const it=INGS[id];
+      const b=document.createElement("div");
+      b.className="ing"+(STOCK[id]<=0?" out":"");
+      b.innerHTML=it.e+"<small>"+it.n+"</small>"+
+        '<span class="stockTag">'+(STOCK[id]<=0?"หมด":"×"+STOCK[id])+"</span>";
+      b.addEventListener("click",()=>pickIng(id,b));
+      g.appendChild(b);
+    });
+    pantryCats.appendChild(g);
   });
+  emo(pantryCats);
 }
-function renderDrinks(){
-  drinkBar.innerHTML="";
-  DRINK_ORDER.forEach(id=>{
-    const g=DRINKS[id];
-    const b=document.createElement("div");
-    b.className="ing drk"+(DRINK_STOCK[id]<=0?" out":"")+(servedDrink===id?" sel":"");
-    b.innerHTML=g.e+"<small>"+g.n+"</small>"+
-      '<span class="stockTag">'+(DRINK_STOCK[id]<=0?"หมด":"×"+DRINK_STOCK[id])+"</span>";
-    b.addEventListener("click",()=>pickDrink(id,b));
-    drinkBar.appendChild(b);
-  });
-  drinkTray.innerHTML=servedDrink
-    ? "🧾 เตรียมเสิร์ฟ: "+DRINKS[servedDrink].e+" "+DRINKS[servedDrink].n+' <span class="discard">(แตะเพื่อเททิ้ง)</span>'
-    : "";
-}
-function renderSeasons(){
-  seasonRow.innerHTML="";
-  SEASON_ORDER.forEach(id=>{
-    const g=SEASONS[id];
-    const d=document.createElement("div");
-    d.className="shaker"+(SEASON_STOCK[id]<=0?" out":"");
-    let dots="";
-    for(let i=0;i<Math.min(seasonUsed[id],4);i++)dots+="<i></i>";
-    d.innerHTML='<div class="se">'+g.e+'</div><small>'+g.n+'</small>'+
-      '<div class="used">'+dots+'</div>'+
-      '<span class="stockTag">'+(SEASON_STOCK[id]<=0?"หมด":"×"+SEASON_STOCK[id])+"</span>";
-    d.addEventListener("click",()=>doSeason(id));
-    seasonRow.appendChild(d);
-  });
+function renderTray(){
+  trayBar.innerHTML='<div class="tLabel">ถาด<br>ของ</div>';
+  for(let i=0;i<TRAY_MAX;i++){
+    const s=document.createElement("div");
+    const item=tray[i];
+    s.className="traySlot"+(item?" filled"+(item.prepped?" prepped":""):"");
+    if(item){
+      s.innerHTML=INGS[item.id].e+"<small>"+(item.prepped?"พร้อม":"ดิบ")+'</small><span class="x">✕</span>';
+      s.addEventListener("click",e=>{
+        if(e.target.classList.contains("x")){trayRemove(i);return}
+        trayUse(i);
+      });
+    }
+    trayBar.appendChild(s);
+  }
+  emo(trayBar);
 }
 function renderBoard(){
   chopDots.innerHTML="";
-  if(!board){boardItem.textContent="";boardHint.textContent="เปิด 📖 ดูสูตร+เครื่องปรุง แล้วอย่าลืมคำขอพิเศษ";return}
+  returnBtn.style.display="none";
+  if(!board){
+    boardItem.textContent="";
+    boardHint.textContent=tray.some(t=>!t.prepped)?"แตะของดิบในถาดด้านล่าง เพื่อวางบนเขียง":"หยิบวัตถุดิบจาก 🧺 ก่อนนะ";
+    return;
+  }
   const g=INGS[board.id];
   boardItem.textContent=g.e;
   if(board.chopsLeft>0){
@@ -740,7 +865,9 @@ function renderBoard(){
       if(i<board.chopsTotal-board.chopsLeft)d.className="on";
       chopDots.appendChild(d);
     }
-  }else boardHint.textContent="";
+    if(board.chopsLeft===board.chopsTotal)returnBtn.style.display="block";
+  }
+  emo(boardEl);
 }
 function renderStageFlow(){
   stageFlow.innerHTML="";
@@ -755,19 +882,23 @@ function renderStageFlow(){
   c.textContent="ขั้น "+(stageRecs.length+1)+": "+(vessel==="pot"?"🍲":"🍳")+" "+
     (finalDoneness!==null?"ยกลงแล้ว":cooking?"กำลังปรุง…":"เตรียมของ");
   stageFlow.appendChild(c);
+  emo(stageFlow);
 }
 function renderVessel(){
-  vesselEl.className=vessel==="pot"?"shape-pot":"shape-pan";
+  vesselEl.classList.remove("slideL","slideR");
+  vesselEl.className=(vessel==="pot"?"shape-pot":"shape-pan")+" "+vesselEl.dataset.slide;
+  vesselEl.dataset.slide="";
+  vesselName.textContent=vessel==="pot"?"🍲 หม้อ (ต้ม)":"🍳 กระทะ (ผัด)";
   spoonEl.textContent=vessel==="pot"?"🥄":"🍳";
-  const fillMax=vessel==="pot"?72:60;
+  const fillMax=vessel==="pot"?70:58;
   brothEl.style.height=(Math.min(allItems.length,6)/6*fillMax)+"%";
-  brothEl.style.background=allItems.length>0?order.recipe.broth:"#c9a25e";
+  brothEl.style.background=(order&&allItems.length>0)?order.recipe.broth:"#c9a25e";
   vesselEl.querySelectorAll(".floaty,.bubbleUp").forEach(n=>n.remove());
   allItems.forEach((id,i)=>{
     const f=document.createElement("div");
     f.className="floaty";f.textContent=INGS[id].e;
-    f.style.left=(12+(i*29)%(vessel==="pot"?125:160))+"px";
-    f.style.bottom=(6+(i*13)%(vessel==="pot"?30:18))+"px";
+    f.style.left=(10+(i*27)%(vessel==="pot"?122:155))+"px";
+    f.style.bottom=(5+(i*13)%(vessel==="pot"?28:16))+"px";
     f.style.animationDelay=(i*.3)+"s";
     vesselEl.appendChild(f);
   });
@@ -775,7 +906,7 @@ function renderVessel(){
     for(let i=0;i<3;i++){
       const b=document.createElement("div");
       b.className="bubbleUp";
-      b.style.left=(20+i*40)+"px";b.style.animationDelay=(i*.4)+"s";
+      b.style.left=(18+i*40)+"px";b.style.animationDelay=(i*.4)+"s";
       vesselEl.appendChild(b);
     }
   }
@@ -791,9 +922,50 @@ function renderVessel(){
       stoveEl.appendChild(s);
     }
   }
+  emo(stoveEl);
+}
+function renderSeasons(){
+  seasonRow.innerHTML="";
+  SEASON_ORDER.forEach(id=>{
+    const g=SEASONS[id];
+    const d=document.createElement("div");
+    d.className="shaker"+(SEASON_STOCK[id]<=0?" out":"");
+    let dots="";
+    for(let i=0;i<Math.min(seasonUsed[id],4);i++)dots+="<i></i>";
+    d.innerHTML='<div class="se">'+g.e+'</div><small>'+g.n+'</small>'+
+      '<div class="used">'+dots+'</div>'+
+      '<span class="stockTag">'+(SEASON_STOCK[id]<=0?"หมด":"×"+SEASON_STOCK[id])+"</span>";
+    d.addEventListener("click",()=>doSeason(id));
+    seasonRow.appendChild(d);
+  });
+  emo(seasonRow);
+}
+function renderDrinks(){
+  drinkBar.innerHTML="";
+  DRINK_ORDER.forEach(id=>{
+    const g=DRINKS[id];
+    const b=document.createElement("div");
+    b.className="ing drk"+(DRINK_STOCK[id]<=0?" out":"")+(servedDrink===id?" sel":"");
+    b.innerHTML=g.e+"<small>"+g.n+"</small>"+
+      '<span class="stockTag">'+(DRINK_STOCK[id]<=0?"หมด":"×"+DRINK_STOCK[id])+"</span>";
+    b.addEventListener("click",()=>pickDrink(id,b));
+    drinkBar.appendChild(b);
+  });
+  drinkTray.innerHTML=servedDrink
+    ? "🧾 เตรียมเสิร์ฟ: "+DRINKS[servedDrink].e+" "+DRINKS[servedDrink].n+' <span class="discard">(แตะเพื่อเททิ้ง)</span>'
+    : "";
+  emo(drinkBar);emo(drinkTray);
+}
+function renderRecap(){
+  if(!order){recap.textContent="ยังไม่มีออเดอร์";return}
+  recap.innerHTML="🍲 ในเตา: "+(allItems.length?allItems.map(id=>INGS[id].e).join(" "):"ว่าง")+
+    " ("+allItems.length+" อย่าง)<br>"+
+    "🔥 ทำไปแล้ว "+stageRecs.length+" ขั้น"+(finalDoneness!==null?" + ขั้นปัจจุบันยกลงแล้ว":"")+"<br>"+
+    "🧂 ปรุง: "+SEASON_ORDER.filter(id=>seasonUsed[id]>0).map(id=>SEASONS[id].e+"×"+seasonUsed[id]).join(" ")||"—";
+  emo(recap);
 }
 function renderButtons(){
-  heatBtn.disabled=allItems.length===0||cooking||finalDoneness!==null;
+  heatBtn.disabled=!order||allItems.length===0||cooking||finalDoneness!==null;
   offBtn.disabled=!cooking;
   nextStageBtn.disabled=finalDoneness===null;
   trashBtn.disabled=cooking||(allItems.length===0&&stageRecs.length===0);
@@ -801,200 +973,87 @@ function renderButtons(){
   flameIcon.classList.toggle("on",cooking);
   if(cooking){
     gestureHint.textContent=vessel==="pot"
-      ?"🖐️ ลากนิ้ววนเป็นวงกลมในหม้อเพื่อคน — "+stirs+"/"+STIRS_NEED
-      :"🖐️ ปัดขึ้นแรงๆ บนกระทะเพื่อโยน — "+stirs+"/"+STIRS_NEED;
+      ?"🖐️ ลากนิ้ววนเป็นวงกลมในหม้อ — "+stirs+"/"+STIRS_NEED
+      :"🖐️ ปัดขึ้นแรงๆ เพื่อโยนกระทะ — "+stirs+"/"+STIRS_NEED;
   }else if(finalDoneness!==null){
-    gestureHint.textContent="🥄 ขั้นนี้คนไปแล้ว "+stirs+"/"+STIRS_NEED;
+    gestureHint.textContent="🥄 ขั้นนี้คนแล้ว "+stirs+"/"+STIRS_NEED+" — เสิร์ฟที่ 🛎️ หรือทำขั้นต่อ";
   }else{
-    gestureHint.textContent=allItems.length>0?"เปิดไฟ แล้วใช้นิ้วคนเองเลยนะเชฟ 🔥":"";
+    gestureHint.textContent=allItems.length>0?"เปิดไฟ แล้วใช้นิ้วคนเองเลย 🔥":"แตะของ 'พร้อม' ในถาดเพื่อใส่ลงเตา";
   }
   const ready=finalDoneness!==null&&allItems.length>0;
   serveBtn.disabled=!ready;
   serveBtn.classList.toggle("ready",ready);
 }
-function renderAll(){renderBoard();renderStageFlow();renderVessel();renderButtons();renderDrinks();renderSeasons();updateHeader()}
-
-/* ================= recipe book ================= */
-function seasonTxt(name){
-  const req=SEASON_REQ[name]||{};
-  const parts=Object.keys(req).map(id=>SEASONS[id].e+"×"+req[id]);
-  return parts.length?parts.join("  "):"ไม่ต้องปรุง";
-}
-function renderBook(){
-  $("bookMoney").textContent=money;
-  const page=$("bookPage");
-  page.innerHTML="";
-  RECIPES.forEach(r=>{
-    const isOpen=unlocked.has(r.name);
-    const d=document.createElement("div");
-    d.className="rcp"+(isOpen?"":" locked");
-    const head=document.createElement("div");
-    head.className="rhead";
-    head.innerHTML=(isOpen?r.dish:"🔒")+" "+r.name+
-      '<span class="rprice">ขาย ~'+r.price+" 🪙</span>";
-    d.appendChild(head);
-    const steps=document.createElement("div");
-    steps.className="rsteps";
-    steps.innerHTML=r.stages.map((s,i)=>
-      '<span class="stepTag '+s.type+'">'+(i+1)+". "+(s.type==="pot"?"🍲":"🍳")+" "+s.label+"</span> "+
-      s.ings.map(id=>INGS[id].e).join(" ")
-    ).join("<br>");
-    d.appendChild(steps);
-    const sea=document.createElement("div");
-    sea.className="rseason";
-    sea.textContent="ปรุงรส: "+seasonTxt(r.name);
-    d.appendChild(sea);
-    if(!isOpen){
-      const btn=document.createElement("button");
-      btn.className="unlockBtn";
-      btn.textContent="🔓 ปลดล็อก "+r.unlock+" 🪙";
-      btn.disabled=money<r.unlock;
-      btn.style.marginTop="5px";
-      btn.addEventListener("click",()=>{
-        if(money<r.unlock){sfx.nope();return}
-        money-=r.unlock;
-        unlocked.add(r.name);
-        sfx.unlock();
-        toast("🔓 ปลดล็อก "+r.name+" แล้ว! ลูกค้าจะเริ่มสั่งเมนูนี้ได้");
-        updateHeader();renderBook();
-      });
-      d.appendChild(btn);
-    }
-    page.appendChild(d);
-  });
-  const note=document.createElement("div");
-  note.className="bookNote";
-  note.textContent="✎ เขย่าเครื่องปรุงตามสูตรเป๊ะๆ · เมนูแพงจ่ายดีแต่ขั้นตอนเยอะ";
-  page.appendChild(note);
+function renderAll(){
+  renderOrderStrip();renderTray();renderBoard();renderStageFlow();
+  renderVessel();renderButtons();renderSeasons();renderDrinks();renderRecap();updateHeader();
 }
 
-/* ================= shop ================= */
-function shopRow(list,emoji,name,sub,stockTxt,price,onBuy){
-  const row=document.createElement("div");
-  row.className="shopRow";
-  row.innerHTML='<div class="se">'+emoji+'</div>'+
-    '<div class="sn">'+name+'<small>'+sub+'</small></div>'+
-    '<div class="sstock">'+stockTxt+'</div>';
-  const btn=document.createElement("button");
-  btn.className="buyBtn";btn.textContent="+ ซื้อ";
-  btn.disabled=money<price;
-  btn.addEventListener("click",()=>{
-    if(money<price){sfx.nope();return}
-    money-=price;onBuy();
-    sfx.coin();renderShop();renderPantry();renderDrinks();renderSeasons();updateHeader();
-  });
-  row.appendChild(btn);
-  list.appendChild(row);
-}
-function renderShop(){
-  $("shopMoney").textContent=money;
-  const list=$("shopList");
-  list.innerHTML="";
-  const s1=document.createElement("div");s1.className="shopSec";s1.textContent="🧺 วัตถุดิบ";list.appendChild(s1);
-  ING_ORDER.forEach(id=>{
-    const g=INGS[id];
-    shopRow(list,g.e,g.n,"ชิ้นละ "+g.price+" 🪙","มี ×"+STOCK[id],g.price,()=>{STOCK[id]++});
-  });
-  const s2=document.createElement("div");s2.className="shopSec";s2.textContent="🥤 เครื่องดื่ม (ทุนถูก ขายมีกำไร)";list.appendChild(s2);
-  DRINK_ORDER.forEach(id=>{
-    const g=DRINKS[id];
-    shopRow(list,g.e,g.n,"ทุน "+g.cost+" 🪙 · ขาย "+g.sell+" 🪙","มี ×"+DRINK_STOCK[id],g.cost,()=>{DRINK_STOCK[id]++});
-  });
-  const s3=document.createElement("div");s3.className="shopSec";s3.textContent="🧂 เครื่องปรุงรส (เติมทีละขวด)";list.appendChild(s3);
-  SEASON_ORDER.forEach(id=>{
-    const g=SEASONS[id];
-    shopRow(list,g.e,g.n,"เติม "+g.refill+" ครั้ง = "+g.price+" 🪙","เหลือ "+SEASON_STOCK[id],g.price,()=>{SEASON_STOCK[id]+=g.refill});
-  });
-}
-function openShop(){
-  if(cooking){toast("ไฟยังติดอยู่! ยกลงก่อนค่อยไปซื้อของนะ 🔥");sfx.nope();return}
-  renderShop();shopOverlay.classList.add("show");
-}
-
-/* ================= reviews ================= */
-function renderReviews(){
-  const a=ratingAvg();
-  $("ratingBig").textContent=a===null?"–":"⭐ "+a.toFixed(1)+" / 3";
-  $("ratingSub").textContent=a===null?"ยังไม่มีรีวิว — เสิร์ฟลูกค้าคนแรกกันเถอะ!":reviews.length+" รีวิวจากลูกค้า";
-  $("fameBadge").style.display=isFamous()?"inline-block":"none";
-  const list=$("revList");
-  list.innerHTML="";
-  if(!reviews.length){
-    const d=document.createElement("div");
-    d.className="revEmpty";d.textContent="🌙 เงียบเหงา…ยังไม่มีใครมารีวิวเลย";
-    list.appendChild(d);
-    return;
-  }
-  reviews.slice().reverse().forEach(rv=>{
-    const d=document.createElement("div");
-    d.className="revItem";
-    d.innerHTML='<div class="rTop">'+rv.face+" "+rv.name+
-      '<span class="rStars">'+"⭐".repeat(rv.stars)+"☆".repeat(3-rv.stars)+"</span></div>"+
-      '<div class="rTxt">'+rv.text+"</div>";
-    list.appendChild(d);
-  });
-}
-function addReview(stars,extraNotes){
-  const base=rand(REVIEW_MAIN[stars]).replace("{dish}",order.recipe.name);
-  const text=base+(extraNotes.length?" ("+extraNotes.join(" · ")+")":"");
-  reviews.push({stars:stars,face:cust.face,name:cust.name,dish:order.recipe.dish,text:text});
-  if(reviews.length>25)reviews.shift();
-  updateHeader();
-}
-
-/* ================= flow ================= */
-function newCustomer(){
-  cust=rand(CUSTOMERS);
-  order=makeOrder();
-  board=null;allItems=[];curAdded=[];stageRecs=[];
-  stirs=0;servedDrink=null;
-  seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
-  cooking=false;doneness=0;finalDoneness=null;pending=null;trashArm=0;
-  clearInterval(cookTimer);
-  renderCustomer();renderPantry();renderAll();
-  toast("🔔 ออเดอร์ใหม่! เช็กคำขอพิเศษ"+(order.drink?" + เครื่องดื่ม":"")+"ก่อนลงมือ");
-}
-
-function pick(id,el){
+/* ================= tray & pantry logic ================= */
+function pickIng(id,el){
+  if(!order){toast("รับออเดอร์ที่ 🖥️ ก่อนนะเชฟ");sfx.nope();showStation("front");return}
   if(STOCK[id]<=0){
     el.classList.remove("nope");void el.offsetWidth;el.classList.add("nope");
-    toast("ของหมดสต็อก! ไปเติมที่ 🛒 ก่อนนะ");sfx.nope();return;
+    toast("ของหมด! ซื้อที่ 🛒 (ระวัง กลางออเดอร์ราคา ×2)");sfx.nope();return;
   }
-  if(board){toast("จัดการของบนเขียงก่อนนะ 🔪");sfx.nope();return}
-  if(cooking){toast("กำลังปรุงอยู่ รอยกลงก่อนน้า 🔥");sfx.nope();return}
-  if(finalDoneness!==null){toast("ยกลงแล้ว — กด ➡️ ขั้นต่อไป ถ้าจะใส่เพิ่ม หรือเสิร์ฟเลย ✨");sfx.nope();return}
-  if(allItems.includes(id)){
-    el.classList.remove("nope");void el.offsetWidth;el.classList.add("nope");
-    sfx.nope();toast("ใส่ไปแล้วนะ 🍲");return;
-  }
+  if(tray.length+(board?1:0)>=TRAY_MAX){toast("ถาดเต็มแล้ว! ใช้ของในถาดก่อนนะ");sfx.nope();return}
+  STOCK[id]--;
   sfx.pick();
-  const g=INGS[id];
-  board={id:id,chopsLeft:g.chops,chopsTotal:g.chops};
-  renderBoard();
-  if(g.chops===0){
-    boardHint.textContent="ไม่ต้องหั่น ใส่เลย~";
-    setTimeout(intoVessel,420);
+  tray.push({id:id,prepped:INGS[id].chops===0});
+  renderPantry();renderTray();
+}
+function trayRemove(i){
+  const item=tray[i];
+  if(!item)return;
+  if(!item.prepped){
+    STOCK[item.id]++;
+    tray.splice(i,1);
+    toast("↩️ คืน"+INGS[item.id].n+"เข้าสต็อกแล้ว");
+    sfx.pour();
+    renderPantry();renderTray();
+  }else{
+    if(discardArm!==i||Date.now()-trashArm>2500){
+      discardArm=i;trashArm=Date.now();
+      toast("ของหั่นแล้วคืนไม่ได้นะ — แตะ ✕ อีกครั้งเพื่อทิ้ง (เสียของ)");
+      return;
+    }
+    tray.splice(i,1);discardArm=-1;
+    sfx.trash();
+    toast("ทิ้ง"+INGS[item.id].n+"แล้ว… เสียของฟรีเลย 😢");
+    renderTray();
   }
 }
-function pickDrink(id,el){
-  if(DRINK_STOCK[id]<=0){
-    el.classList.remove("nope");void el.offsetWidth;el.classList.add("nope");
-    toast("เครื่องดื่มหมด! ซื้อเพิ่มที่ 🛒 นะ");sfx.nope();return;
+function trayUse(i){
+  const item=tray[i];
+  if(!item)return;
+  if(!item.prepped){
+    if(board){toast("บนเขียงมีของอยู่แล้ว จัดการก่อนนะ 🔪");sfx.nope();showStation("prep");return}
+    tray.splice(i,1);
+    board={id:item.id,chopsLeft:INGS[item.id].chops,chopsTotal:INGS[item.id].chops};
+    showStation("prep");
+    sfx.pick();
+    renderTray();renderBoard();
+  }else{
+    if(cooking){toast("ไฟติดอยู่ รอยกลงก่อนน้า 🔥");sfx.nope();return}
+    if(finalDoneness!==null){toast("ยกลงแล้ว — กด ➡️ ขั้นต่อไป ก่อนใส่เพิ่ม");sfx.nope();showStation("stove");return}
+    if(allItems.includes(item.id)){toast("ใส่"+INGS[item.id].n+"ไปแล้วนะ");sfx.nope();return}
+    tray.splice(i,1);
+    allItems.push(item.id);
+    sfx.plop();
+    showStation("stove");
+    renderTray();renderVessel();renderButtons();renderRecap();
   }
-  if(servedDrink===id){toast("เตรียมแก้วนี้ไว้แล้ว~");return}
-  DRINK_STOCK[id]--;
-  servedDrink=id;
+}
+function returnFromBoard(){
+  if(!board||board.chopsLeft!==board.chopsTotal)return;
+  STOCK[board.id]++;
+  toast("↩️ คืน"+INGS[board.id].n+"เข้าสต็อกแล้ว");
   sfx.pour();
-  toast(DRINKS[id].e+" เตรียม"+DRINKS[id].n+"แล้ว!"+(order.drink?"":" (ลูกค้าไม่ได้สั่งนะ…)"));
-  renderDrinks();
+  board=null;
+  renderPantry();renderBoard();
 }
-function discardDrink(){
-  if(!servedDrink)return;
-  toast("เท"+DRINKS[servedDrink].n+"ทิ้งแล้ว… เสียของฟรีเลยนะ 💧");
-  sfx.trash();
-  servedDrink=null;
-  renderDrinks();
-}
+
+/* ================= board slicing ================= */
 function doChop(){
   if(!board||board.chopsLeft<=0)return;
   sfx.chop();
@@ -1012,121 +1071,13 @@ function doChop(){
   }
   renderBoard();
   if(board.chopsLeft===0){
-    boardHint.textContent="เรียบร้อย! ใส่ลง"+(vessel==="pot"?"หม้อ":"กระทะ")+"เลย~";
-    setTimeout(intoVessel,480);
+    const id=board.id;
+    board=null;
+    tray.push({id:id,prepped:true});
+    boardHint.textContent="เรียบร้อย! กลับเข้าถาด — เอาไปใส่เตาได้เลย";
+    sfx.plop();
+    renderTray();renderBoard();
   }
-}
-function intoVessel(){
-  if(!board)return;
-  sfx.plop();
-  STOCK[board.id]--;
-  allItems.push(board.id);
-  curAdded.push(board.id);
-  board=null;
-  renderPantry();renderAll();
-}
-function setVessel(v){
-  if(v===vessel)return;
-  if(cooking){toast("ไฟติดอยู่ เปลี่ยนไม่ได้นะ 🔥");sfx.nope();return}
-  if(finalDoneness!==null){toast("กด ➡️ ขั้นต่อไป ก่อน แล้วค่อยเทย้ายนะ");sfx.nope();return}
-  vessel=v;
-  $("tabPot").classList.toggle("on",v==="pot");
-  $("tabPan").classList.toggle("on",v==="pan");
-  if(allItems.length>0){sfx.pour();toast("เทย้ายไป"+(v==="pot"?"หม้อ":"กระทะ")+"เรียบร้อย! 💦")}
-  renderAll();
-}
-function startHeat(){
-  if(heatBtn.disabled)return;
-  cooking=true;doneness=0;
-  money=Math.max(0,money-GAS_COST);
-  updateHeader();
-  toast("🔥 เปิดไฟ (ค่าแก๊ส −"+GAS_COST+" 🪙) — ใช้นิ้วคนได้เลย!");
-  sfx.sizzle();
-  cookTimer=setInterval(()=>{
-    doneness+=1.1;
-    if(Math.random()<.15)sfx.sizzle();
-    if(doneness>=100){doneness=100;stopHeat(true)}
-    renderButtons();
-    if(Math.floor(doneness)%20===0)renderVessel();
-  },110);
-  renderAll();
-}
-function stopHeat(burnt){
-  if(!cooking)return;
-  cooking=false;clearInterval(cookTimer);
-  finalDoneness=doneness;
-  if(burnt)toast("โอ๊ะ! ขั้นนี้เกรียมไปหน่อย… 💨 (ทิ้งแล้วทำใหม่ก็ได้นะ)");
-  else if(finalDoneness>=55&&finalDoneness<82){toast("จังหวะเป๊ะ! ✨");sfx.ding()}
-  else if(finalDoneness<35)toast("อืม…ขั้นนี้ยังดิบอยู่นะ 😅");
-  renderAll();
-}
-function nextStage(){
-  if(finalDoneness===null)return;
-  stageRecs.push({vessel:vessel,doneness:finalDoneness,stirs:stirs});
-  finalDoneness=null;doneness=0;stirs=0;curAdded=[];
-  sfx.pour();
-  toast("➡️ ขั้นที่ "+(stageRecs.length+1)+"! เลือกหม้อ/กระทะ ใส่ของเพิ่ม แล้วเปิดไฟ");
-  renderAll();
-}
-function trashFood(){
-  if(trashBtn.disabled)return;
-  if(cooking){toast("ยกลงจากเตาก่อนค่อยทิ้งนะ 🔥");sfx.nope();return}
-  const now=Date.now();
-  if(now-trashArm>3000){
-    trashArm=now;
-    toast("แน่ใจนะ? วัตถุดิบ+เครื่องปรุงที่ใช้ไปจะเสียหมด — แตะ 🗑️ อีกครั้งเพื่อทิ้ง");
-    return;
-  }
-  trashArm=0;
-  sfx.trash();
-  const rect=vesselWrap.getBoundingClientRect();
-  allItems.slice(0,6).forEach((id,i)=>{
-    const p=document.createElement("div");
-    p.className="heartPop";p.textContent=INGS[id].e;
-    p.style.left=(rect.left+20+i*24)+"px";
-    p.style.top=(rect.top+40)+"px";
-    document.body.appendChild(p);setTimeout(()=>p.remove(),1250);
-  });
-  allItems=[];curAdded=[];stageRecs=[];
-  stirs=0;doneness=0;finalDoneness=null;
-  seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
-  toast("🗑️ เททิ้งเรียบร้อย… เริ่มทำใหม่ได้เลยเชฟ (ออเดอร์เดิมยังรออยู่)");
-  renderAll();
-}
-function doSeason(id){
-  if(allItems.length===0){toast("ยังไม่มีอาหารให้ปรุงเลยน้า");sfx.nope();return}
-  if(SEASON_STOCK[id]<=0){toast(SEASONS[id].n+"หมดขวด! ซื้อเติมที่ 🛒 นะ");sfx.nope();return}
-  if(seasonUsed[id]>=4){toast("พอแล้วๆ เดี๋ยว"+SEASONS[id].n+"เกิน! 😆");sfx.nope();return}
-  seasonUsed[id]++;SEASON_STOCK[id]--;
-  sfx.salt();
-  const s=document.createElement("div");
-  s.className="sprinkle";s.textContent=SEASONS[id].e;
-  s.style.left=(42+Math.random()*16)+"%";s.style.top="34%";
-  stoveEl.appendChild(s);setTimeout(()=>s.remove(),720);
-  renderSeasons();
-}
-
-/* ================= gestures ================= */
-let stirAngle=0;
-function addStir(){
-  if(!cooking||stirs>=STIRS_NEED)return;
-  stirs++;
-  if(vessel==="pot"){
-    sfx.stir();
-  }else{
-    sfx.flip();
-    vesselEl.classList.remove("flip");void vesselEl.offsetWidth;vesselEl.classList.add("flip");
-    allItems.slice(0,4).forEach((id,i)=>{
-      const p=document.createElement("div");
-      p.className="piece";p.textContent=INGS[id].e;
-      p.style.left=(30+i*22)+"%";p.style.bottom="30%";
-      p.style.setProperty("--dx",(Math.random()*40-20)+"px");
-      p.style.setProperty("--dy",(-40-Math.random()*30)+"px");
-      vesselWrap.appendChild(p);setTimeout(()=>p.remove(),650);
-    });
-  }
-  if(stirs===STIRS_NEED)toast("คนครบแล้ว! จับตาดูเกจความสุกนะ 👀");
-  renderButtons();
 }
 let slicing=false,sliceX=0,sliceY=0;
 function knifeAt(e){
@@ -1161,86 +1112,231 @@ function endSlice(){slicing=false;knifeCursor.style.display="none"}
 boardEl.addEventListener("pointerup",endSlice);
 boardEl.addEventListener("pointercancel",endSlice);
 boardEl.addEventListener("pointerleave",()=>{if(slicing)endSlice()});
-let stirActive=false,prevAng=null,accum=0,flickY=0,flicked=false,stirHintCd=0;
+returnBtn.addEventListener("click",returnFromBoard);
+
+/* ================= stove ================= */
+function setVessel(v,dir){
+  if(v===vessel)return;
+  if(cooking){toast("ไฟติดอยู่ สลับไม่ได้นะ 🔥");sfx.nope();return}
+  if(finalDoneness!==null){toast("กด ➡️ ขั้นต่อไป ก่อน แล้วค่อยเทย้าย");sfx.nope();return}
+  vessel=v;
+  vesselEl.dataset.slide=dir||"slideL";
+  sfx.slide();
+  if(allItems.length>0)toast("เทย้ายไป"+(v==="pot"?"หม้อ":"กระทะ")+"! 💦");
+  renderStageFlow();renderVessel();renderButtons();
+}
+function startHeat(){
+  if(heatBtn.disabled)return;
+  cooking=true;doneness=0;
+  money=Math.max(0,money-GAS_COST);
+  updateHeader();
+  toast("🔥 เปิดไฟ (−"+GAS_COST+" 🪙) — ใช้นิ้วคนได้เลย!");
+  sfx.sizzle();
+  cookTimer=setInterval(()=>{
+    doneness+=1.1;
+    if(Math.random()<.15)sfx.sizzle();
+    if(doneness>=100){doneness=100;stopHeat(true)}
+    renderButtons();
+    if(Math.floor(doneness)%20===0)renderVessel();
+  },110);
+  renderVessel();renderButtons();
+}
+function stopHeat(burnt){
+  if(!cooking)return;
+  cooking=false;clearInterval(cookTimer);
+  finalDoneness=doneness;
+  if(burnt)toast("โอ๊ะ! เกรียมไปหน่อย 💨 (ทิ้งแล้วทำใหม่ได้ที่ 🛎️)");
+  else if(finalDoneness>=55&&finalDoneness<82){toast("จังหวะเป๊ะ! ✨");sfx.ding()}
+  else if(finalDoneness<35)toast("อืม…ยังดิบอยู่นะ 😅");
+  renderVessel();renderButtons();renderStageFlow();renderRecap();
+}
+function nextStage(){
+  if(finalDoneness===null)return;
+  stageRecs.push({vessel:vessel,doneness:finalDoneness,stirs:stirs});
+  finalDoneness=null;doneness=0;stirs=0;
+  sfx.pour();
+  toast("➡️ ขั้นที่ "+(stageRecs.length+1)+"! ปัดสลับหม้อ/กระทะ ใส่ของเพิ่ม แล้วเปิดไฟ");
+  renderStageFlow();renderVessel();renderButtons();renderRecap();
+}
+function doSeason(id){
+  if(allItems.length===0){toast("ยังไม่มีอาหารให้ปรุงเลยน้า");sfx.nope();return}
+  if(SEASON_STOCK[id]<=0){toast(SEASONS[id].n+"หมด! ซื้อที่ 🛒 นะ");sfx.nope();return}
+  if(seasonUsed[id]>=4){toast("พอแล้วๆ เดี๋ยว"+SEASONS[id].n+"เกิน! 😆");sfx.nope();return}
+  seasonUsed[id]++;SEASON_STOCK[id]--;
+  sfx.salt();
+  const s=document.createElement("div");
+  s.className="sprinkle";s.textContent=SEASONS[id].e;
+  s.style.left=(42+Math.random()*16)+"%";s.style.top="42%";
+  stoveEl.appendChild(s);setTimeout(()=>s.remove(),720);
+  renderSeasons();renderRecap();
+}
+function trashFood(){
+  if(trashBtn.disabled)return;
+  if(cooking){toast("ยกลงจากเตาก่อนค่อยทิ้งนะ 🔥");sfx.nope();return}
+  const now=Date.now();
+  if(now-trashArm>3000||discardArm!==-99){
+    trashArm=now;discardArm=-99;
+    toast("แน่ใจนะ? ของในเตาจะหายหมด — แตะ 🗑️ อีกครั้งเพื่อทิ้ง");
+    return;
+  }
+  trashArm=0;discardArm=-1;
+  sfx.trash();
+  allItems=[];stageRecs=[];
+  stirs=0;doneness=0;finalDoneness=null;
+  seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
+  toast("🗑️ เททิ้งแล้ว… ออเดอร์เดิมยังรออยู่ สู้ๆ เชฟ!");
+  renderAll();
+}
+function pickDrink(id,el){
+  if(!order){toast("รับออเดอร์ก่อนนะ");sfx.nope();return}
+  if(DRINK_STOCK[id]<=0){
+    el.classList.remove("nope");void el.offsetWidth;el.classList.add("nope");
+    toast("เครื่องดื่มหมด! ซื้อที่ 🛒 นะ");sfx.nope();return;
+  }
+  if(servedDrink===id){toast("เตรียมแก้วนี้ไว้แล้ว~");return}
+  DRINK_STOCK[id]--;
+  servedDrink=id;
+  sfx.pour();
+  toast(DRINKS[id].e+" เตรียม"+DRINKS[id].n+"แล้ว!"+(order.drink?"":" (ลูกค้าไม่ได้สั่งนะ…)"));
+  renderDrinks();
+}
+function discardDrink(){
+  if(!servedDrink)return;
+  toast("เท"+DRINKS[servedDrink].n+"ทิ้ง… เสียของฟรีนะ 💧");
+  sfx.trash();
+  servedDrink=null;
+  renderDrinks();
+}
+
+/* ================= stove gestures: stir / flick / slide ================= */
+let stirAngle=0;
+function addStir(){
+  if(!cooking||stirs>=STIRS_NEED)return;
+  stirs++;
+  if(vessel==="pot"){sfx.stir()}
+  else{
+    sfx.flip();
+    vesselEl.classList.remove("flip");void vesselEl.offsetWidth;vesselEl.classList.add("flip");
+    allItems.slice(0,4).forEach((id,i)=>{
+      const p=document.createElement("div");
+      p.className="piece";p.textContent=INGS[id].e;
+      p.style.left=(30+i*22)+"%";p.style.bottom="30%";
+      p.style.setProperty("--dx",(Math.random()*40-20)+"px");
+      p.style.setProperty("--dy",(-40-Math.random()*30)+"px");
+      vesselWrap.appendChild(p);setTimeout(()=>p.remove(),650);
+    });
+  }
+  if(stirs===STIRS_NEED)toast("คนครบแล้ว! จับตาดูเกจความสุก 👀");
+  renderButtons();
+}
+let vpActive=false,prevAng=null,accum=0,flickY=0,flicked=false,startX=0,slid=false,stirHintCd=0;
 function angleOf(e){
   const r=vesselWrap.getBoundingClientRect();
   return Math.atan2(e.clientY-(r.top+r.height*0.6), e.clientX-(r.left+r.width/2));
 }
 vesselWrap.addEventListener("pointerdown",e=>{
-  if(!cooking){
-    if(allItems.length>0&&Date.now()>stirHintCd){
-      toast("เปิดไฟก่อน แล้วค่อยใช้นิ้วคนนะ 🔥");stirHintCd=Date.now()+2500;
-    }
-    return;
-  }
-  stirActive=true;flicked=false;flickY=e.clientY;
+  vpActive=true;slid=false;startX=e.clientX;
+  flicked=false;flickY=e.clientY;
   prevAng=angleOf(e);accum=0;
   try{vesselWrap.setPointerCapture(e.pointerId)}catch(err){}
 });
 vesselWrap.addEventListener("pointermove",e=>{
-  if(!stirActive)return;
-  if(vessel==="pot"){
-    const a=angleOf(e);
-    let d=a-prevAng;
-    if(d>Math.PI)d-=2*Math.PI;
-    if(d<-Math.PI)d+=2*Math.PI;
-    prevAng=a;accum+=d;
-    stirAngle+=d*180/Math.PI;
-    spoonEl.style.transform="translateX(-50%) rotate("+stirAngle+"deg)";
-    if(Math.abs(accum)>=Math.PI*1.6){accum=0;addStir()}
-  }else{
-    if(flicked){
-      if(e.clientY>flickY-20){flicked=false;flickY=e.clientY}
+  if(!vpActive)return;
+  if(cooking){
+    if(vessel==="pot"){
+      const a=angleOf(e);
+      let d=a-prevAng;
+      if(d>Math.PI)d-=2*Math.PI;
+      if(d<-Math.PI)d+=2*Math.PI;
+      prevAng=a;accum+=d;
+      stirAngle+=d*180/Math.PI;
+      spoonEl.style.transform="translateX(-50%) rotate("+stirAngle+"deg)";
+      if(Math.abs(accum)>=Math.PI*1.6){accum=0;addStir()}
     }else{
-      if(flickY-e.clientY>55){flicked=true;addStir()}
-      else if(e.clientY>flickY){flickY=e.clientY}
+      if(flicked){
+        if(e.clientY>flickY-20){flicked=false;flickY=e.clientY}
+      }else{
+        if(flickY-e.clientY>55){flicked=true;addStir()}
+        else if(e.clientY>flickY){flickY=e.clientY}
+      }
+    }
+  }else{
+    /* slide to switch vessel */
+    const dx=e.clientX-startX;
+    if(!slid&&Math.abs(dx)>60){
+      slid=true;
+      setVessel(vessel==="pot"?"pan":"pot",dx<0?"slideR":"slideL");
     }
   }
 });
-function endStirGesture(){stirActive=false}
-vesselWrap.addEventListener("pointerup",endStirGesture);
-vesselWrap.addEventListener("pointercancel",endStirGesture);
+function endVP(e){
+  if(vpActive&&!cooking&&!slid&&allItems.length>0&&Date.now()>stirHintCd){
+    toast("เปิดไฟก่อนค่อยคน หรือปัดซ้าย/ขวาเพื่อสลับเตานะ");
+    stirHintCd=Date.now()+3000;
+  }
+  vpActive=false;
+}
+vesselWrap.addEventListener("pointerup",endVP);
+vesselWrap.addEventListener("pointercancel",endVP);
 
-/* ================= judging ================= */
+/* ================= judging (freestyle) ================= */
 function donePts(d){
   if(d>=55&&d<82)return 25;
   if(d>=35&&d<55)return 15;
   if(d>=82)return 8;
   return 5;
 }
+function seasonTxt(name){
+  const req=SEASON_REQ[name]||{};
+  const parts=Object.keys(req).map(id=>SEASONS[id].e+"×"+req[id]);
+  return parts.length?parts.join(" "):"ไม่ต้องปรุง";
+}
 function judge(){
   const recs=stageRecs.concat([{vessel:vessel,doneness:finalDoneness,stirs:stirs}]);
   const lines=[],notes=[];
-  const req=order.req;
-  const have=req.filter(id=>allItems.includes(id)).length;
-  const wrong=allItems.filter(id=>!req.includes(id));
+  const r=order.recipe;
+  /* core */
+  const coreHave=order.coreReq.filter(id=>allItems.includes(id)).length;
+  const coreScore=coreHave/order.coreReq.length*25;
+  if(coreHave<order.coreReq.length)notes.push("ของหลักขาดไป");
+  lines.push(["⭐ ของหลักครบ "+coreHave+"/"+order.coreReq.length,Math.round(coreScore)+"/25"]);
+  /* count range */
+  const c=allItems.length;
+  let rangeScore=0;
+  if(c>=r.min&&c<=r.max)rangeScore=10;
+  else if(c===r.min-1||c===r.max+1){rangeScore=5;notes.push(c<r.min?"จานโหรงเหรงไปนิด":"ใส่แน่นเกิ๊น")}
+  else notes.push(c<r.min?"วัตถุดิบน้อยเกินไป":"ใส่เยอะจนล้น");
+  lines.push(["📏 ปริมาณ "+c+" อย่าง (สูตร "+r.min+"–"+r.max+")",rangeScore+"/10"]);
+  /* wrong / forbidden */
+  const wrong=allItems.filter(id=>!order.allowed.has(id));
   const forbidden=wrong.filter(id=>order.removed.includes(id));
-  const ingScore=Math.max(0, have/req.length*40 - wrong.length*5 - forbidden.length*5);
-  let ingLine="🧺 วัตถุดิบตรงออเดอร์ "+have+"/"+req.length;
-  if(forbidden.length){ingLine="😱 ใส่ของที่ลูกค้าขอไม่ใส่!";notes.push("ใส่ของที่บอกว่าไม่เอา")}
-  else if(wrong.length)ingLine+=" (เกินมา "+wrong.length+")";
-  if(have<req.length)notes.push("ของขาดไป "+(req.length-have)+" อย่าง");
-  lines.push([ingLine,Math.round(ingScore)+"/40"]);
-  const expected=order.recipe.stages.map(s=>s.type);
-  const did=recs.map(r=>r.vessel);
+  const cleanScore=Math.max(0,5-wrong.length*3-forbidden.length*2);
+  if(forbidden.length)notes.push("ใส่ของที่บอกว่าไม่เอา!");
+  else if(wrong.length)notes.push("มีของแปลกปลอมมาด้วย");
+  lines.push([forbidden.length?"😱 ใส่ของที่ขอไม่ใส่!":wrong.length?"⚠️ มีของนอกสูตร "+wrong.length+" อย่าง":"✅ ไม่มีของแปลกปลอม",cleanScore+"/5"]);
+  /* stages */
+  const expected=r.stages.map(s=>s.type);
+  const did=recs.map(x=>x.vessel);
   let stepScore,stepTxt;
   if(expected.length===did.length&&expected.every((t,i)=>t===did[i])){
     stepScore=15;stepTxt="✅ ขั้นตอนถูกเป๊ะ ("+did.length+" ขั้น)";
   }else if(expected.length===did.length&&expected.slice().sort().join()===did.slice().sort().join()){
-    stepScore=8;stepTxt="🔁 ครบทุกขั้นแต่สลับลำดับ";notes.push("ขั้นตอนสลับไปหน่อย");
+    stepScore=8;stepTxt="🔁 ครบแต่สลับลำดับ";notes.push("ขั้นตอนสลับไปหน่อย");
   }else{
-    stepScore=5;stepTxt="⚠️ ขั้นตอนไม่ตรงตำรา ("+did.length+"/"+expected.length+" ขั้น)";notes.push("ทำไม่ตรงตำรา");
+    stepScore=5;stepTxt="⚠️ ขั้นตอนไม่ตรง ("+did.length+"/"+expected.length+")";notes.push("ทำไม่ตรงตำรา");
   }
   lines.push([stepTxt,stepScore+"/15"]);
-  const doneScore=Math.round(recs.reduce((s,r)=>s+donePts(r.doneness),0)/recs.length);
-  const anyBurnt=recs.some(r=>r.doneness>=82),anyRaw=recs.some(r=>r.doneness<35);
+  /* doneness */
+  const doneScore=Math.round(recs.reduce((s,x)=>s+donePts(x.doneness),0)/recs.length);
+  const anyBurnt=recs.some(x=>x.doneness>=82),anyRaw=recs.some(x=>x.doneness<35);
   if(anyBurnt)notes.push("มีกลิ่นไหม้นิดๆ");
   if(anyRaw)notes.push("บางส่วนยังดิบ");
-  lines.push([anyBurnt?"💨 มีขั้นที่เกรียมไปหน่อย":anyRaw?"🥶 มีขั้นที่ยังดิบ":"✨ ทุกขั้นสุกกำลังดี",doneScore+"/25"]);
-  const stirScore=Math.round(recs.reduce((s,r)=>s+Math.min(r.stirs,STIRS_NEED),0)/(recs.length*STIRS_NEED)*10);
-  lines.push(["🥄 คน/โยนกระทะครบทุกขั้น",stirScore+"/10"]);
-  /* seasoning vs สูตร */
-  const sreq=SEASON_REQ[order.recipe.name]||{};
+  lines.push([anyBurnt?"💨 มีขั้นที่เกรียม":anyRaw?"🥶 มีขั้นที่ดิบ":"✨ สุกกำลังดีทุกขั้น",doneScore+"/25"]);
+  /* stir */
+  const stirScore=Math.round(recs.reduce((s,x)=>s+Math.min(x.stirs,STIRS_NEED),0)/(recs.length*STIRS_NEED)*10);
+  lines.push(["🥄 คน/โยนครบทุกขั้น",stirScore+"/10"]);
+  /* seasoning */
+  const sreq=SEASON_REQ[r.name]||{};
   let sPts=0,sHit=0;
   SEASON_ORDER.forEach(id=>{
     const target=sreq[id]||0;
@@ -1250,7 +1346,7 @@ function judge(){
   });
   const seasonScore=Math.round(sPts/SEASON_ORDER.length*10);
   if(sHit<SEASON_ORDER.length)notes.push("ปรุงรสยังไม่ตรงสูตร");
-  lines.push(["🧂 ปรุงรสตรงสูตร "+sHit+"/"+SEASON_ORDER.length+" ชนิด",seasonScore+"/10"]);
+  lines.push(["🧂 ปรุงรสตรง "+sHit+"/"+SEASON_ORDER.length,seasonScore+"/10"]);
   /* drink */
   let drinkAdj=0,drinkPay=0;
   if(order.drink){
@@ -1259,18 +1355,19 @@ function judge(){
       lines.push(["🥤 เครื่องดื่มถูกต้อง!","+"+drinkPay+" 🪙"]);
     }else if(servedDrink){
       drinkAdj=-8;notes.push("เครื่องดื่มผิดแก้ว");
-      lines.push(["😵 เครื่องดื่มผิดแก้ว! (สั่ง"+DRINKS[order.drink].n+")","−8 คะแนน"]);
+      lines.push(["😵 เครื่องดื่มผิดแก้ว!","−8"]);
     }else{
       drinkAdj=-8;notes.push("ลืมเครื่องดื่ม");
-      lines.push(["🥤 ลืมเครื่องดื่มที่สั่งไว้!","−8 คะแนน"]);
+      lines.push(["🥤 ลืมเครื่องดื่ม!","−8"]);
     }
   }else if(servedDrink){
-    lines.push(["🥤 ลูกค้าไม่ได้สั่งเครื่องดื่มนะ…","เสียของฟรี"]);
+    lines.push(["🥤 ลูกค้าไม่ได้สั่งนะ…","เสียของ"]);
   }
-  let total=Math.round(ingScore+stepScore+doneScore+stirScore+seasonScore)+drinkAdj;
+  let total=Math.round(coreScore+rangeScore+cleanScore+stepScore+doneScore+stirScore+seasonScore)+drinkAdj;
   total=Math.max(0,Math.min(100,total));
   const stars=total>=82?3:total>=60?2:1;
-  let foodPay=Math.round(order.recipe.price*(0.35+0.65*total/100));
+  let foodPay=Math.round(r.price*(0.35+0.65*total/100));
+  if(order.type==="delivery")foodPay=Math.round(foodPay*1.15);
   if(foodPay<20)foodPay=20;
   const modBonus=stars===3?(order.removed.length+order.added.length)*4:0;
   let tip=stars*5+modBonus+(order.drink&&servedDrink===order.drink?3:0);
@@ -1278,73 +1375,96 @@ function judge(){
   if(isFamous()){
     const extra=Math.round(tip*0.2);
     tip+=extra;
-    fameLine=["🎉 โบนัสร้านดัง (รีวิวดี)","+"+extra+" 🪙"];
+    fameLine=["🎉 โบนัสร้านดัง","+"+extra+" 🪙"];
   }
-  lines.push(["ค่าอาหาร ("+order.recipe.name+")","+"+foodPay+" 🪙"]);
+  lines.push(["ค่าอาหาร"+(order.type==="delivery"?" (รวมค่าส่ง +15%)":""),"+"+foodPay+" 🪙"]);
   if(fameLine)lines.push(fameLine);
-  lines.push(["ทิป (จ่ายตอนทอนเงินถูก)","+"+tip+" 🪙"]);
+  lines.push(["ทิป","+"+tip+" 🪙"]);
   return {total,stars,lines,notes,foodPay,drinkPay,tip,bill:foodPay+drinkPay};
 }
 
-/* ================= serve → result → checkout ================= */
+/* ================= serve → result → pay ================= */
 function serve(){
   if(serveBtn.disabled)return;
-  const r=judge();
-  pending=r;
+  const res=judge();
+  pending=res;
   sfx.ding();
   servedN++;
-  updateHeader();
   $("rDish").textContent=order.recipe.dish;
-  $("rFace").textContent=r.stars===3?"😍":r.stars===2?"😊":"😅";
-  $("rTitle").textContent=r.total+" คะแนน";
-  $("rStars").innerHTML="⭐".repeat(r.stars)+'<span class="dim">'+"⭐".repeat(3-r.stars)+"</span>";
-  $("rComment").textContent=cust.name+": “"+rand(COMMENTS[r.stars])+"”";
-  const mods=[]
-    .concat(order.added.map(id=>"➕"+INGS[id].n))
-    .concat(order.removed.map(id=>"🚫"+INGS[id].n));
-  const stepsTxt=order.recipe.stages.map((s,i)=>
-    (i+1)+") "+(s.type==="pot"?"ต้ม":"ผัด")+" "+
-    s.ings.filter(id=>!order.removed.includes(id)).map(id=>INGS[id].e).join("")
-  ).join(" → ")+(order.added.length?" (+"+order.added.map(id=>INGS[id].e).join("")+")":"");
-  $("rReveal").textContent="เฉลย: "+order.recipe.name+
-    (mods.length?" ["+mods.join(" ")+"]":"")+" — "+stepsTxt+
-    " · ปรุงรส: "+seasonTxt(order.recipe.name)+
-    (order.drink?" · 🥤"+DRINKS[order.drink].n:"");
+  $("rFace").textContent=res.stars===3?"😍":res.stars===2?"😊":"😅";
+  $("rTitle").textContent=res.total+" คะแนน "+(order.type==="delivery"?"· 🛵":"· 🏪");
+  $("rStars").innerHTML="⭐".repeat(res.stars)+'<span class="dim">'+"⭐".repeat(3-res.stars)+"</span>";
+  $("rComment").textContent=order.cust.name+": “"+rand(COMMENTS[res.stars])+"”";
+  $("rReveal").textContent="สูตร "+order.recipe.name+": ต้องมี "+
+    order.coreReq.map(id=>INGS[id].e).join("")+" · ใส่ได้ "+order.recipe.min+"–"+order.recipe.max+" อย่าง · "+
+    order.recipe.stages.map((s,i)=>(i+1)+")"+(s.type==="pot"?"ต้ม":"ผัด")).join("→")+
+    " · ปรุง: "+seasonTxt(order.recipe.name);
   const bd=$("rBreakdown");bd.innerHTML="";
-  r.lines.forEach((l,i)=>{
+  res.lines.forEach((l,i)=>{
     const d=document.createElement("div");
-    if(i>=r.lines.length-2)d.className="pay";
+    if(i>=res.lines.length-2)d.className="pay";
     d.innerHTML="<span>"+l[0]+"</span><span>"+l[1]+"</span>";
     bd.appendChild(d);
   });
+  $("payBtn").textContent=order.type==="delivery"?"ส่งไรเดอร์ 🛵":"คิดเงิน 💵";
   resultOverlay.classList.add("show");
-  const rect=serveBtn.getBoundingClientRect();
-  for(let i=0;i<r.stars*2;i++){
-    setTimeout(()=>{
-      const h=document.createElement("div");
-      h.className="heartPop";h.textContent=rand(["❤️","⭐","🪙"]);
-      h.style.left=(rect.left+Math.random()*rect.width)+"px";
-      h.style.top=rect.top+"px";
-      document.body.appendChild(h);setTimeout(()=>h.remove(),1250);
-    },i*120);
-  }
+  emo(resultOverlay);
 }
+function addReview(stars,extraNotes){
+  let base=rand(REVIEW_MAIN[stars]).replace("{dish}",order.recipe.name);
+  if(order.type==="delivery"&&stars>=2&&Math.random()<.5)base=rand(REVIEW_DELI)+" "+base;
+  const text=base+(extraNotes.length?" ("+extraNotes.join(" · ")+")":"");
+  reviews.push({stars,face:order.cust.face,name:order.cust.name,text});
+  if(reviews.length>25)reviews.shift();
+  updateHeader();
+}
+function finishOrder(){
+  order=null;pending=null;
+  allItems=[];stageRecs=[];board=null;
+  stirs=0;doneness=0;finalDoneness=null;cooking=false;
+  clearInterval(cookTimer);
+  servedDrink=null;
+  seasonUsed={salt:0,sugar:0,fish:0,oyster:0};
+  spawnFront(false);
+  renderAll();renderPantry();
+  showStation("front");
+  toast("🔔 มีออเดอร์ใหม่รออยู่ที่หน้าร้าน!");
+}
+$("payBtn").addEventListener("click",()=>{
+  resultOverlay.classList.remove("show");
+  if(order.type==="delivery"){
+    const gain=pending.bill+pending.tip;
+    money+=gain;
+    addReview(pending.stars,pending.notes.slice(0,2));
+    $("deliMsg").textContent=order.cust.name+" จ่ายผ่านแอปเรียบร้อย ไม่ต้องทอน!";
+    $("deliBill").innerHTML='<div><span>ยอดอาหาร+ค่าส่ง</span><span>+'+pending.bill+' 🪙</span></div>'+
+      '<div><span>ทิปในแอป</span><span>+'+pending.tip+' 🪙</span></div>'+
+      '<div class="big"><span>รวมเข้ากระเป๋า</span><span>+'+gain+' 🪙</span></div>';
+    updateHeader();
+    sfx.coin();
+    deliOverlay.classList.add("show");
+    emo(deliOverlay);
+  }else{
+    openCheckout();
+  }
+});
+$("deliNext").addEventListener("click",()=>{
+  deliOverlay.classList.remove("show");
+  setTimeout(finishOrder,200);
+});
 
-/* ---- checkout ---- */
+/* ---- walk-in checkout ---- */
 const DENOMS=[1,2,5,10,20,50];
 function pickPaid(bill){
-  const opts=[];
+  const opts=[bill];
   const up10=Math.ceil(bill/10)*10;
-  opts.push(bill);
   if(up10>bill)opts.push(up10);
   if(bill<50)opts.push(50);
   if(bill<100)opts.push(100);
-  const roll=Math.random();
-  if(roll<.2)return bill;
+  if(Math.random()<.2)return bill;
   return rand(opts.filter(p=>p>=bill));
 }
 function openCheckout(){
-  resultOverlay.classList.remove("show");
   changeStack=[];
   pending.paid=pickPaid(pending.bill);
   $("ckFood").textContent=pending.foodPay+" 🪙";
@@ -1374,6 +1494,7 @@ function openCheckout(){
     row.appendChild(b);
   });
   checkoutOverlay.classList.add("show");
+  emo(checkoutOverlay);
 }
 function confirmChange(){
   if(!pending)return;
@@ -1384,19 +1505,18 @@ function confirmChange(){
   const revNotes=pending.notes.slice(0,2);
   if(given===need){
     gain=pending.bill+pending.tip;
-    res.textContent="✅ ทอนถูกเป๊ะ "+need+" 🪙! รับเงิน +"+pending.bill+" และทิป +"+pending.tip+" 🪙";
-    res.className="good";
-    sfx.ding();
+    res.textContent="✅ ทอนถูกเป๊ะ "+need+" 🪙! +"+pending.bill+" และทิป +"+pending.tip;
+    res.className="good";sfx.ding();
   }else if(given>need){
     const lost=given-need;
     gain=pending.bill+pending.tip-lost;
-    res.textContent="😭 ต้องทอน "+need+" แต่ทอนไป "+given+" — เงินหายฟรี −"+lost+" 🪙";
+    res.textContent="😭 ต้องทอน "+need+" แต่ทอน "+given+" — หายฟรี −"+lost+" 🪙";
     res.className="bad";
     revNotes.push("แถมเงินทอนมาด้วย ฮ่าๆ");
     sfx.nope();
   }else{
     gain=pending.bill;
-    res.textContent="😠 ต้องทอน "+need+" แต่ทอนแค่ "+given+" — ลูกค้าหน้าเสีย ทิปหายวับ!";
+    res.textContent="😠 ต้องทอน "+need+" แต่ทอนแค่ "+given+" — ทิปหายวับ!";
     res.className="bad";
     revStars=Math.max(1,revStars-1);
     revNotes.push("ทอนเงินขาดนะร้านนี้!");
@@ -1410,34 +1530,135 @@ function confirmChange(){
   $("ckDone").style.display="block";
   setTimeout(sfx.coin,300);
 }
-
-/* ================= wiring ================= */
-$("tabPot").addEventListener("click",()=>setVessel("pot"));
-$("tabPan").addEventListener("click",()=>setVessel("pan"));
-heatBtn.addEventListener("click",startHeat);
-offBtn.addEventListener("click",()=>stopHeat(false));
-nextStageBtn.addEventListener("click",nextStage);
-trashBtn.addEventListener("click",trashFood);
-drinkTray.addEventListener("click",discardDrink);
-serveBtn.addEventListener("click",serve);
-$("toCheckoutBtn").addEventListener("click",openCheckout);
 $("ckConfirm").addEventListener("click",confirmChange);
 $("ckUndo").addEventListener("click",()=>{
   changeStack.pop();
   $("ckSum").textContent=changeStack.reduce((a,c)=>a+c,0);
 });
 $("ckClear").addEventListener("click",()=>{
-  changeStack=[];
-  $("ckSum").textContent="0";
+  changeStack=[];$("ckSum").textContent="0";
 });
-$("nextBtn").addEventListener("click",()=>{
+$("ckNext").addEventListener("click",()=>{
   checkoutOverlay.classList.remove("show");
-  setTimeout(newCustomer,250);
+  setTimeout(finishOrder,200);
 });
-$("toShopBtn").addEventListener("click",()=>{
-  checkoutOverlay.classList.remove("show");
-  setTimeout(()=>{newCustomer();openShop();},250);
-});
+
+/* ================= shop (×2 mid-order) ================= */
+function shopRowEl(list,emoji,name,sub,stockTxt,price,onBuy){
+  const row=document.createElement("div");
+  row.className="shopRow";
+  row.innerHTML='<div class="se">'+emoji+'</div>'+
+    '<div class="sn">'+name+'<small>'+sub+'</small></div>'+
+    '<div class="sstock">'+stockTxt+'</div>';
+  const btn=document.createElement("button");
+  btn.className="buyBtn";btn.textContent=price+" 🪙";
+  btn.disabled=money<price;
+  btn.addEventListener("click",()=>{
+    if(money<price){sfx.nope();return}
+    money-=price;onBuy();
+    sfx.coin();renderShop();renderPantry();renderDrinks();renderSeasons();updateHeader();
+  });
+  row.appendChild(btn);
+  list.appendChild(row);
+}
+function renderShop(){
+  const m=shopMult();
+  $("rushTag").style.display=m>1?"inline-block":"none";
+  $("shopMoney").textContent=money;
+  const list=$("shopList");
+  list.innerHTML="";
+  const s1=document.createElement("div");s1.className="shopSec";s1.textContent="🧺 วัตถุดิบ";list.appendChild(s1);
+  ING_ORDER.forEach(id=>{
+    const g=INGS[id];
+    shopRowEl(list,g.e,g.n,"ปกติ "+g.price+" 🪙"+(m>1?" → ×2":""),"×"+STOCK[id],g.price*m,()=>{STOCK[id]++});
+  });
+  const s2=document.createElement("div");s2.className="shopSec";s2.textContent="🥤 เครื่องดื่ม";list.appendChild(s2);
+  DRINK_ORDER.forEach(id=>{
+    const g=DRINKS[id];
+    shopRowEl(list,g.e,g.n,"ขายได้ "+g.sell+" 🪙","×"+DRINK_STOCK[id],g.cost*m,()=>{DRINK_STOCK[id]++});
+  });
+  const s3=document.createElement("div");s3.className="shopSec";s3.textContent="🧂 เครื่องปรุงรส";list.appendChild(s3);
+  SEASON_ORDER.forEach(id=>{
+    const g=SEASONS[id];
+    shopRowEl(list,g.e,g.n,"เติม "+g.refill+" ครั้ง","เหลือ "+SEASON_STOCK[id],g.price*m,()=>{SEASON_STOCK[id]+=g.refill});
+  });
+  emo(shopOverlay);
+}
+function openShop(){
+  if(cooking){toast("ไฟติดอยู่! ยกลงก่อนค่อยซื้อของ 🔥");sfx.nope();return}
+  if(shopMult()>1)toast("🛵 สั่งด่วนกลางออเดอร์ — ราคาทุกอย่าง ×2 นะเชฟ!");
+  renderShop();shopOverlay.classList.add("show");
+}
+
+/* ================= book & reviews ================= */
+function renderBook(){
+  $("bookMoney").textContent=money;
+  const page=$("bookPage");
+  page.innerHTML="";
+  RECIPES.forEach(r=>{
+    const isOpen=unlocked.has(r.name);
+    const d=document.createElement("div");
+    d.className="rcp"+(isOpen?"":" locked");
+    d.innerHTML='<div class="rhead">'+(isOpen?r.dish:"🔒")+" "+r.name+
+      '<span class="rprice">ขาย ~'+r.price+' 🪙</span></div>'+
+      '<div class="rsteps">'+
+      r.stages.map((s,i)=>'<span class="stepTag '+s.type+'">'+(i+1)+". "+(s.type==="pot"?"🍲":"🍳")+" "+s.label+"</span>").join(" ")+
+      "<br>ต้องมี: "+r.core.map(id=>INGS[id].e).join(" ")+
+      " · ใส่ได้: "+r.optional.map(id=>INGS[id].e).join(" ")+
+      "<br>รวม "+r.min+"–"+r.max+" อย่าง</div>"+
+      '<div class="rseason">ปรุงรส: '+seasonTxt(r.name)+"</div>";
+    if(!isOpen){
+      const btn=document.createElement("button");
+      btn.className="unlockBtn";
+      btn.textContent="🔓 ปลดล็อก "+r.unlock+" 🪙";
+      btn.disabled=money<r.unlock;
+      btn.addEventListener("click",()=>{
+        if(money<r.unlock){sfx.nope();return}
+        money-=r.unlock;
+        unlocked.add(r.name);
+        sfx.unlock();
+        toast("🔓 ปลดล็อก "+r.name+" แล้ว!");
+        updateHeader();renderBook();
+      });
+      d.appendChild(btn);
+    }
+    page.appendChild(d);
+  });
+  const note=document.createElement("div");
+  note.className="bookNote";
+  note.textContent="✎ ฟรีสไตล์: มีของหลักครบ + จำนวนอยู่ในช่วง = ผ่าน ที่เหลือแล้วแต่เชฟ!";
+  page.appendChild(note);
+  emo(bookOverlay);
+}
+function renderReviews(){
+  const a=ratingAvg();
+  $("ratingBig").textContent=a===null?"–":"⭐ "+a.toFixed(1)+" / 3";
+  $("ratingSub").textContent=a===null?"ยังไม่มีรีวิว — เสิร์ฟคนแรกกันเถอะ!":reviews.length+" รีวิวจากลูกค้า";
+  $("fameBadge").style.display=isFamous()?"inline-block":"none";
+  const list=$("revList");
+  list.innerHTML="";
+  if(!reviews.length){
+    list.innerHTML='<div class="revEmpty">🌙 เงียบเหงา…ยังไม่มีใครรีวิวเลย</div>';
+  }else{
+    reviews.slice().reverse().forEach(rv=>{
+      const d=document.createElement("div");
+      d.className="revItem";
+      d.innerHTML='<div class="rTop">'+rv.face+" "+rv.name+
+        '<span class="rStars">'+"⭐".repeat(rv.stars)+"☆".repeat(3-rv.stars)+"</span></div>"+
+        '<div class="rTxt">'+rv.text+"</div>";
+      list.appendChild(d);
+    });
+  }
+  emo(revOverlay);
+}
+
+/* ================= wiring ================= */
+heatBtn.addEventListener("click",startHeat);
+offBtn.addEventListener("click",()=>stopHeat(false));
+nextStageBtn.addEventListener("click",nextStage);
+trashBtn.addEventListener("click",trashFood);
+drinkTray.addEventListener("click",discardDrink);
+serveBtn.addEventListener("click",serve);
 $("shopBtn").addEventListener("click",openShop);
 $("shopClose").addEventListener("click",()=>shopOverlay.classList.remove("show"));
 $("bookBtn").addEventListener("click",()=>{renderBook();bookOverlay.classList.add("show")});
@@ -1449,8 +1670,12 @@ $("muteBtn").addEventListener("click",e=>{
   e.currentTarget.textContent=muted?"🔇":"🔊";
 });
 
-updateHeader();
-newCustomer();
+/* ================= boot ================= */
+vesselEl.dataset.slide="";
+spawnFront(true);
+renderPantry();
+renderAll();
+emo(document.body);
 </script>
 </body>
 </html>
